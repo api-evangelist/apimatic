@@ -5,7 +5,9 @@ apis:
   - aid: apimatic:apimatic
     name: APIMatic
     tags:
-      - API
+      - SDK
+      - Platform
+      - Portals
     humanURL: https://www.apimatic.io/
     properties:
       - url: https://www.apimatic.io/
