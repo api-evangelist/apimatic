@@ -104,3 +104,11 @@ common:
     description: 'null'
     url: https://www.apimatic.io/art-of-developer-experience
     type: Podcast
+  - name: APIMATIC - Login
+    description: 'null'
+    url: https://app.apimatic.io/account/login
+    type: Login
+  - name: APIMATIC - Register a New Account
+    description: 'null'
+    url: https://app.apimatic.io/account/register
+    type: SignUp
