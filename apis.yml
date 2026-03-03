@@ -134,6 +134,8 @@ common:
 created: '2025-01-08'
 modified: '2026-01-02'
 position: Consumer
+segments:
+  - SDKs
 description: >-
   APIMatic is a company that specializes in API (Application Programming
   Interface) transformation and generation. They provide tools and services that
