@@ -2,6 +2,49 @@ aid: apimatic
 url: >-
   https://raw.githubusercontent.com/api-evangelist/apimatic/refs/heads/main/apis.yml
 apis:
+  - aid: apimatic:apimatic-platform-api
+    name: APIMatic Platform API
+    tags:
+      - SDK
+      - Code Generation
+      - Documentation
+      - Transformation
+      - Validation
+    humanURL: https://docs.apimatic.io/platform-api/
+    properties:
+      - url: https://docs.apimatic.io/platform-api/
+        type: Documentation
+      - url: https://docs.apimatic.io/platform-api/#/http/getting-started
+        type: GettingStarted
+    description: >-
+      The APIMatic Platform API provides programmatic access to APIMatic's
+      capabilities including SDK generation, API documentation portal
+      generation, API specification validation and linting, and API
+      specification transformation. Integrate APIMatic into your CI/CD
+      workflows to automate your developer experience suite.
+  - aid: apimatic:apimatic-api-transformer-api
+    name: APIMatic API Transformer API
+    tags:
+      - Transformation
+      - Conversion
+      - OpenAPI
+      - Swagger
+      - RAML
+      - Postman
+    humanURL: https://www.apimatic.io/solution/transformer
+    properties:
+      - url: https://docs.apimatic.io/api-transformer/overview-transformer/
+        type: Documentation
+      - url: https://www.apimatic.io/solution/transformer
+        type: Product
+      - url: https://github.com/apimatic/apimatic-transformer-action
+        type: GitHub Action
+    description: >-
+      APIMatic API Transformer converts API definition files between more
+      than 15 supported API specification formats including OpenAPI, RAML,
+      API Blueprint, WSDL, WADL, and Postman Collections. Multi-file API
+      descriptions and ZIP files are supported with an average
+      transformation taking less than half a minute.
   - aid: apimatic:apimatic
     name: APIMatic
     tags:
@@ -9,10 +52,18 @@ apis:
       - Platform
       - Portals
       - SDKs
+      - Developer Experience
+      - Code Generation
     humanURL: https://www.apimatic.io/
     properties:
       - url: https://www.apimatic.io/
         type: Documentation
+      - url: https://www.apimatic.io/product/define
+        type: Product
+      - url: https://www.apimatic.io/product/generate
+        type: Product
+      - url: https://www.apimatic.io/product/publish
+        type: Product
     description: >-
       The Trusted Developer Experience platform for APIs. Achieve faster API
       onboarding via automatic SDKs, docs, code samples, and guided
@@ -23,6 +74,9 @@ tags:
   - Platform
   - Portals
   - SDKs
+  - Code Generation
+  - Developer Experience
+  - API Transformation
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -122,6 +176,11 @@ common:
       - name: Lint API Definitions
       - name: Validate API Definitions
       - name: Command Line Interface
+      - name: MCP Server Generation
+      - name: llms.txt Support
+      - name: SDK Publishing
+      - name: OpenAPI Linter GitHub App
+      - name: VS Code Extension
     name: Features
     type: Features
   - data:
@@ -129,10 +188,65 @@ common:
       - name: Redhat
       - name: Redocly
       - name: Readme
+      - name: GitHub
     name: Integrations
     type: Integrations
+  - url: https://x.com/APIMatic
+    name: APIMatic on X (Twitter)
+    type: X (Twitter)
+  - url: https://www.facebook.com/apimatic/
+    name: APIMatic on Facebook
+    type: Facebook
+  - url: https://github.com/apimatic
+    name: APIMatic GitHub Organization
+    type: GitHub Organization
+  - url: https://support.apimatic.io/hc/en-us
+    name: APIMatic Support
+    type: Support
+  - url: https://www.apimatic.io/about
+    name: About APIMatic
+    type: About
+  - url: https://www.apimatic.io/careers
+    name: APIMatic Careers
+    type: Careers
+  - url: https://www.npmjs.com/package/@apimatic/cli
+    name: APIMatic CLI (npm)
+    type: CLI
+  - url: https://docs.apimatic.io/apimatic-cli/getting-started/
+    name: APIMatic CLI Documentation
+    type: CLI Documentation
+  - url: https://marketplace.visualstudio.com/items?itemName=apimatic-developers.apimatic-for-vscode
+    name: APIMatic VS Code Extension
+    type: VS Code Extension
+  - url: https://marketplace.visualstudio.com/items?itemName=apimatic-developers.apimatic
+    name: APIMatic API Copilot VS Code Extension
+    type: VS Code Extension
+  - url: https://github.com/marketplace/apimatic-openapi-linter
+    name: APIMatic OpenAPI Linter GitHub App
+    type: GitHub App
+  - url: https://www.apimatic.io/solution/score-my-openapi
+    name: Score My OpenAPI
+    type: Tools
+  - url: https://www.apimatic.io/solution/fix-my-openapi
+    name: Fix My OpenAPI
+    type: Tools
+  - url: https://www.apimatic.io/solution/dx-as-code
+    name: DX as Code Solution
+    type: Solutions
+  - url: https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/
+    name: MCP Server Generation Documentation
+    type: Documentation
+  - url: https://github.com/apimatic/apimatic-validator-mcp
+    name: APIMatic Validator MCP Server
+    type: GitHub Repository
+  - url: https://github.com/apimatic/apimatic-cli
+    name: APIMatic CLI GitHub Repository
+    type: GitHub Repository
+  - url: https://www.npmjs.com/package/@apimatic/sdk
+    name: APIMatic SDK for JavaScript (npm)
+    type: Node.js SDK
 created: '2025-01-08'
-modified: '2026-01-02'
+modified: '2026-03-03'
 position: Consumer
 segments:
   - SDKs
@@ -149,5 +263,5 @@ description: >-
   development process.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
