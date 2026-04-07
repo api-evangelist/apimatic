@@ -5,9 +5,9 @@ apis:
   - aid: apimatic:apimatic-platform-api
     name: APIMatic Platform API
     tags:
-      - SDK
       - Code Generation
       - Documentation
+      - SDK
       - Transformation
       - Validation
     humanURL: https://docs.apimatic.io/platform-api/
@@ -25,12 +25,12 @@ apis:
   - aid: apimatic:apimatic-api-transformer-api
     name: APIMatic API Transformer API
     tags:
-      - Transformation
       - Conversion
       - OpenAPI
-      - Swagger
-      - RAML
       - Postman
+      - RAML
+      - Swagger
+      - Transformation
     humanURL: https://www.apimatic.io/solution/transformer
     properties:
       - url: https://docs.apimatic.io/api-transformer/overview-transformer/
@@ -48,12 +48,12 @@ apis:
   - aid: apimatic:apimatic
     name: APIMatic
     tags:
-      - SDK
+      - Code Generation
+      - Developer Experience
       - Platform
       - Portals
+      - SDK
       - SDKs
-      - Developer Experience
-      - Code Generation
     humanURL: https://www.apimatic.io/
     properties:
       - url: https://www.apimatic.io/
@@ -70,13 +70,13 @@ apis:
       walkthroughs.
 name: APIMatic
 tags:
-  - SDK
-  - Platform
-  - Portals
-  - SDKs
+  - API Transformation
   - Code Generation
   - Developer Experience
-  - API Transformation
+  - Platform
+  - Portals
+  - SDK
+  - SDKs
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -215,12 +215,10 @@ common:
   - url: https://docs.apimatic.io/apimatic-cli/getting-started/
     name: APIMatic CLI Documentation
     type: CLI Documentation
-  - url: 
-      https://marketplace.visualstudio.com/items?itemName=apimatic-developers.apimatic-for-vscode
+  - url: https://marketplace.visualstudio.com/items?itemName=apimatic-developers.apimatic-for-vscode
     name: APIMatic VS Code Extension
     type: VS Code Extension
-  - url: 
-      https://marketplace.visualstudio.com/items?itemName=apimatic-developers.apimatic
+  - url: https://marketplace.visualstudio.com/items?itemName=apimatic-developers.apimatic
     name: APIMatic API Copilot VS Code Extension
     type: VS Code Extension
   - url: https://github.com/marketplace/apimatic-openapi-linter
