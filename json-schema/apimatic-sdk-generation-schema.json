@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apimatic/main/json-schema/apimatic-sdk-generation-schema.json",
+  "title": "APIMatic SDK Generation",
+  "description": "Schema representing an SDK generation request and result in APIMatic",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": [
+        "CS_NET_STANDARD_LIB",
+        "JAVA_ECLIPSE_JRE_LIB",
+        "PHP_GENERIC_LIB",
+        "PYTHON_GENERIC_LIB",
+        "RUBY_GENERIC_LIB",
+        "TYPESCRIPT_GENERIC_LIB",
+        "GO_GENERIC_LIB"
+      ],
+      "description": "Target SDK platform for code generation"
+    },
+    "downloadUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to download the generated SDK package"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Expiration timestamp for the download URL"
+    }
+  },
+  "required": ["platform"]
+}

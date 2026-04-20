@@ -1,0 +1,72 @@
+vocabulary:
+  name: APIMatic Vocabulary
+  description: Unified taxonomy mapping API developer experience resources, SDK generation, and personas across the APIMatic platform
+  version: 1.0.0
+  updated: '2026-04-19'
+
+resources:
+  - name: ApiEntity
+    description: An API definition imported and managed within APIMatic
+    properties:
+      - id
+      - name
+      - description
+      - version
+      - createdAt
+      - updatedAt
+
+  - name: SdkGeneration
+    description: An SDK code generation task for a specific programming language platform
+    properties:
+      - platform
+      - downloadUrl
+      - expiresAt
+
+  - name: ValidationResult
+    description: Results of validating and linting an API specification
+    properties:
+      - valid
+      - errors
+      - warnings
+
+  - name: Portal
+    description: A generated developer documentation portal for an API
+    properties:
+      - downloadUrl
+      - expiresAt
+
+actions:
+  - name: Import
+    description: Import an API specification into APIMatic from a file or URL
+  - name: Generate
+    description: Generate SDKs or documentation portals from an API definition
+  - name: Validate
+    description: Validate and lint an API specification for errors and best practices
+  - name: Transform
+    description: Convert an API specification from one format to another
+  - name: Publish
+    description: Publish generated SDKs to package registries (npm, PyPI, Maven, etc.)
+
+personas:
+  - name: API Producer
+    description: A developer or team responsible for designing and maintaining APIs
+  - name: SDK Consumer
+    description: A developer consuming generated SDKs to integrate with an API
+  - name: DevEx Engineer
+    description: An engineer responsible for the developer experience of an API platform
+
+platforms:
+  - name: Python
+    id: PYTHON_GENERIC_LIB
+  - name: Java
+    id: JAVA_ECLIPSE_JRE_LIB
+  - name: C# .NET
+    id: CS_NET_STANDARD_LIB
+  - name: PHP
+    id: PHP_GENERIC_LIB
+  - name: Ruby
+    id: RUBY_GENERIC_LIB
+  - name: TypeScript
+    id: TYPESCRIPT_GENERIC_LIB
+  - name: Go
+    id: GO_GENERIC_LIB

@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: APIMatic Platform API
+  description: >-
+    The APIMatic Platform API provides programmatic access to APIMatic's
+    capabilities including SDK generation, API documentation portal generation,
+    API specification validation and linting, and API specification transformation.
+    Integrate APIMatic into your CI/CD workflows to automate your developer
+    experience suite.
+  version: 1.0.0
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+servers:
+  - url: https://api.apimatic.io
+    description: APIMatic Platform API
+security:
+  - apiKey: []
+paths:
+  /api-entities:
+    get:
+      operationId: listApiEntities
+      summary: List API Entities
+      description: List all API entities (API definitions) in your APIMatic account.
+      tags:
+        - APIs
+      responses:
+        '200':
+          description: List of API entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiEntity'
+              examples:
+                default:
+                  $ref: '#/components/examples/ApiEntityListExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: importApiDefinition
+      summary: Import API Definition
+      description: Import an API specification file to create a new API entity in APIMatic.
+      tags:
+        - APIs
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: API specification file to import
+      responses:
+        '200':
+          description: API entity created from imported specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEntity'
+              examples:
+                default:
+                  $ref: '#/components/examples/ApiEntityExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api-entities/{apiEntityId}/generate-sdk:
+    post:
+      operationId: generateSdk
+      summary: Generate SDK
+      description: Generate an SDK for an API entity in the specified programming language.
+      tags:
+        - SDK Generation
+      parameters:
+        - name: apiEntityId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the API entity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SdkGenerationRequest'
+            examples:
+              default:
+                $ref: '#/components/examples/SdkGenerationRequestExample'
+      responses:
+        '200':
+          description: SDK generation initiated, returns download URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SdkGenerationResult'
+              examples:
+                default:
+                  $ref: '#/components/examples/SdkGenerationResultExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api-entities/{apiEntityId}/validate:
+    post:
+      operationId: validateApiDefinition
+      summary: Validate API Definition
+      description: Validate and lint an API specification for errors and best practice violations.
+      tags:
+        - Validation
+      parameters:
+        - name: apiEntityId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the API entity
+      responses:
+        '200':
+          description: Validation results with errors and warnings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResult'
+              examples:
+                default:
+                  $ref: '#/components/examples/ValidationResultExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api-entities/{apiEntityId}/transform:
+    post:
+      operationId: transformApiDefinition
+      summary: Transform API Definition
+      description: Transform an API specification from one format to another (e.g., Swagger 2.0 to OpenAPI 3.0).
+      tags:
+        - Transformation
+      parameters:
+        - name: apiEntityId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the API entity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                format:
+                  type: string
+                  enum:
+                    - OpenApi3Json
+                    - OpenApi3Yaml
+                    - Swagger20
+                    - RAML10
+                    - Postman20
+                  description: Target format for transformation
+      responses:
+        '200':
+          description: Transformed API specification file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api-entities/{apiEntityId}/portal:
+    post:
+      operationId: generatePortal
+      summary: Generate API Portal
+      description: Generate a developer documentation portal for an API entity.
+      tags:
+        - Portals
+      parameters:
+        - name: apiEntityId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the API entity
+      responses:
+        '200':
+          description: Portal generation result with download URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  downloadUrl:
+                    type: string
+                    format: uri
+                  expiresAt:
+                    type: string
+                    format: date-time
+              examples:
+                default:
+                  $ref: '#/components/examples/PortalGenerationResultExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    ApiEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the API entity
+        name:
+          type: string
+          description: Name of the API
+        description:
+          type: string
+          description: Description of the API
+        version:
+          type: string
+          description: API version
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+    SdkGenerationRequest:
+      type: object
+      properties:
+        platform:
+          type: string
+          enum:
+            - CS_NET_STANDARD_LIB
+            - JAVA_ECLIPSE_JRE_LIB
+            - PHP_GENERIC_LIB
+            - PYTHON_GENERIC_LIB
+            - RUBY_GENERIC_LIB
+            - TYPESCRIPT_GENERIC_LIB
+            - GO_GENERIC_LIB
+          description: Target SDK platform
+      required:
+        - platform
+    SdkGenerationResult:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the generated SDK
+        expiresAt:
+          type: string
+          format: date-time
+          description: Expiration time of the download URL
+    ValidationResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the API definition is valid
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message: { type: string }
+              path: { type: string }
+              severity: { type: string, enum: [error, warning, info] }
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message: { type: string }
+              path: { type: string }
+  examples:
+    ApiEntityListExample:
+      value:
+        - id: "ent_abc123"
+          name: "My API"
+          description: "A sample API managed in APIMatic"
+          version: "1.0.0"
+          createdAt: "2026-01-15T10:00:00Z"
+          updatedAt: "2026-04-01T12:00:00Z"
+    ApiEntityExample:
+      value:
+        id: "ent_abc123"
+        name: "My API"
+        description: "A sample API managed in APIMatic"
+        version: "1.0.0"
+        createdAt: "2026-01-15T10:00:00Z"
+        updatedAt: "2026-04-01T12:00:00Z"
+    SdkGenerationRequestExample:
+      value:
+        platform: "PYTHON_GENERIC_LIB"
+    SdkGenerationResultExample:
+      value:
+        downloadUrl: "https://api.apimatic.io/downloads/sdk_xyz789"
+        expiresAt: "2026-04-20T10:00:00Z"
+    ValidationResultExample:
+      value:
+        valid: true
+        errors: []
+        warnings:
+          - message: "Operation missing description"
+            path: "/paths/~1users/get"
+            severity: "warning"
+    PortalGenerationResultExample:
+      value:
+        downloadUrl: "https://api.apimatic.io/downloads/portal_xyz789"
+        expiresAt: "2026-04-20T10:00:00Z"

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apimatic/main/json-structure/apimatic-api-entity-structure.json",
+  "title": "APIMatic API Entity",
+  "description": "Structure representing an API entity managed in the APIMatic platform",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier" },
+    "name": { "type": "string", "description": "Name of the API" },
+    "description": { "type": "string", "description": "Description of the API" },
+    "version": { "type": "string", "description": "API version string" },
+    "createdAt": { "type": "datetime", "description": "Creation timestamp" },
+    "updatedAt": { "type": "datetime", "description": "Last updated timestamp" }
+  }
+}

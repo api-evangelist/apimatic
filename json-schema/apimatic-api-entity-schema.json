@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apimatic/main/json-schema/apimatic-api-entity-schema.json",
+  "title": "APIMatic API Entity",
+  "description": "Schema representing an API entity (API definition) managed in the APIMatic platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the API entity"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the API"
+    },
+    "version": {
+      "type": "string",
+      "description": "API version string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API entity was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API entity was last updated"
+    }
+  },
+  "required": ["id", "name"]
+}

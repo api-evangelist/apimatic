@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apimatic/main/json-structure/apimatic-sdk-generation-structure.json",
+  "title": "APIMatic SDK Generation",
+  "description": "Structure representing an SDK generation request and result in APIMatic",
+  "type": "object",
+  "properties": {
+    "platform": { "type": "string", "description": "Target SDK platform" },
+    "downloadUrl": { "type": "string", "description": "Download URL for generated SDK" },
+    "expiresAt": { "type": "datetime", "description": "URL expiration timestamp" }
+  }
+}
