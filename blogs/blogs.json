@@ -1,0 +1,13 @@
+{
+  "repo": "apimatic",
+  "feeds": [
+    {
+      "source": "https://www.apimatic.io/blog",
+      "feed_url": "https://www.apimatic.io/blog/rss.xml",
+      "saved": 10,
+      "title": "Blog - APIMatic"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:22:15Z"
+}
