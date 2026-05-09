@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://www.apimatic.io/blog",
-      "feed_url": "https://www.apimatic.io/blog/rss.xml",
-      "saved": 10,
-      "title": "Blog - APIMatic"
+      "feed_url": "https://www.apimatic.io/blog/atom.xml",
+      "title": "Blog - APIMatic",
+      "saved": 1
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:22:15Z"
+  "post_count": 11,
+  "fetched": "2026-05-09T20:17:51Z"
 }
