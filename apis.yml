@@ -47,7 +47,7 @@ apis:
         url: json-schema/apimatic-api-entity-schema.json
       - type: JSONSchema
         url: json-schema/apimatic-sdk-generation-schema.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/apimatic-context.jsonld
   - aid: apimatic:apimatic-api-transformer-api
     name: APIMatic API Transformer API
