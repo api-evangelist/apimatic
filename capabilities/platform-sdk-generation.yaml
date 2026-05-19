@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: APIMatic Platform API — SDK Generation
+  description: 'APIMatic Platform API — SDK Generation. 1 operations. Lead operation: Generate SDK. Self-contained Naftiko
+    capability covering one Apimatic business surface.'
+  tags:
+  - Apimatic
+  - SDK Generation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIMATIC_API_KEY: APIMATIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-sdk-generation
+    baseUri: https://api.apimatic.io
+    description: APIMatic Platform API — SDK Generation business capability. Self-contained, no shared references.
+    resources:
+    - name: api-entities-apiEntityId-generate-sdk
+      path: /api-entities/{apiEntityId}/generate-sdk
+      operations:
+      - name: generatesdk
+        method: POST
+        description: Generate SDK
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiEntityId
+          in: path
+          type: string
+          description: Unique identifier of the API entity
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIMATIC_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: platform-sdk-generation-rest
+    port: 8080
+    description: REST adapter for APIMatic Platform API — SDK Generation. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api-entities/{apientityid}/generate-sdk
+      name: api-entities-apientityid-generate-sdk
+      description: REST surface for api-entities-apiEntityId-generate-sdk.
+      operations:
+      - method: POST
+        name: generatesdk
+        description: Generate SDK
+        call: platform-sdk-generation.generatesdk
+        with:
+          apiEntityId: rest.apiEntityId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-sdk-generation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for APIMatic Platform API — SDK Generation. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: generate-sdk
+      description: Generate SDK
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-sdk-generation.generatesdk
+      with:
+        apiEntityId: tools.apiEntityId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
