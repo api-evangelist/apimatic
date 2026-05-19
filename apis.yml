@@ -17,7 +17,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/apimatic/refs/heads/main/apis.yml
 created: '2025-01-08'
-modified: '2026-04-19'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: apimatic:apimatic-platform-api
@@ -139,6 +139,12 @@ common:
         description: Advanced SDK generation, portal publishing, and team collaboration features.
       - name: Enterprise Plan
         description: Full developer experience automation, custom branding, SLA, and dedicated support.
+  - name: MCP Server
+    url: https://github.com/apimatic/apimatic-validator-mcp
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/apimatic/skills
+    type: AgentSkill
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
