@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: APIMatic Regenerate SDK for Existing Entity
+  summary: List existing API entities and regenerate an SDK for the first one.
+  description: >-
+    A regeneration flow for definitions already managed in APIMatic. The
+    workflow lists the API entities in the account, selects the first entity
+    from the returned array, and generates a fresh SDK for it in the requested
+    platform, returning the download URL. This avoids re-importing a
+    specification when the definition already exists in the account. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: apimaticApi
+  url: ../openapi/apimatic-platform-api.yaml
+  type: openapi
+workflows:
+- workflowId: list-entities-generate-sdk
+  summary: List API entities and regenerate an SDK for the first returned entity.
+  description: >-
+    Reads the account's API entities and generates an SDK for the first entity
+    in the list using the requested platform.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - platform
+    properties:
+      authorization:
+        type: string
+        description: API key passed in the Authorization header.
+      platform:
+        type: string
+        description: >-
+          Target SDK platform, e.g. PYTHON_GENERIC_LIB, JAVA_ECLIPSE_JRE_LIB,
+          TYPESCRIPT_GENERIC_LIB, CS_NET_STANDARD_LIB, PHP_GENERIC_LIB,
+          RUBY_GENERIC_LIB or GO_GENERIC_LIB.
+  steps:
+  - stepId: listEntities
+    description: >-
+      List all API entities in the account and capture the identifier of the
+      first entity returned.
+    operationId: listApiEntities
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstEntityId: $response.body#/0/id
+      firstEntityName: $response.body#/0/name
+    onSuccess:
+    - name: entityFound
+      type: goto
+      stepId: generateSdk
+      criteria:
+      - context: $response.body
+        condition: $.length > 0
+        type: jsonpath
+    - name: noEntities
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.length == 0
+        type: jsonpath
+  - stepId: generateSdk
+    description: >-
+      Generate an SDK for the selected API entity in the requested platform and
+      return the download URL.
+    operationId: generateSdk
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.listEntities.outputs.firstEntityId
+    requestBody:
+      contentType: application/json
+      payload:
+        platform: $inputs.platform
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUrl: $response.body#/downloadUrl
+      expiresAt: $response.body#/expiresAt
+  outputs:
+    apiEntityId: $steps.listEntities.outputs.firstEntityId
+    sdkDownloadUrl: $steps.generateSdk.outputs.downloadUrl

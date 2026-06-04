@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: APIMatic Import, Validate and Publish Portal
+  summary: Import an API spec, lint it, and generate a docs portal when it is valid.
+  description: >-
+    A documentation-publishing pipeline. The workflow imports an API
+    specification file to create an API entity, validates and lints the
+    resulting definition, and branches on the validation result: when the
+    definition is valid it generates a developer documentation portal and
+    returns the download URL, and when it is invalid it stops so a broken
+    portal is never published. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: apimaticApi
+  url: ../openapi/apimatic-platform-api.yaml
+  type: openapi
+workflows:
+- workflowId: import-validate-generate-portal
+  summary: Import a spec, validate it, then build a docs portal if the spec is valid.
+  description: >-
+    Creates an API entity from an uploaded specification, lints it, and
+    generates a developer documentation portal only when validation reports the
+    definition as valid.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - file
+    properties:
+      authorization:
+        type: string
+        description: API key passed in the Authorization header.
+      file:
+        type: string
+        description: The API specification file contents to import.
+  steps:
+  - stepId: importSpec
+    description: >-
+      Upload the API specification file as multipart form data to create a new
+      API entity in APIMatic.
+    operationId: importApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: multipart/form-data
+      payload:
+        file: $inputs.file
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apiEntityId: $response.body#/id
+  - stepId: validateSpec
+    description: >-
+      Validate and lint the imported definition, capturing whether it is valid
+      along with any warnings.
+    operationId: validateApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      valid: $response.body#/valid
+      warnings: $response.body#/warnings
+    onSuccess:
+    - name: specIsValid
+      type: goto
+      stepId: generatePortal
+      criteria:
+      - context: $response.body
+        condition: $.valid == true
+        type: jsonpath
+    - name: specIsInvalid
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.valid == false
+        type: jsonpath
+  - stepId: generatePortal
+    description: >-
+      Generate a developer documentation portal for the validated API entity and
+      return the download URL.
+    operationId: generatePortal
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUrl: $response.body#/downloadUrl
+      expiresAt: $response.body#/expiresAt
+  outputs:
+    apiEntityId: $steps.importSpec.outputs.apiEntityId
+    valid: $steps.validateSpec.outputs.valid
+    portalDownloadUrl: $steps.generatePortal.outputs.downloadUrl

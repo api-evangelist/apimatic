@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: APIMatic Import and Transform Specification
+  summary: Import an API spec and convert it to a different specification format.
+  description: >-
+    A format-conversion pipeline. The workflow imports an API specification file
+    to create an API entity, then transforms that definition into a target
+    format such as OpenAPI 3.0 JSON or YAML, Swagger 2.0, RAML 1.0 or a Postman
+    2.0 collection. The transform step returns the converted specification as a
+    binary file. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: apimaticApi
+  url: ../openapi/apimatic-platform-api.yaml
+  type: openapi
+workflows:
+- workflowId: import-transform
+  summary: Import a spec and transform it into a target specification format.
+  description: >-
+    Creates an API entity from an uploaded specification and converts it into
+    the requested target format, returning the transformed definition.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - file
+    - format
+    properties:
+      authorization:
+        type: string
+        description: API key passed in the Authorization header.
+      file:
+        type: string
+        description: The API specification file contents to import.
+      format:
+        type: string
+        description: >-
+          Target format for transformation. One of OpenApi3Json, OpenApi3Yaml,
+          Swagger20, RAML10 or Postman20.
+  steps:
+  - stepId: importSpec
+    description: >-
+      Upload the API specification file as multipart form data to create a new
+      API entity in APIMatic.
+    operationId: importApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: multipart/form-data
+      payload:
+        file: $inputs.file
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apiEntityId: $response.body#/id
+      name: $response.body#/name
+  - stepId: transformSpec
+    description: >-
+      Transform the imported definition into the requested target format and
+      return the converted specification as a binary file.
+    operationId: transformApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    requestBody:
+      contentType: application/json
+      payload:
+        format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transformedSpec: $response.body
+  outputs:
+    apiEntityId: $steps.importSpec.outputs.apiEntityId
+    transformedSpec: $steps.transformSpec.outputs.transformedSpec

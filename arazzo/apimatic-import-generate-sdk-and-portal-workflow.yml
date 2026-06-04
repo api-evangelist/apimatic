@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: APIMatic Import then Generate SDK and Portal
+  summary: Import an API spec once and produce both an SDK and a docs portal from it.
+  description: >-
+    A developer-experience bundle. The workflow imports an API specification
+    file to create a single API entity and then produces two artifacts from
+    that same entity: a generated SDK for the requested platform and a
+    developer documentation portal, each returning its own download URL. Reusing
+    one imported entity avoids re-uploading the specification for each artifact.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: apimaticApi
+  url: ../openapi/apimatic-platform-api.yaml
+  type: openapi
+workflows:
+- workflowId: import-generate-sdk-and-portal
+  summary: Import a spec once, then generate both an SDK and a docs portal from it.
+  description: >-
+    Creates a single API entity from an uploaded specification and generates an
+    SDK and a documentation portal from that entity, returning both download
+    URLs.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - file
+    - platform
+    properties:
+      authorization:
+        type: string
+        description: API key passed in the Authorization header.
+      file:
+        type: string
+        description: The API specification file contents to import.
+      platform:
+        type: string
+        description: >-
+          Target SDK platform, e.g. PYTHON_GENERIC_LIB, JAVA_ECLIPSE_JRE_LIB,
+          TYPESCRIPT_GENERIC_LIB, CS_NET_STANDARD_LIB, PHP_GENERIC_LIB,
+          RUBY_GENERIC_LIB or GO_GENERIC_LIB.
+  steps:
+  - stepId: importSpec
+    description: >-
+      Upload the API specification file as multipart form data to create a new
+      API entity in APIMatic.
+    operationId: importApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: multipart/form-data
+      payload:
+        file: $inputs.file
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apiEntityId: $response.body#/id
+  - stepId: generateSdk
+    description: >-
+      Generate an SDK for the imported API entity in the requested platform and
+      return the download URL.
+    operationId: generateSdk
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    requestBody:
+      contentType: application/json
+      payload:
+        platform: $inputs.platform
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      sdkDownloadUrl: $response.body#/downloadUrl
+  - stepId: generatePortal
+    description: >-
+      Generate a developer documentation portal for the same imported API entity
+      and return the download URL.
+    operationId: generatePortal
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      portalDownloadUrl: $response.body#/downloadUrl
+  outputs:
+    apiEntityId: $steps.importSpec.outputs.apiEntityId
+    sdkDownloadUrl: $steps.generateSdk.outputs.sdkDownloadUrl
+    portalDownloadUrl: $steps.generatePortal.outputs.portalDownloadUrl

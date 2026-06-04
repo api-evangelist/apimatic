@@ -1,0 +1,137 @@
+arazzo: 1.0.1
+info:
+  title: APIMatic Full SDK Release Pipeline
+  summary: Import, validate, transform to OpenAPI 3, then generate an SDK in one pass.
+  description: >-
+    An end-to-end release pipeline chaining four APIMatic operations. The
+    workflow imports an API specification file to create an API entity,
+    validates and lints it, transforms the definition into a normalized
+    OpenAPI 3.0 JSON representation, and finally generates an SDK for the
+    requested platform and returns the download URL. Validation gates the
+    pipeline so a failing definition never reaches transformation or SDK
+    generation. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: apimaticApi
+  url: ../openapi/apimatic-platform-api.yaml
+  type: openapi
+workflows:
+- workflowId: full-release-pipeline
+  summary: Import, validate, transform and generate an SDK as one gated pipeline.
+  description: >-
+    Creates an API entity from an uploaded specification, lints it, normalizes
+    it to OpenAPI 3.0 JSON, and generates an SDK only when validation reports
+    the definition as valid.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - file
+    - platform
+    properties:
+      authorization:
+        type: string
+        description: API key passed in the Authorization header.
+      file:
+        type: string
+        description: The API specification file contents to import.
+      platform:
+        type: string
+        description: >-
+          Target SDK platform, e.g. PYTHON_GENERIC_LIB, JAVA_ECLIPSE_JRE_LIB,
+          TYPESCRIPT_GENERIC_LIB, CS_NET_STANDARD_LIB, PHP_GENERIC_LIB,
+          RUBY_GENERIC_LIB or GO_GENERIC_LIB.
+  steps:
+  - stepId: importSpec
+    description: >-
+      Upload the API specification file as multipart form data to create a new
+      API entity in APIMatic.
+    operationId: importApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: multipart/form-data
+      payload:
+        file: $inputs.file
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      apiEntityId: $response.body#/id
+  - stepId: validateSpec
+    description: >-
+      Validate and lint the imported definition; only a valid definition is
+      allowed to continue down the pipeline.
+    operationId: validateApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      valid: $response.body#/valid
+    onSuccess:
+    - name: specIsValid
+      type: goto
+      stepId: transformSpec
+      criteria:
+      - context: $response.body
+        condition: $.valid == true
+        type: jsonpath
+    - name: specIsInvalid
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.valid == false
+        type: jsonpath
+  - stepId: transformSpec
+    description: >-
+      Normalize the validated definition to OpenAPI 3.0 JSON and return the
+      converted specification.
+    operationId: transformApiDefinition
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    requestBody:
+      contentType: application/json
+      payload:
+        format: OpenApi3Json
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transformedSpec: $response.body
+  - stepId: generateSdk
+    description: >-
+      Generate an SDK for the validated API entity in the requested platform and
+      return the download URL.
+    operationId: generateSdk
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: apiEntityId
+      in: path
+      value: $steps.importSpec.outputs.apiEntityId
+    requestBody:
+      contentType: application/json
+      payload:
+        platform: $inputs.platform
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUrl: $response.body#/downloadUrl
+      expiresAt: $response.body#/expiresAt
+  outputs:
+    apiEntityId: $steps.importSpec.outputs.apiEntityId
+    transformedSpec: $steps.transformSpec.outputs.transformedSpec
+    sdkDownloadUrl: $steps.generateSdk.outputs.downloadUrl

@@ -69,6 +69,27 @@ apis:
   - type: Documentation
     url: https://docs.apimatic.io/api-transformer/overview-transformer/
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/apimatic-full-release-pipeline-workflow.yml
+    name: APIMatic Full SDK Release Pipeline
+    summary: Import, validate, transform to OpenAPI 3, then generate an SDK in one pass.
+  - url: arazzo/apimatic-import-generate-sdk-and-portal-workflow.yml
+    name: APIMatic Import then Generate SDK and Portal
+    summary: Import an API spec once and produce both an SDK and a docs portal from it.
+  - url: arazzo/apimatic-import-transform-workflow.yml
+    name: APIMatic Import and Transform Specification
+    summary: Import an API spec and convert it to a different specification format.
+  - url: arazzo/apimatic-import-validate-generate-portal-workflow.yml
+    name: APIMatic Import, Validate and Publish Portal
+    summary: Import an API spec, lint it, and generate a docs portal when it is valid.
+  - url: arazzo/apimatic-import-validate-generate-sdk-workflow.yml
+    name: APIMatic Import, Validate and Generate SDK
+    summary: Import an API spec, lint it, and only generate an SDK when it is valid.
+  - url: arazzo/apimatic-list-entities-generate-sdk-workflow.yml
+    name: APIMatic Regenerate SDK for Existing Entity
+    summary: List existing API entities and regenerate an SDK for the first one.
 - type: Website
   url: https://www.apimatic.io/
 - type: Documentation
