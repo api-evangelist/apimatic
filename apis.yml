@@ -69,6 +69,8 @@ apis:
   - type: Documentation
     url: https://docs.apimatic.io/api-transformer/overview-transformer/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/apimatic/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
