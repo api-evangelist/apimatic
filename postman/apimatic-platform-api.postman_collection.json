@@ -1,0 +1,685 @@
+{
+  "info": {
+    "_postman_id": "a2c37410-781c-47ff-9e2b-6583c60a66e4",
+    "name": "APIMatic Platform API",
+    "description": "The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:12:56.000Z",
+    "updatedAt": "2026-06-05T13:12:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a2c37410-781c-47ff-9e2b-6583c60a66e4"
+  },
+  "item": [
+    {
+      "name": "api-entities",
+      "item": [
+        {
+          "name": "{apiEntityId}",
+          "item": [
+            {
+              "name": "generate-sdk",
+              "item": [
+                {
+                  "name": "Generate SDK",
+                  "id": "d21bcbe2-d753-467e-8a34-6c2b3b8820ae",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"platform\": \"TYPESCRIPT_GENERIC_LIB\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api-entities/:apiEntityId/generate-sdk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api-entities",
+                        ":apiEntityId",
+                        "generate-sdk"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ba86066a-0793-427b-aaad-2c73b6221428",
+                          "key": "apiEntityId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the API entity"
+                        }
+                      ]
+                    },
+                    "description": "Generate an SDK for an API entity in the specified programming language."
+                  },
+                  "response": [
+                    {
+                      "id": "15102143-ae5b-4185-86aa-89004bd612e5",
+                      "name": "SDK generation initiated, returns download URL",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"platform\": \"TYPESCRIPT_GENERIC_LIB\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api-entities/:apiEntityId/generate-sdk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api-entities",
+                            ":apiEntityId",
+                            "generate-sdk"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiEntityId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"downloadUrl\": \"<uri>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:12:57.000Z",
+                      "updatedAt": "2026-06-05T13:12:57.000Z",
+                      "uid": "35240-15102143-ae5b-4185-86aa-89004bd612e5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:12:57.000Z",
+                  "updatedAt": "2026-06-05T13:12:57.000Z",
+                  "uid": "35240-d21bcbe2-d753-467e-8a34-6c2b3b8820ae"
+                }
+              ],
+              "id": "259a6b72-21a1-45bf-a974-8aaf5ee854b4",
+              "createdAt": "2026-06-05T13:12:57.000Z",
+              "updatedAt": "2026-06-05T13:12:57.000Z",
+              "uid": "35240-259a6b72-21a1-45bf-a974-8aaf5ee854b4"
+            },
+            {
+              "name": "validate",
+              "item": [
+                {
+                  "name": "Validate API Definition",
+                  "id": "6271686d-bb7b-430e-86c1-97dca4cb3fb0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api-entities/:apiEntityId/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api-entities",
+                        ":apiEntityId",
+                        "validate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2c745a5d-a3ad-4548-89ba-0ff7587e7ff0",
+                          "key": "apiEntityId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the API entity"
+                        }
+                      ]
+                    },
+                    "description": "Validate and lint an API specification for errors and best practice violations."
+                  },
+                  "response": [
+                    {
+                      "id": "c377f341-8dd9-4370-b7f3-ea096cc039bf",
+                      "name": "Validation results with errors and warnings",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api-entities/:apiEntityId/validate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api-entities",
+                            ":apiEntityId",
+                            "validate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiEntityId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"valid\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": \"<string>\",\n      \"severity\": \"info\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": \"<string>\",\n      \"severity\": \"error\"\n    }\n  ],\n  \"warnings\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:12:57.000Z",
+                      "updatedAt": "2026-06-05T13:12:57.000Z",
+                      "uid": "35240-c377f341-8dd9-4370-b7f3-ea096cc039bf"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:12:57.000Z",
+                  "updatedAt": "2026-06-05T13:12:57.000Z",
+                  "uid": "35240-6271686d-bb7b-430e-86c1-97dca4cb3fb0"
+                }
+              ],
+              "id": "cb3aaa67-0c4c-4c8d-bc63-6a34a2d169bf",
+              "createdAt": "2026-06-05T13:12:57.000Z",
+              "updatedAt": "2026-06-05T13:12:57.000Z",
+              "uid": "35240-cb3aaa67-0c4c-4c8d-bc63-6a34a2d169bf"
+            },
+            {
+              "name": "transform",
+              "item": [
+                {
+                  "name": "Transform API Definition",
+                  "id": "11e4d15b-78a2-44b7-8269-b323f7454be3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/octet-stream"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"format\": \"OpenApi3Yaml\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api-entities/:apiEntityId/transform",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api-entities",
+                        ":apiEntityId",
+                        "transform"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b5c2ed32-2a9c-4232-95ac-9fe9eddbdc56",
+                          "key": "apiEntityId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the API entity"
+                        }
+                      ]
+                    },
+                    "description": "Transform an API specification from one format to another (e.g., Swagger 2.0 to OpenAPI 3.0)."
+                  },
+                  "response": [
+                    {
+                      "id": "f9c2f6f9-ba6c-4ceb-8aa6-15925a532691",
+                      "name": "Transformed API specification file",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"format\": \"OpenApi3Yaml\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api-entities/:apiEntityId/transform",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api-entities",
+                            ":apiEntityId",
+                            "transform"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiEntityId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/octet-stream"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-06-05T13:12:57.000Z",
+                      "updatedAt": "2026-06-05T13:12:57.000Z",
+                      "uid": "35240-f9c2f6f9-ba6c-4ceb-8aa6-15925a532691"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:12:57.000Z",
+                  "updatedAt": "2026-06-05T13:12:57.000Z",
+                  "uid": "35240-11e4d15b-78a2-44b7-8269-b323f7454be3"
+                }
+              ],
+              "id": "5b3ca5fb-482b-4c41-a43f-bf47f1c29692",
+              "createdAt": "2026-06-05T13:12:57.000Z",
+              "updatedAt": "2026-06-05T13:12:57.000Z",
+              "uid": "35240-5b3ca5fb-482b-4c41-a43f-bf47f1c29692"
+            },
+            {
+              "name": "portal",
+              "item": [
+                {
+                  "name": "Generate API Portal",
+                  "id": "a024a040-6a49-4220-bf96-51d6da222657",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api-entities/:apiEntityId/portal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api-entities",
+                        ":apiEntityId",
+                        "portal"
+                      ],
+                      "variable": [
+                        {
+                          "id": "448335f9-9247-4c67-b052-69b29d0937a3",
+                          "key": "apiEntityId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the API entity"
+                        }
+                      ]
+                    },
+                    "description": "Generate a developer documentation portal for an API entity."
+                  },
+                  "response": [
+                    {
+                      "id": "e9eedb53-442c-462f-ad9f-a721b9958f0c",
+                      "name": "Portal generation result with download URL",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api-entities/:apiEntityId/portal",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api-entities",
+                            ":apiEntityId",
+                            "portal"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiEntityId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"downloadUrl\": \"<uri>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:12:57.000Z",
+                      "updatedAt": "2026-06-05T13:12:57.000Z",
+                      "uid": "35240-e9eedb53-442c-462f-ad9f-a721b9958f0c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:12:57.000Z",
+                  "updatedAt": "2026-06-05T13:12:57.000Z",
+                  "uid": "35240-a024a040-6a49-4220-bf96-51d6da222657"
+                }
+              ],
+              "id": "6cab3a22-499f-4fb1-a261-4db54c58d0c3",
+              "createdAt": "2026-06-05T13:12:57.000Z",
+              "updatedAt": "2026-06-05T13:12:57.000Z",
+              "uid": "35240-6cab3a22-499f-4fb1-a261-4db54c58d0c3"
+            }
+          ],
+          "id": "fd98afad-4592-43c7-84d3-be65d18ca3f9",
+          "createdAt": "2026-06-05T13:12:57.000Z",
+          "updatedAt": "2026-06-05T13:12:57.000Z",
+          "uid": "35240-fd98afad-4592-43c7-84d3-be65d18ca3f9"
+        },
+        {
+          "name": "List API Entities",
+          "id": "a2e79e47-bcf2-4fa2-9b2c-c488ac1eedba",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api-entities",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api-entities"
+              ]
+            },
+            "description": "List all API entities (API definitions) in your APIMatic account."
+          },
+          "response": [
+            {
+              "id": "860cf4c6-bc33-4488-8a43-f4203a0b95c4",
+              "name": "List of API entities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api-entities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api-entities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"version\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"version\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-06-05T13:12:57.000Z",
+              "updatedAt": "2026-06-05T13:12:57.000Z",
+              "uid": "35240-860cf4c6-bc33-4488-8a43-f4203a0b95c4"
+            }
+          ],
+          "createdAt": "2026-06-05T13:12:57.000Z",
+          "updatedAt": "2026-06-05T13:12:57.000Z",
+          "uid": "35240-a2e79e47-bcf2-4fa2-9b2c-c488ac1eedba"
+        },
+        {
+          "name": "Import API Definition",
+          "id": "8d3d774f-636d-4417-8e1d-514a45811c43",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "description": "API specification file to import",
+                  "key": "file",
+                  "type": "file",
+                  "value": null
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api-entities",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api-entities"
+              ]
+            },
+            "description": "Import an API specification file to create a new API entity in APIMatic."
+          },
+          "response": [
+            {
+              "id": "eb28b260-3299-4c3a-a6cc-b6a453bf8b33",
+              "name": "API entity created from imported specification",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "API specification file to import",
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api-entities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api-entities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"version\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:12:57.000Z",
+              "updatedAt": "2026-06-05T13:12:57.000Z",
+              "uid": "35240-eb28b260-3299-4c3a-a6cc-b6a453bf8b33"
+            }
+          ],
+          "createdAt": "2026-06-05T13:12:57.000Z",
+          "updatedAt": "2026-06-05T13:12:57.000Z",
+          "uid": "35240-8d3d774f-636d-4417-8e1d-514a45811c43"
+        }
+      ],
+      "id": "66fa1fd7-a7a9-4e63-b89c-fa4632b9453b",
+      "createdAt": "2026-06-05T13:12:57.000Z",
+      "updatedAt": "2026-06-05T13:12:57.000Z",
+      "uid": "35240-66fa1fd7-a7a9-4e63-b89c-fa4632b9453b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.apimatic.io"
+    }
+  ]
+}
