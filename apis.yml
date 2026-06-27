@@ -43,15 +43,15 @@ apis:
     url: json-schema/apimatic-sdk-generation-schema.json
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/platform-apis.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/platform-portals.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/platform-sdk-generation.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/platform-transformation.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/platform-validation.yaml
 - aid: apimatic:apimatic-api-transformer-api
   name: APIMatic API Transformer API
@@ -71,106 +71,103 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/apimatic/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/apimatic-full-release-pipeline-workflow.yml
+  - type: Arazzo
+    url: arazzo/apimatic-full-release-pipeline-workflow.yml
     name: APIMatic Full SDK Release Pipeline
-    summary: Import, validate, transform to OpenAPI 3, then generate an SDK in one pass.
-  - url: arazzo/apimatic-import-generate-sdk-and-portal-workflow.yml
+  - type: Arazzo
+    url: arazzo/apimatic-import-generate-sdk-and-portal-workflow.yml
     name: APIMatic Import then Generate SDK and Portal
-    summary: Import an API spec once and produce both an SDK and a docs portal from it.
-  - url: arazzo/apimatic-import-transform-workflow.yml
+  - type: Arazzo
+    url: arazzo/apimatic-import-transform-workflow.yml
     name: APIMatic Import and Transform Specification
-    summary: Import an API spec and convert it to a different specification format.
-  - url: arazzo/apimatic-import-validate-generate-portal-workflow.yml
+  - type: Arazzo
+    url: arazzo/apimatic-import-validate-generate-portal-workflow.yml
     name: APIMatic Import, Validate and Publish Portal
-    summary: Import an API spec, lint it, and generate a docs portal when it is valid.
-  - url: arazzo/apimatic-import-validate-generate-sdk-workflow.yml
+  - type: Arazzo
+    url: arazzo/apimatic-import-validate-generate-sdk-workflow.yml
     name: APIMatic Import, Validate and Generate SDK
-    summary: Import an API spec, lint it, and only generate an SDK when it is valid.
-  - url: arazzo/apimatic-list-entities-generate-sdk-workflow.yml
+  - type: Arazzo
+    url: arazzo/apimatic-list-entities-generate-sdk-workflow.yml
     name: APIMatic Regenerate SDK for Existing Entity
-    summary: List existing API entities and regenerate an SDK for the first one.
-- type: Website
-  url: https://www.apimatic.io/
-- type: Documentation
-  url: https://docs.apimatic.io/
-- type: GettingStarted
-  url: https://docs.apimatic.io/getting-started/importing-api-spec/
-- type: Pricing
-  url: https://www.apimatic.io/pricing
-- type: Blog
-  url: https://www.apimatic.io/blog
-- type: SignUp
-  url: https://app.apimatic.io/account/register
-- type: Login
-  url: https://app.apimatic.io/account/login
-- type: ChangeLog
-  url: https://docs.apimatic.io/changelog/
-- type: Support
-  url: https://support.apimatic.io/hc/en-us
-- type: GitHubOrganization
-  url: https://github.com/apimatic
-- type: LinkedIn
-  url: https://www.linkedin.com/company/apimatic-limited/
-- type: X
-  url: https://x.com/APIMatic
-- type: CLI
-  url: https://www.npmjs.com/package/@apimatic/cli
-- type: TermsOfService
-  url: https://www.apimatic.io/terms
-- type: PrivacyPolicy
-  url: https://www.apimatic.io/privacy
-- type: Features
-  data:
-  - name: Idiomatic SDK Generation
-    description: Generate production-ready SDKs in Python, Java, C# .NET, TypeScript, PHP, Ruby, and Go from any API specification.
-  - name: API Documentation Portals
-    description: Generate interactive developer documentation portals with code samples, guided walkthroughs, and code playground.
-  - name: API Specification Validation
-    description: Validate and lint API specifications with detailed error reports and best practice recommendations.
-  - name: API Format Transformation
-    description: Convert API definitions between 15+ formats including OpenAPI 3.0, Swagger 2.0, RAML, API Blueprint, and
-      Postman Collections.
-  - name: MCP Server Generation
-    description: Generate Model Context Protocol (MCP) servers from API specifications for AI agent integration.
-  - name: DX as Code
-    description: Define and automate your entire developer experience pipeline as code with CI/CD integration.
-  - name: OpenAPI Linter GitHub App
-    description: Automatically validate OpenAPI specifications in GitHub pull requests via the APIMatic linter GitHub App.
-- type: UseCases
-  data:
-  - name: Automated SDK Publishing
-    description: Automatically generate and publish SDKs to npm, PyPI, Maven, and other package registries on every API change.
-  - name: Developer Portal Generation
-    description: Generate and host comprehensive API documentation portals with interactive examples and code playground.
-  - name: API Specification Migration
-    description: Transform legacy Swagger 2.0 or RAML specs to OpenAPI 3.0 for modern tooling compatibility.
-  - name: CI/CD API Governance
-    description: Integrate API validation and linting into CI/CD pipelines to enforce quality gates on API changes.
-- type: Integrations
-  data:
-  - name: MuleSoft
-    description: APIMatic integration for generating SDKs from MuleSoft API definitions.
-  - name: Redocly
-    description: Integration for enhanced API documentation workflows.
-  - name: GitHub Actions
-    description: CI/CD integration for automated SDK generation and API validation in GitHub workflows.
-- type: Solutions
-  data:
-  - name: Free Plan
-    description: Basic SDK generation and API validation for individual developers.
-  - name: Team Plan
-    description: Advanced SDK generation, portal publishing, and team collaboration features.
-  - name: Enterprise Plan
-    description: Full developer experience automation, custom branding, SLA, and dedicated support.
-- name: MCP Server
-  url: https://github.com/apimatic/apimatic-validator-mcp
-  type: MCPServer
-- name: Agent Skills
-  url: https://github.com/apimatic/skills
-  type: AgentSkill
+  - type: Website
+    url: https://www.apimatic.io/
+  - type: Documentation
+    url: https://docs.apimatic.io/
+  - type: GettingStarted
+    url: https://docs.apimatic.io/getting-started/importing-api-spec/
+  - type: Pricing
+    url: https://www.apimatic.io/pricing
+  - type: Blog
+    url: https://www.apimatic.io/blog
+  - type: Signup
+    url: https://app.apimatic.io/account/register
+  - type: Login
+    url: https://app.apimatic.io/account/login
+  - type: ChangeLog
+    url: https://docs.apimatic.io/changelog/
+  - type: Support
+    url: https://support.apimatic.io/hc/en-us
+  - type: GitHubOrganization
+    url: https://github.com/apimatic
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/apimatic-limited/
+  - type: X
+    url: https://x.com/APIMatic
+  - type: CLI
+    url: https://www.npmjs.com/package/@apimatic/cli
+  - type: TermsOfService
+    url: https://www.apimatic.io/terms
+  - type: PrivacyPolicy
+    url: https://www.apimatic.io/privacy
+  - type: Features
+    data:
+    - name: Idiomatic SDK Generation
+      description: Generate production-ready SDKs in Python, Java, C# .NET, TypeScript, PHP, Ruby, and Go from any API specification.
+    - name: API Documentation Portals
+      description: Generate interactive developer documentation portals with code samples, guided walkthroughs, and code playground.
+    - name: API Specification Validation
+      description: Validate and lint API specifications with detailed error reports and best practice recommendations.
+    - name: API Format Transformation
+      description: Convert API definitions between 15+ formats including OpenAPI 3.0, Swagger 2.0, RAML, API Blueprint, and
+        Postman Collections.
+    - name: MCP Server Generation
+      description: Generate Model Context Protocol (MCP) servers from API specifications for AI agent integration.
+    - name: DX as Code
+      description: Define and automate your entire developer experience pipeline as code with CI/CD integration.
+    - name: OpenAPI Linter GitHub App
+      description: Automatically validate OpenAPI specifications in GitHub pull requests via the APIMatic linter GitHub App.
+  - type: UseCases
+    data:
+    - name: Automated SDK Publishing
+      description: Automatically generate and publish SDKs to npm, PyPI, Maven, and other package registries on every API change.
+    - name: Developer Portal Generation
+      description: Generate and host comprehensive API documentation portals with interactive examples and code playground.
+    - name: API Specification Migration
+      description: Transform legacy Swagger 2.0 or RAML specs to OpenAPI 3.0 for modern tooling compatibility.
+    - name: CI/CD API Governance
+      description: Integrate API validation and linting into CI/CD pipelines to enforce quality gates on API changes.
+  - type: Integrations
+    data:
+    - name: MuleSoft
+      description: APIMatic integration for generating SDKs from MuleSoft API definitions.
+    - name: Redocly
+      description: Integration for enhanced API documentation workflows.
+    - name: GitHub Actions
+      description: CI/CD integration for automated SDK generation and API validation in GitHub workflows.
+  - type: Solutions
+    data:
+    - name: Free Plan
+      description: Basic SDK generation and API validation for individual developers.
+    - name: Team Plan
+      description: Advanced SDK generation, portal publishing, and team collaboration features.
+    - name: Enterprise Plan
+      description: Full developer experience automation, custom branding, SLA, and dedicated support.
+  - name: MCP Server
+    url: https://github.com/apimatic/apimatic-validator-mcp
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/apimatic/skills
+    type: AgentSkills
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
