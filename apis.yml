@@ -69,6 +69,10 @@ apis:
   - type: Documentation
     url: https://docs.apimatic.io/api-transformer/overview-transformer/
 common:
+  - type: DomainSecurity
+    url: security/apimatic-domain-security.yml
+  - type: Authentication
+    url: authentication/apimatic-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/apimatic/overview
   - type: Arazzo
