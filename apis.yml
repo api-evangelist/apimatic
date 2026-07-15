@@ -69,6 +69,8 @@ apis:
   - type: Documentation
     url: https://docs.apimatic.io/api-transformer/overview-transformer/
 common:
+  - type: AgenticAccess
+    url: agentic-access/apimatic-agentic-access.yml
   - type: DomainSecurity
     url: security/apimatic-domain-security.yml
   - type: Authentication
