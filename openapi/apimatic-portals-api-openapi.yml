@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: APIMatic Platform APIs Portals API
+  description: The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.
+  version: 1.0.0
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+servers:
+- url: https://api.apimatic.io
+  description: APIMatic Platform API
+security:
+- apiKey: []
+tags:
+- name: Portals
+paths:
+  /api-entities/{apiEntityId}/portal:
+    post:
+      operationId: generatePortal
+      summary: Generate API Portal
+      description: Generate a developer documentation portal for an API entity.
+      tags:
+      - Portals
+      parameters:
+      - name: apiEntityId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the API entity
+      responses:
+        '200':
+          description: Portal generation result with download URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  downloadUrl:
+                    type: string
+                    format: uri
+                  expiresAt:
+                    type: string
+                    format: date-time
+              examples:
+                default:
+                  $ref: '#/components/examples/PortalGenerationResultExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  examples:
+    PortalGenerationResultExample:
+      value:
+        downloadUrl: https://api.apimatic.io/downloads/portal_xyz789
+        expiresAt: '2026-04-20T10:00:00Z'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization

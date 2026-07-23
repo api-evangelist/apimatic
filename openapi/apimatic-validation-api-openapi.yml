@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: APIMatic Platform APIs Validation API
+  description: The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.
+  version: 1.0.0
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+servers:
+- url: https://api.apimatic.io
+  description: APIMatic Platform API
+security:
+- apiKey: []
+tags:
+- name: Validation
+paths:
+  /api-entities/{apiEntityId}/validate:
+    post:
+      operationId: validateApiDefinition
+      summary: Validate API Definition
+      description: Validate and lint an API specification for errors and best practice violations.
+      tags:
+      - Validation
+      parameters:
+      - name: apiEntityId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the API entity
+      responses:
+        '200':
+          description: Validation results with errors and warnings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResult'
+              examples:
+                default:
+                  $ref: '#/components/examples/ValidationResultExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ValidationResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the API definition is valid
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              path:
+                type: string
+              severity:
+                type: string
+                enum:
+                - error
+                - warning
+                - info
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              path:
+                type: string
+  examples:
+    ValidationResultExample:
+      value:
+        valid: true
+        errors: []
+        warnings:
+        - message: Operation missing description
+          path: /paths/~1users/get
+          severity: warning
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization

@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: APIMatic Platform APIs SDK Generation API
+  description: The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.
+  version: 1.0.0
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+servers:
+- url: https://api.apimatic.io
+  description: APIMatic Platform API
+security:
+- apiKey: []
+tags:
+- name: SDK Generation
+paths:
+  /api-entities/{apiEntityId}/generate-sdk:
+    post:
+      operationId: generateSdk
+      summary: Generate SDK
+      description: Generate an SDK for an API entity in the specified programming language.
+      tags:
+      - SDK Generation
+      parameters:
+      - name: apiEntityId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the API entity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SdkGenerationRequest'
+            examples:
+              default:
+                $ref: '#/components/examples/SdkGenerationRequestExample'
+      responses:
+        '200':
+          description: SDK generation initiated, returns download URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SdkGenerationResult'
+              examples:
+                default:
+                  $ref: '#/components/examples/SdkGenerationResultExample'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  examples:
+    SdkGenerationRequestExample:
+      value:
+        platform: PYTHON_GENERIC_LIB
+    SdkGenerationResultExample:
+      value:
+        downloadUrl: https://api.apimatic.io/downloads/sdk_xyz789
+        expiresAt: '2026-04-20T10:00:00Z'
+  schemas:
+    SdkGenerationResult:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the generated SDK
+        expiresAt:
+          type: string
+          format: date-time
+          description: Expiration time of the download URL
+    SdkGenerationRequest:
+      type: object
+      properties:
+        platform:
+          type: string
+          enum:
+          - CS_NET_STANDARD_LIB
+          - JAVA_ECLIPSE_JRE_LIB
+          - PHP_GENERIC_LIB
+          - PYTHON_GENERIC_LIB
+          - RUBY_GENERIC_LIB
+          - TYPESCRIPT_GENERIC_LIB
+          - GO_GENERIC_LIB
+          description: Target SDK platform
+      required:
+      - platform
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization

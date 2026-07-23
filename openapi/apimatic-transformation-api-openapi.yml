@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: APIMatic Platform APIs Transformation API
+  description: The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.
+  version: 1.0.0
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+servers:
+- url: https://api.apimatic.io
+  description: APIMatic Platform API
+security:
+- apiKey: []
+tags:
+- name: Transformation
+paths:
+  /api-entities/{apiEntityId}/transform:
+    post:
+      operationId: transformApiDefinition
+      summary: Transform API Definition
+      description: Transform an API specification from one format to another (e.g., Swagger 2.0 to OpenAPI 3.0).
+      tags:
+      - Transformation
+      parameters:
+      - name: apiEntityId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the API entity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                format:
+                  type: string
+                  enum:
+                  - OpenApi3Json
+                  - OpenApi3Yaml
+                  - Swagger20
+                  - RAML10
+                  - Postman20
+                  description: Target format for transformation
+      responses:
+        '200':
+          description: Transformed API specification file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
