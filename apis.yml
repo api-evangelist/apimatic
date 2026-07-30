@@ -5,7 +5,20 @@ description: APIMatic is a developer experience platform for APIs that specializ
   formats and generates idiomatic SDKs in 7+ programming languages with CI/CD integration for automating the developer experience
   suite.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apimatic.png
 tags:
 - API Transformation
 - Code Generation
@@ -17,26 +30,36 @@ created: '2025-01-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: apimatic:apimatic-platform-api
-  name: APIMatic Platform API
-  description: The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation,
-    API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate
-    APIMatic into your CI/CD workflows to automate your developer experience suite.
+- aid: apimatic:apimatic-api-transformer-api
+  name: APIMatic API Transformer API
+  description: >-
+    APIMatic API Transformer converts API definition files between more than 15 supported API specification
+    formats including OpenAPI, RAML, API Blueprint, WSDL, WADL, and Postman Collections.
+  humanURL: https://www.apimatic.io/solution/transformer
+  baseURL: https://api.apimatic.io
+  tags:
+  - API Conversion
+  - Format Transformation
+  - OpenAPI
+  - Postman
+  - RAML
+  properties:
+  - type: Documentation
+    url: https://docs.apimatic.io/api-transformer/overview-transformer/
+- aid: apimatic:apimatic-apis-api
+  name: APIMatic APIs API
+  description: The APIs API from APIMatic — 1 operation(s) for apis.
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
-  - Code Generation
-  - Documentation
-  - SDK Generation
-  - Transformation
-  - Validation
+  - APIs
   properties:
+  - type: OpenAPI
+    url: openapi/apimatic-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.apimatic.io/platform-api/
   - type: GettingStarted
     url: https://docs.apimatic.io/platform-api/#/http/getting-started
-  - type: OpenAPI
-    url: openapi/apimatic-platform-api.yaml
   - type: JSONSchema
     url: json-schema/apimatic-api-entity-schema.json
   - type: JSONSchema
@@ -53,21 +76,126 @@ apis:
     url: capabilities/platform-transformation.yaml
   - type: X-NaftikoCapability
     url: capabilities/platform-validation.yaml
-- aid: apimatic:apimatic-api-transformer-api
-  name: APIMatic API Transformer API
-  description: APIMatic API Transformer converts API definition files between more than 15 supported API specification formats
-    including OpenAPI, RAML, API Blueprint, WSDL, WADL, and Postman Collections.
-  humanURL: https://www.apimatic.io/solution/transformer
+- aid: apimatic:apimatic-portals-api
+  name: APIMatic Portals API
+  description: The Portals API from APIMatic — 1 operation(s) for portals.
+  humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
-  - API Conversion
-  - Format Transformation
-  - OpenAPI
-  - Postman
-  - RAML
+  - Portals
   properties:
+  - type: OpenAPI
+    url: openapi/apimatic-portals-api-openapi.yml
   - type: Documentation
-    url: https://docs.apimatic.io/api-transformer/overview-transformer/
+    url: https://docs.apimatic.io/platform-api/
+  - type: GettingStarted
+    url: https://docs.apimatic.io/platform-api/#/http/getting-started
+  - type: JSONSchema
+    url: json-schema/apimatic-api-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-sdk-generation-schema.json
+  - type: JSONLD
+    url: json-ld/apimatic-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/platform-apis.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-portals.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-sdk-generation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-transformation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-validation.yaml
+- aid: apimatic:apimatic-sdk-generation-api
+  name: APIMatic SDK Generation API
+  description: The SDK Generation API from APIMatic — 1 operation(s) for sdk generation.
+  humanURL: https://docs.apimatic.io/platform-api/
+  baseURL: https://api.apimatic.io
+  tags:
+  - SDK Generation
+  properties:
+  - type: OpenAPI
+    url: openapi/apimatic-sdk-generation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apimatic.io/platform-api/
+  - type: GettingStarted
+    url: https://docs.apimatic.io/platform-api/#/http/getting-started
+  - type: JSONSchema
+    url: json-schema/apimatic-api-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-sdk-generation-schema.json
+  - type: JSONLD
+    url: json-ld/apimatic-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/platform-apis.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-portals.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-sdk-generation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-transformation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-validation.yaml
+- aid: apimatic:apimatic-transformation-api
+  name: APIMatic Transformation API
+  description: The Transformation API from APIMatic — 1 operation(s) for transformation.
+  humanURL: https://docs.apimatic.io/platform-api/
+  baseURL: https://api.apimatic.io
+  tags:
+  - Transformation
+  properties:
+  - type: OpenAPI
+    url: openapi/apimatic-transformation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apimatic.io/platform-api/
+  - type: GettingStarted
+    url: https://docs.apimatic.io/platform-api/#/http/getting-started
+  - type: JSONSchema
+    url: json-schema/apimatic-api-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-sdk-generation-schema.json
+  - type: JSONLD
+    url: json-ld/apimatic-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/platform-apis.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-portals.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-sdk-generation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-transformation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-validation.yaml
+- aid: apimatic:apimatic-validation-api
+  name: APIMatic Validation API
+  description: The Validation API from APIMatic — 1 operation(s) for validation.
+  humanURL: https://docs.apimatic.io/platform-api/
+  baseURL: https://api.apimatic.io
+  tags:
+  - Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/apimatic-validation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apimatic.io/platform-api/
+  - type: GettingStarted
+    url: https://docs.apimatic.io/platform-api/#/http/getting-started
+  - type: JSONSchema
+    url: json-schema/apimatic-api-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-sdk-generation-schema.json
+  - type: JSONLD
+    url: json-ld/apimatic-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/platform-apis.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-portals.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-sdk-generation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-transformation.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/platform-validation.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/apimatic-agentic-access.yml
