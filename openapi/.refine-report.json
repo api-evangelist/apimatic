@@ -1,0 +1,22 @@
+{
+  "provider": "apimatic",
+  "sources": [
+    "apimatic-apis-api-openapi.yml",
+    "apimatic-portals-api-openapi.yml",
+    "apimatic-sdk-generation-api-openapi.yml",
+    "apimatic-transformation-api-openapi.yml",
+    "apimatic-validation-api-openapi.yml"
+  ],
+  "outputs": [
+    "apimatic-apis-api-openapi.yml",
+    "apimatic-portals-api-openapi.yml",
+    "apimatic-sdk-generation-api-openapi.yml",
+    "apimatic-transformation-api-openapi.yml",
+    "apimatic-validation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
