@@ -66,16 +66,6 @@ apis:
     url: json-schema/apimatic-sdk-generation-schema.json
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/platform-apis.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-portals.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-sdk-generation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-transformation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-validation.yaml
 - aid: apimatic:apimatic-portals-api
   name: APIMatic Portals API
   description: The Portals API from APIMatic — 1 operation(s) for portals.
@@ -96,16 +86,6 @@ apis:
     url: json-schema/apimatic-sdk-generation-schema.json
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/platform-apis.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-portals.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-sdk-generation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-transformation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-validation.yaml
 - aid: apimatic:apimatic-sdk-generation-api
   name: APIMatic SDK Generation API
   description: The SDK Generation API from APIMatic — 1 operation(s) for sdk generation.
@@ -126,16 +106,6 @@ apis:
     url: json-schema/apimatic-sdk-generation-schema.json
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/platform-apis.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-portals.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-sdk-generation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-transformation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-validation.yaml
 - aid: apimatic:apimatic-transformation-api
   name: APIMatic Transformation API
   description: The Transformation API from APIMatic — 1 operation(s) for transformation.
@@ -156,16 +126,6 @@ apis:
     url: json-schema/apimatic-sdk-generation-schema.json
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/platform-apis.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-portals.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-sdk-generation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-transformation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-validation.yaml
 - aid: apimatic:apimatic-validation-api
   name: APIMatic Validation API
   description: The Validation API from APIMatic — 1 operation(s) for validation.
@@ -186,16 +146,6 @@ apis:
     url: json-schema/apimatic-sdk-generation-schema.json
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/platform-apis.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-portals.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-sdk-generation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-transformation.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/platform-validation.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/apimatic-agentic-access.yml
