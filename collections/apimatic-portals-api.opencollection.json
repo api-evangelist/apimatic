@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "APIMatic Platform APIs Portals API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Portals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate API Portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apimatic.io/api-entities/:apiEntityId/portal",
+            "params": [
+              {
+                "name": "apiEntityId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the API entity"
+              }
+            ]
+          },
+          "docs": "Generate a developer documentation portal for an API entity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

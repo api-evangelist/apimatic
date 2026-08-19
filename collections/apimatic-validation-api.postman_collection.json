@@ -1,0 +1,147 @@
+{
+  "item": [
+    {
+      "id": "fe1105b7-86a7-4625-a1f7-4e14834a83e9",
+      "name": "Validation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09f53ab1-cfd9-4a3d-8da9-84739c1f3fdd",
+          "name": "Validate API Definition",
+          "request": {
+            "name": "Validate API Definition",
+            "description": {
+              "content": "Validate and lint an API specification for errors and best practice violations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-entities",
+                ":apiEntityId",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiEntityId",
+                  "description": "(Required) Unique identifier of the API entity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0b45bd2-9726-41ff-9186-8816d8f93c27",
+              "name": "Validation results with errors and warnings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-entities",
+                    ":apiEntityId",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiEntityId",
+                      "description": "(Required) Unique identifier of the API entity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": true,\n  \"errors\": [],\n  \"warnings\": [\n    {\n      \"message\": \"Operation missing description\",\n      \"path\": \"/paths/~1users/get\",\n      \"severity\": \"warning\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.apimatic.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "128e2558-2dc9-47be-9ce6-a52dc2d79e32",
+    "name": "APIMatic Platform APIs Validation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.",
+      "type": "text/plain"
+    }
+  }
+}

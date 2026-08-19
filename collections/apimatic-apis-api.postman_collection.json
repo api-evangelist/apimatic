@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "9d3ed9fd-b70e-4950-8811-44f639d46699",
+      "name": "APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2343d826-0317-49d8-a0e9-492a4d8277a5",
+          "name": "List API Entities",
+          "request": {
+            "name": "List API Entities",
+            "description": {
+              "content": "List all API entities (API definitions) in your APIMatic account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2742b488-11a6-44d7-95ae-d0653c3b110b",
+              "name": "List of API entities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"ent_abc123\",\n    \"name\": \"My API\",\n    \"description\": \"A sample API managed in APIMatic\",\n    \"version\": \"1.0.0\",\n    \"createdAt\": \"2026-01-15T10:00:00Z\",\n    \"updatedAt\": \"2026-04-01T12:00:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7f46e2e-4b22-4334-8f1b-b438a16a4e51",
+          "name": "Import API Definition",
+          "request": {
+            "name": "Import API Definition",
+            "description": {
+              "content": "Import an API specification file to create a new API entity in APIMatic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "API specification file to import"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "67864dc5-1dfd-4f51-9771-4f7ce98fb97b",
+              "name": "API entity created from imported specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "API specification file to import",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ent_abc123\",\n  \"name\": \"My API\",\n  \"description\": \"A sample API managed in APIMatic\",\n  \"version\": \"1.0.0\",\n  \"createdAt\": \"2026-01-15T10:00:00Z\",\n  \"updatedAt\": \"2026-04-01T12:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.apimatic.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1a32d782-5413-4312-a348-e077012f0da6",
+    "name": "APIMatic Platform APIs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.",
+      "type": "text/plain"
+    }
+  }
+}

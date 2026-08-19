@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "APIMatic Platform APIs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apimatic.io/api-entities"
+          },
+          "docs": "List all API entities (API definitions) in your APIMatic account."
+        },
+        {
+          "info": {
+            "name": "Import API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apimatic.io/api-entities",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import an API specification file to create a new API entity in APIMatic."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

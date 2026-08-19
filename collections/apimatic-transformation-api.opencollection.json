@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "APIMatic Platform APIs Transformation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transformation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transform API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apimatic.io/api-entities/:apiEntityId/transform",
+            "params": [
+              {
+                "name": "apiEntityId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the API entity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transform an API specification from one format to another (e.g., Swagger 2.0 to OpenAPI 3.0)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

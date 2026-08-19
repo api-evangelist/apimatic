@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "APIMatic Platform APIs Validation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apimatic.io/api-entities/:apiEntityId/validate",
+            "params": [
+              {
+                "name": "apiEntityId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the API entity"
+              }
+            ]
+          },
+          "docs": "Validate and lint an API specification for errors and best practice violations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
