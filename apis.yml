@@ -51,7 +51,8 @@ apis:
   description: The APIs API from APIMatic — 1 operation(s) for apis.
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
@@ -72,6 +73,8 @@ apis:
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
+  - Portal
+  tags_raw:
   - Portals
   properties:
   - type: OpenAPI
