@@ -12,8 +12,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: apimaticApi
-  url: ../openapi/apimatic-platform-api.yaml
+- name: apisApi
+  url: ../openapi/apimatic-apis-api-openapi.yml
+  type: openapi
+- name: sdkGenerationApi
+  url: ../openapi/apimatic-sdk-generation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: list-entities-generate-sdk

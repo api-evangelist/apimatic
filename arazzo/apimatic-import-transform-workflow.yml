@@ -11,8 +11,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: apimaticApi
-  url: ../openapi/apimatic-platform-api.yaml
+- name: apisApi
+  url: ../openapi/apimatic-apis-api-openapi.yml
+  type: openapi
+- name: transformationApi
+  url: ../openapi/apimatic-transformation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: import-transform

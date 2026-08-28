@@ -13,8 +13,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: apimaticApi
-  url: ../openapi/apimatic-platform-api.yaml
+- name: apisApi
+  url: ../openapi/apimatic-apis-api-openapi.yml
+  type: openapi
+- name: portalsApi
+  url: ../openapi/apimatic-portals-api-openapi.yml
+  type: openapi
+- name: validationApi
+  url: ../openapi/apimatic-validation-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: import-validate-generate-portal
