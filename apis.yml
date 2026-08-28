@@ -5,6 +5,18 @@ description: APIMatic is a developer experience platform for APIs that specializ
   formats and generates idiomatic SDKs in 7+ programming languages with CI/CD integration for automating the developer experience
   suite.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
