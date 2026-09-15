@@ -1,0 +1,79 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  https://docs.apimatic.io/changelog/ ; https://docs.apimatic.io/web-dashboard-retired/ ;
+  https://docs.apimatic.io/generate-sdks/sdk-features/deprecating-api-endpoints/ ;
+  https://www.apimatic.io/pricing ; https://www.apimatic.io/terms
+versioning:
+  scheme: product-generation
+  current: >-
+    SDK CodeGen v3 is GA; C# SDK v4 is in beta and the Platform API exposes a parallel
+    "V2 SDK Generation" controller alongside the v1 generation controllers.
+  docs: https://docs.apimatic.io/generate-sdks/supported-sdk-version-dependencies/
+  note: >-
+    The Platform API itself carries no version segment in its base URL
+    (https://api.apimatic.io) and no version header is documented. Generations are versioned by
+    controller name (Code Generation vs V2 SDK Generation, SDK Generation Async vs V2 SDK
+    Generation) rather than by a URI or media-type version.
+deprecation:
+  policy_url: https://docs.apimatic.io/web-dashboard-retired/
+  sunset_header: false
+  documented: true
+  note: >-
+    APIMatic publishes a real, dated retirement notice with a migration path: the Web Dashboard
+    (web API Editor, Portal Editor and web SDK generation) is being retired in favour of the
+    CLI flow, the affected pages are enumerated and stay reachable during migration, and the
+    replacement page for each is named. What is explicitly NOT retiring is also stated (SDK
+    publishing setup, account and billing, linting and validation, API Transformer). There is
+    no Sunset / Deprecation response header and no numeric end-of-life date.
+  retired_surfaces:
+    - name: APIMatic Web Dashboard — API Editor
+      replacement: https://docs.apimatic.io/cli-getting-started/portal-quickstart-dac
+    - name: APIMatic Web Dashboard — Portal Editor
+      replacement: https://docs.apimatic.io/cli-getting-started/advanced-portal-setup
+    - name: Web-based SDK generation
+      replacement: https://docs.apimatic.io/generate-sdks/create-sdks/create-sdks-through-cli
+  customer_facing_feature:
+    name: Deprecating API Endpoints
+    url: https://docs.apimatic.io/generate-sdks/sdk-features/deprecating-api-endpoints/
+    note: >-
+      A feature of the SDKs APIMatic generates FOR CUSTOMERS — deprecated operations surface as
+      compiler warnings with migration messages. Not a property of APIMatic's own API.
+status_page:
+  published: false
+  note: >-
+    status.apimatic.io does not resolve (DNS failure, probed 2026-09-15) and no status or uptime
+    page is linked from the site, the docs, or the 954 KB llms-full.txt. No StatusPage pointer
+    is emitted.
+sla:
+  published: false
+  note: >-
+    "Support SLAs" are named as an Enterprise-tier entitlement on https://www.apimatic.io/pricing
+    but no uptime target or SLA document is published.
+changelog: https://docs.apimatic.io/changelog/
+changelog_feeds:
+  - https://docs.apimatic.io/changelog/rss.xml
+  - https://docs.apimatic.io/changelog/atom.xml
+  - https://docs.apimatic.io/changelog/feed.json
+support:
+  email: support@apimatic.io
+  help_center: https://support.apimatic.io/hc/en-us
+  contact: https://www.apimatic.io/contact
+deprecated_operations: []
+beta_surfaces:
+  - name: MCP Server Generator
+    stage: alpha
+    access: contact support@apimatic.io to join the alpha
+    url: https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/
+  - name: C# SDK v4
+    stage: beta
+    url: https://docs.apimatic.io/changelog/added-csharp-sdk-v4-beta
+  - name: API Copilot Home
+    stage: beta
+    url: https://docs.apimatic.io/changelog/api-copilot-home
+  - name: "@apimatic/sdk (Platform API client)"
+    stage: alpha
+    evidence: npm dist-tags latest == 0.2.0-alpha.10
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

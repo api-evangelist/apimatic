@@ -1,0 +1,251 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  Public registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org,
+  repo.packagist.org, api.nuget.org, search.maven.org, proxy.golang.org) plus the
+  APIMatic GitHub organisation (https://github.com/apimatic) and
+  https://docs.apimatic.io/generate-sdks/sdk-publishing/sdk-publishing-overview/
+note: >-
+  APIMatic publishes two distinct families of first-party packages, and conflating them
+  misreads the company. (1) API CLIENTS for APIMatic's OWN Platform API — @apimatic/sdk
+  (the generated TypeScript client) and @apimatic/cli (the official CLI). (2) SDK RUNTIME
+  libraries that ship inside the SDKs APIMatic GENERATES FOR ITS CUSTOMERS — core, schema,
+  http-query, unirest-php, jsonmapper and friends. Both are first-party and both are real
+  decay evidence, but only family (1) tells you whether a consumer can call the APIMatic
+  Platform API today. Each entry carries `role:` to keep them apart.
+packages:
+  # --- Clients for the APIMatic Platform API itself -------------------------------------
+  - language: javascript
+    registry: npm
+    name: "@apimatic/sdk"
+    role: api-client
+    url: https://www.npmjs.com/package/@apimatic/sdk
+    repo: https://github.com/apimatic/apimatic-sdk-for-js
+    install: npm install @apimatic/sdk
+    official: true
+    version: 0.2.0-alpha.10
+    published: '2026-05-15'
+    note: >-
+      The only first-party client for APIMatic's own Platform API. Still on an alpha
+      dist-tag; its 13 controllers (APIs Management, Transformation, SDK Generation Async,
+      Docs Portal Generation Async, V2 SDK Generation, API Validation, Table of Contents,
+      SDK Source Tree Generation) are a far wider operation surface than any spec APIMatic
+      publishes at a fetchable URL.
+  - language: javascript
+    registry: npm
+    name: "@apimatic/cli"
+    role: cli
+    url: https://www.npmjs.com/package/@apimatic/cli
+    repo: https://github.com/apimatic/apimatic-cli
+    install: npm install -g @apimatic/cli
+    official: true
+    version: 1.5.0
+    published: '2026-09-14'
+    note: The official APIMatic CLI. Command surface captured in cli/apimatic-cli.yml.
+  - language: javascript
+    registry: npm
+    name: apimatic-validator-mcp
+    role: mcp-server
+    url: https://www.npmjs.com/package/apimatic-validator-mcp
+    repo: https://github.com/apimatic/apimatic-validator-mcp
+    install: npm install apimatic-validator-mcp
+    official: true
+    version: 1.0.3
+    published: '2025-05-26'
+    note: >-
+      Local stdio MCP server that validates OpenAPI documents through APIMatic's
+      validation API. Requires an APIMATIC_API_KEY. See mcp/apimatic-mcp.yml.
+  - language: javascript
+    registry: npm
+    name: "@apimatic/code-sample-api"
+    role: api-server
+    url: https://www.npmjs.com/package/@apimatic/code-sample-api
+    install: npm install @apimatic/code-sample-api
+    official: true
+    version: 1.0.0
+    published: '2024-12-05'
+    note: >-
+      Self-hosted Code Sample API, shipped inside the docs-as-code output. Runs locally on
+      port 8080 and exposes POST /code/request. Not a hosted APIMatic endpoint.
+  # --- SDK runtime libraries (ship inside customer SDKs APIMatic generates) --------------
+  - language: javascript
+    registry: npm
+    name: "@apimatic/core"
+    role: sdk-runtime
+    url: https://www.npmjs.com/package/@apimatic/core
+    repo: https://github.com/apimatic/apimatic-js-runtime
+    install: npm install @apimatic/core
+    official: true
+    version: 0.10.30
+    published: '2026-07-09'
+  - language: javascript
+    registry: npm
+    name: "@apimatic/schema"
+    role: sdk-runtime
+    url: https://www.npmjs.com/package/@apimatic/schema
+    install: npm install @apimatic/schema
+    official: true
+    version: 0.7.21
+    published: '2025-09-30'
+  - language: javascript
+    registry: npm
+    name: "@apimatic/core-interfaces"
+    role: sdk-runtime
+    url: https://www.npmjs.com/package/@apimatic/core-interfaces
+    install: npm install @apimatic/core-interfaces
+    official: true
+    version: 0.2.14
+    published: '2025-11-04'
+  - language: javascript
+    registry: npm
+    name: "@apimatic/mcp-core"
+    role: sdk-runtime
+    url: https://www.npmjs.com/package/@apimatic/mcp-core
+    install: npm install @apimatic/mcp-core
+    official: true
+    version: 0.1.1-alpha.3
+    published: '2025-09-29'
+    note: Core logic and CLI shared by the MCP servers APIMatic generates for customers.
+  - language: python
+    registry: pypi
+    name: apimatic-core
+    role: sdk-runtime
+    url: https://pypi.org/project/apimatic-core/
+    repo: https://github.com/apimatic/core-lib-python
+    install: pip install apimatic-core
+    official: true
+    version: 0.2.25
+    published: '2026-06-08'
+  - language: python
+    registry: pypi
+    name: apimatic-core-interfaces
+    role: sdk-runtime
+    url: https://pypi.org/project/apimatic-core-interfaces/
+    install: pip install apimatic-core-interfaces
+    official: true
+    version: 0.1.8
+    published: '2025-10-29'
+  - language: python
+    registry: pypi
+    name: apimatic-requests-client-adapter
+    role: sdk-runtime
+    url: https://pypi.org/project/apimatic-requests-client-adapter/
+    install: pip install apimatic-requests-client-adapter
+    official: true
+    version: 0.1.10
+    published: '2025-11-27'
+  - language: csharp
+    registry: nuget
+    name: APIMatic.Core
+    role: sdk-runtime
+    url: https://www.nuget.org/packages/APIMatic.Core
+    repo: https://github.com/apimatic/core-lib-csharp
+    install: dotnet add package APIMatic.Core
+    official: true
+    version: 0.4.13
+    published: '2025-10-03'
+  - language: java
+    registry: maven
+    name: io.apimatic:core
+    role: sdk-runtime
+    url: https://central.sonatype.com/artifact/io.apimatic/core
+    repo: https://github.com/apimatic/core-lib-java
+    install: "implementation 'io.apimatic:core:0.6.10'"
+    official: true
+    version: 0.6.10
+    published: '2025-06-13'
+  - language: java
+    registry: maven
+    name: io.apimatic:core-interfaces
+    role: sdk-runtime
+    url: https://central.sonatype.com/artifact/io.apimatic/core-interfaces
+    official: true
+    version: 0.3.1
+    published: '2024-06-14'
+  - language: java
+    registry: maven
+    name: io.apimatic:okhttp-client-adapter
+    role: sdk-runtime
+    url: https://central.sonatype.com/artifact/io.apimatic/okhttp-client-adapter
+    official: true
+    version: 0.3.3
+    published: '2025-02-19'
+  - language: ruby
+    registry: rubygems
+    name: apimatic_core
+    role: sdk-runtime
+    url: https://rubygems.org/gems/apimatic_core
+    repo: https://github.com/apimatic/core-lib-ruby
+    install: gem install apimatic_core
+    official: true
+    version: 0.3.21
+    published: '2025-11-20'
+  - language: ruby
+    registry: rubygems
+    name: apimatic_core_interfaces
+    role: sdk-runtime
+    url: https://rubygems.org/gems/apimatic_core_interfaces
+    install: gem install apimatic_core_interfaces
+    official: true
+    version: 0.2.3
+    published: '2025-10-02'
+  - language: php
+    registry: packagist
+    name: apimatic/core
+    role: sdk-runtime
+    url: https://packagist.org/packages/apimatic/core
+    repo: https://github.com/apimatic/core-lib-php
+    install: composer require apimatic/core
+    official: true
+    version: 0.3.18
+    published: '2026-08-20'
+  - language: php
+    registry: packagist
+    name: apimatic/core-interfaces
+    role: sdk-runtime
+    url: https://packagist.org/packages/apimatic/core-interfaces
+    install: composer require apimatic/core-interfaces
+    official: true
+    version: 0.1.5
+    published: '2024-05-09'
+  - language: php
+    registry: packagist
+    name: apimatic/unirest-php
+    role: sdk-runtime
+    url: https://packagist.org/packages/apimatic/unirest-php
+    repo: https://github.com/apimatic/unirest-php
+    install: composer require apimatic/unirest-php
+    official: true
+    version: 4.0.8
+    published: '2026-08-20'
+  - language: php
+    registry: packagist
+    name: apimatic/jsonmapper
+    role: sdk-runtime
+    url: https://packagist.org/packages/apimatic/jsonmapper
+    repo: https://github.com/apimatic/jsonmapper
+    install: composer require apimatic/jsonmapper
+    official: true
+    version: 3.1.7
+    published: '2025-11-06'
+  - language: go
+    registry: go
+    name: github.com/apimatic/go-core-runtime
+    role: sdk-runtime
+    url: https://pkg.go.dev/github.com/apimatic/go-core-runtime
+    repo: https://github.com/apimatic/go-core-runtime
+    install: go get github.com/apimatic/go-core-runtime
+    official: true
+    version: v0.0.29
+    published: '2025-10-24'
+sdk_languages_supported:
+  - csharp
+  - java
+  - php
+  - python
+  - ruby
+  - typescript
+  - go
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

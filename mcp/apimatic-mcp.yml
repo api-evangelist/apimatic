@@ -1,0 +1,113 @@
+generated: '2026-09-15'
+method: probed
+status: published
+source: |-
+  Remote endpoint discovered in the portal configuration APIMatic serves for its own Platform
+  API reference — https://docs.apimatic.io/platform-api/static/js/portal.js — which hands every
+  visitor a `claude mcp add` command and Cursor/VS Code install deep links. Verified live by
+  MCP initialize + tools/list on 2026-09-15. Local stdio server from
+  https://github.com/apimatic/apimatic-validator-mcp and npm apimatic-validator-mcp.
+deployment:
+  mode: both
+  endpoint: https://chatbotapi.apimatic.io/mcp/94e710f6-2d9c-4097-88a3-25b38df496c1/typescript
+  install: "npm install apimatic-validator-mcp   # then run build/index.js over stdio"
+  package: https://www.npmjs.com/package/apimatic-validator-mcp
+  auth: none
+  verified: probed
+  note: >-
+    The remote endpoint answered an anonymous initialize and tools/list with HTTP 200 and no
+    bearer token. It also advertises OAuth (RFC 8414 + RFC 9728 documents on the same host,
+    scope mcp:tools) for clients that choose to authenticate. The local stdio server is a
+    different product: it validates OpenAPI documents through APIMatic's validation API and
+    requires an APIMATIC_API_KEY.
+servers:
+  - name: apimatic-integration-agent
+    kind: remote
+    transport: streamable-http
+    url: https://chatbotapi.apimatic.io/mcp/94e710f6-2d9c-4097-88a3-25b38df496c1/{language}
+    languages: [typescript, python, java, csharp, php, ruby, go]
+    server_info:
+      name: "APIMatic Integration Agent (/94e710f6-2d9c-4097-88a3-25b38df496c1/typescript)"
+      version: 1.0.0
+      protocol_version: '2025-06-18'
+    capabilities: [logging, prompts, tools]
+    auth: optional-oauth
+    probe:
+      fetched: '2026-09-15'
+      method: 'POST initialize + tools/list (Accept: application/json, text/event-stream)'
+      http_status: 200
+      anonymous: true
+      tools_returned: 4
+    note: >-
+      One endpoint per generated SDK language; the path segment is the portal API key plus the
+      language. `/http` is explicitly rejected ("Http is not currently supported"), so the tool
+      surface is bound to a generated SDK, not to raw REST. This is the same
+      MCP-server-per-portal product APIMatic sells to its customers, pointed at APIMatic's own
+      Platform API portal.
+  - name: apimatic-validator-mcp
+    kind: local-stdio
+    transport: stdio
+    package: apimatic-validator-mcp
+    registry: npm
+    version: 1.0.3
+    published: '2025-05-26'
+    repo: https://github.com/apimatic/apimatic-validator-mcp
+    auth: api-key
+    auth_env: APIMATIC_API_KEY
+    note: >-
+      Validates OpenAPI 2.0 / 3.0 documents (JSON and YAML) through APIMatic's validation API.
+      Install is clone + npm install + npm run build; the published npm package exposes the
+      bin `apimatic-validator-mcp` -> build/index.js.
+tools:
+  - name: ask
+    server: apimatic-integration-agent
+    description: >-
+      Chat with API Copilot. Breaks a query into steps and returns executable SDK setup and
+      integration steps for the agent to run in the user's project.
+    input_schema:
+      type: object
+      required: [prompt]
+      properties:
+        prompt: {type: string}
+  - name: update_activity
+    server: apimatic-integration-agent
+    description: Record that an integration milestone has been reached in this session.
+    input_schema:
+      type: object
+      required: [milestone]
+      properties:
+        milestone:
+          type: string
+          enum: [sdk_setup, auth_configured, first_call_made, error_encountered, error_resolved]
+  - name: model_search
+    server: apimatic-integration-agent
+    description: Search and return an SDK model's definition and its properties.
+    input_schema:
+      type: object
+      required: [query]
+      properties:
+        query: {type: string}
+  - name: endpoint_search
+    server: apimatic-integration-agent
+    description: >-
+      Search for and return an SDK endpoint method's description, parameters and response.
+    input_schema:
+      type: object
+      required: [query]
+      properties:
+        query: {type: string}
+oauth:
+  authorization_server: https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server
+  protected_resource: https://chatbotapi.apimatic.io/.well-known/oauth-protected-resource
+  scopes: [mcp:tools]
+  dynamic_client_registration: https://chatbotapi.apimatic.io/register
+  pkce: [S256]
+product:
+  generator: https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/
+  note: >-
+    APIMatic also SELLS MCP server generation — a customer's OpenAPI becomes a TypeScript SDK
+    and an MCP server supporting both stdio and HTTP, distributable as an npm package. That is
+    a product, not an APIMatic agent surface; the servers above are the two APIMatic itself runs.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

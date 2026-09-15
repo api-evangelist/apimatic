@@ -1,0 +1,97 @@
+generated: '2026-09-15'
+method: searched
+format: rfc9457
+source: |-
+  https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/models/problem-details-error.md
+  plus the per-operation Errors tables in the thirteen controller references under
+  https://github.com/apimatic/apimatic-sdk-for-js/tree/main/doc/controllers, and the 4xx/5xx
+  responses in openapi/_original/apimatic-platform-api.yaml
+note: >-
+  APIMatic's Platform API returns RFC 9457 problem+json for validation failures and a plain
+  {message} envelope for the older bad-request and 500 paths. The first-party TypeScript SDK
+  models all three as distinct error classes, which is what makes them stable enough for an
+  agent to branch on.
+envelopes:
+  - name: ProblemDetailsError
+    media_type: application/problem+json
+    spec: RFC 9457 (formerly RFC 7807)
+    fields: [type, title, status, detail, instance, errors]
+    additional_properties: true
+    source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/models/problem-details-error.md
+    example:
+      type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+      title: One or more validation errors occurred.
+      status: 400
+      detail: One or more validation failures have occurred
+      instance: /api/portal
+      errors:
+        '': [Build file not found]
+  - name: BadRequestResponseSdkError
+    media_type: application/json
+    fields: [message]
+    additional_properties: true
+    source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/models/bad-request-response-sdk-error.md
+    example: {message: Bad Request}
+  - name: InternalServerErrorResponseError
+    media_type: application/json
+    fields: [message]
+    additional_properties: true
+    source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/models/internal-server-error-response-error.md
+    example: {message: An error has occurred.}
+problems:
+  - status: 400
+    title: Bad Request
+    envelope: ProblemDetailsError | BadRequestResponseSdkError
+    remediation: >-
+      The request payload or the referenced build input failed validation. The problem+json
+      `errors` map names the failing field or file.
+    seen_on: [API Validation, APIs Management, Code Generation, Docs Portal Generation, SDK Generation, V2 SDK Generation]
+  - status: 401
+    title: Unauthenticated / Unauthorized
+    envelope: ProblemDetailsError
+    remediation: >-
+      The Authorization header is missing or carries a revoked Auth Key. Create a new key under
+      Settings -> Account Settings -> API Authentication.
+    docs: https://docs.apimatic.io/account-management/obtaining-auth-keys/
+    seen_on: [API Validation, Code Generation, Docs Portal Generation, SDK Generation, V2 SDK Generation, SDK Source Tree Generation]
+  - status: 403
+    title: Forbidden / Subscription Issue
+    envelope: ProblemDetailsError
+    remediation: >-
+      The account is authenticated but the subscription does not include this capability (the
+      Code Sample API and several generation paths are per-plan entitlements). Contact the
+      APIMatic account manager or support@apimatic.io.
+    seen_on: [API Validation, API Validation V2, Code Generation, Docs Portal Management]
+  - status: 404
+    title: API not found
+    envelope: ProblemDetailsError
+    remediation: The referenced API entity id does not exist in this account.
+    seen_on: [API Validation - Imported APIs]
+  - status: 412
+    title: Precondition Failed
+    envelope: ProblemDetailsError
+    remediation: >-
+      A precondition on the import (for example an existing API version) was not met.
+    seen_on: [APIs Management]
+  - status: 422
+    title: Unprocessable Entity
+    envelope: ProblemDetailsError
+    remediation: >-
+      The build could not be produced. On portal and SDK builds the 422 response body is an
+      error.zip carrying the build diagnostics rather than a JSON document.
+    seen_on: [APIs Management, Docs Portal Generation, Docs Portal Management]
+  - status: 500
+    title: Internal Server Error
+    envelope: InternalServerErrorResponseError
+    remediation: Retry with exponential backoff; contact support@apimatic.io if it persists.
+    seen_on: [API Validation, APIs Management, Docs Portal Generation, SDK Generation, V2 SDK Generation, SDK Source Tree Generation]
+retry_guidance:
+  source: https://docs.apimatic.io/generate-sdks/sdk-features/retries-with-exponential-backoff/
+  note: >-
+    This is APIMatic's guidance for the SDKs it GENERATES, not a documented property of its own
+    Platform API. Recorded because it is the only retry contract APIMatic publishes.
+  default_status_codes_to_retry: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]
+  honours_retry_after: true
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

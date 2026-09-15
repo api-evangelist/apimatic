@@ -4,151 +4,162 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: APIMatic
 providerId: apimatic
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-15'
+generated: '2026-09-15'
+method: searched
+source: https://www.apimatic.io/pricing
+note: >-
+  Replaces a 2026-05-04 scaffold whose tier names, quotas and prices were placeholders. Every
+  value below is read verbatim from https://www.apimatic.io/pricing on 2026-09-15. APIMatic
+  prices the DX platform (SDK languages, endpoints per API, portal features) — it does not meter
+  API requests, so there is no request quota or per-request overage to record and none is
+  invented here.
 tags:
   - API Transformation
   - Code Generation
   - Developer Experience
   - Documentation
   - SDK Generation
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: >-
+  APIMatic publishes four tiers. Two carry a list price (Starter $10/month, Basic $300/month per
+  SDK language) and two are quote-only (Business, Enterprise). A 14-day free trial covers the
+  platform. Billing is monthly and cancellable at any time; the Basic tier scales with each
+  added SDK language rather than with call volume.
+billing:
+  currency: USD
+  period: monthly
+  cancel_anytime: true
+  trial_days: 14
+  trial_note: "Select your integrations, choose your languages, and enjoy APIMatic free for 14 days."
 plans:
-  - id: apimatic-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the APIMatic API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.apimatic.io
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.apimatic.io
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: APIMatic Platform API
-      - name: APIMatic API Transformer API
-  - id: apimatic-pro
-    name: Professional
+  - id: apimatic-starter
+    name: 'Lite: Starter'
     type: paid
-    description: Production tier for APIMatic. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+    price: '10.00'
+    currency: USD
+    period: month
+    description: >-
+      Getting started with exposing your APIs. Need something quick and easy. Billed monthly,
+      cancel anytime.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
+      - label: API Portals
+        name: api_portals
         type: quota
-        metric: requests
-        limit: 100000
+        metric: portals
+        limit: 1
         timeFrame: month
-        geo: global
-        domains:
-          - https://api.apimatic.io
         unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.apimatic.io
+        price: '10.00'
+      - label: Endpoints per API
+        name: endpoints_per_api
+        type: quota
+        metric: endpoints
+        limit: 20
+        timeFrame: perpetual
         unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.apimatic.io
-        unit: 1000
-        price: TBD
-        userMultiplied: false
+      - label: SDK languages
+        name: sdk_languages
+        type: quota
+        metric: languages
+        limit: 1
+        timeFrame: perpetual
+        unit: 1
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: APIMatic Platform API
-      - name: APIMatic API Transformer API
+      - name: 1 API portal, 20 endpoints per API
+      - name: REST + 1 language SDK
+      - name: API Transformer & validation
+      - name: API reference & playground
+  - id: apimatic-basic
+    name: Basic
+    type: paid
+    price: '300.00'
+    currency: USD
+    period: month
+    price_unit: per SDK language
+    description: >-
+      Start offering SDKs in multiple languages. Automate your pipelines. Scales with each added
+      language.
+    entries:
+      - label: SDK languages
+        name: sdk_languages
+        type: quota
+        metric: languages
+        limit: 5
+        timeFrame: perpetual
+        unit: 1
+        price: '300.00'
+        userMultiplied: false
+        note: Priced per language per month.
+    elements:
+      - name: Everything in Starter
+      - name: Up to 5 SDK languages
+      - name: API Recipes & DX Analytics
+      - name: Code Sample API
+      - name: OAuth 2.0 support
+  - id: apimatic-business
+    name: Business
+    type: paid
+    price: quote
+    currency: USD
+    period: month
+    recommended: true
+    description: >-
+      Scale across teams with enterprise-grade SDKs and white-labeled docs. Up to 100 endpoints
+      per API, all 7 languages. Quote only.
+    entries:
+      - label: Endpoints per API
+        name: endpoints_per_api
+        type: quota
+        metric: endpoints
+        limit: 100
+        timeFrame: perpetual
+        unit: 1
+        price: quote
+      - label: SDK languages
+        name: sdk_languages
+        type: quota
+        metric: languages
+        limit: 7
+        timeFrame: perpetual
+        unit: 1
+        price: quote
+    elements:
+      - name: Everything in Basic
+      - name: API merging & white labeling
+      - name: 'Premium SDK features: pagination, webhooks'
+      - name: API Copilot & Context Plugins
+      - name: Dedicated Slack channel
   - id: apimatic-enterprise
     name: Enterprise
     type: enterprise
-    description: Custom-negotiated tier for APIMatic. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    price: custom
+    currency: USD
+    period: negotiated
+    description: >-
+      Turnkey solutions with enterprise customization, flexibility and support. Custom endpoints,
+      custom API portals. Quote only.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
+      - label: Endpoints per API
+        name: endpoints_per_api
         type: quota
-        metric: requests
+        metric: endpoints
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.apimatic.io
+        timeFrame: perpetual
         unit: 1
         price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.apimatic.io
-        unit: 1
-        price: custom
-        userMultiplied: false
+        note: '-1 indicates custom / negotiated rather than uncapped.'
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: APIMatic Platform API
-      - name: APIMatic API Transformer API
+      - name: Everything in Business
+      - name: SSO & support SLAs
+      - name: Migration & professional services
+      - name: Triage support
+      - name: OpenAPI spec maintenance
+plan_count: 4
+free_tier: false
+free_tools:
+  - {name: API Transformer, url: 'https://www.apimatic.io/transformer', signup_required: false}
+  - {name: Score My OpenAPI, url: 'https://www.apimatic.io/solution/score-my-openapi'}
+  - {name: Fix My OpenAPI, url: 'https://www.apimatic.io/solution/fix-my-openapi'}
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

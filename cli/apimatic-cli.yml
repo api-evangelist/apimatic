@@ -1,0 +1,99 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  https://docs.apimatic.io/apimatic-cli/intro-and-install/ ;
+  https://docs.apimatic.io/apimatic-cli/getting-started/ ;
+  https://docs.apimatic.io/apimatic-cli/commands/ ;
+  https://github.com/apimatic/apimatic-cli
+name: apimatic
+binary: apimatic
+repo: https://github.com/apimatic/apimatic-cli
+package:
+  registry: npm
+  name: "@apimatic/cli"
+  version: 1.5.0
+  published: '2026-09-14'
+  url: https://www.npmjs.com/package/@apimatic/cli
+install:
+  - method: npm
+    command: npm install -g @apimatic/cli
+  - method: verify
+    command: apimatic --version
+runtime: Node.js
+note: >-
+  The CLI is now the primary path into APIMatic — the Web Dashboard's API Editor, Portal Editor
+  and web SDK generation are being retired in its favour
+  (https://docs.apimatic.io/web-dashboard-retired/).
+commands:
+  - group: quickstart
+    commands:
+      - command: apimatic quickstart
+        description: Scaffold a portal project and walk through first-time setup.
+  - group: portal
+    description: Build, preview and configure Docs-as-Code developer portals.
+    commands:
+      - command: apimatic portal generate
+        description: Generate an API portal from a build directory.
+      - command: apimatic portal serve --open
+        description: Serve the generated portal locally and open it in a browser.
+      - command: apimatic portal toc new
+        description: Generate a table of contents (toc.yml) for the portal.
+      - command: apimatic portal recipe new
+        description: Create an API recipe (guided walkthrough) for the portal.
+      - command: apimatic portal copilot
+        description: Configure API Copilot for the portal.
+  - group: api
+    description: Validate and transform API specifications.
+    commands:
+      - command: apimatic api validate --file=./specs/sample.json
+        description: Validate and lint an API specification from a local file.
+      - command: apimatic api validate --url=https://petstore.swagger.io/v2/swagger.json
+        description: Validate and lint an API specification from a URL.
+      - command: apimatic api transform --format=OpenApi3Json --file=./specs/sample.json
+        description: Transform a local specification into another supported format.
+      - command: apimatic api transform --format=RAML --url="https://petstore.swagger.io/v2/swagger.json"
+        description: Transform a remote specification into another supported format.
+  - group: sdk
+    description: Generate, customise and publish SDKs.
+    commands:
+      - command: apimatic sdk generate --language=python
+        description: Generate an SDK in one of the seven supported languages.
+      - command: apimatic sdk save-changes --language=java --sdk=./sdk
+        description: Preserve hand-written custom code across SDK regenerations.
+      - command: apimatic sdk publish
+        description: Generate and publish an SDK using a publishing profile.
+      - command: apimatic sdk publish --profile-id=<id> --language=typescript --version=1.0.0 --publish-type=package
+        description: Publish a specific SDK version to a package registry or source repo.
+  - group: plugin
+    description: Context Plugins for AI coding assistants. Added 2026-08-27.
+    commands:
+      - command: apimatic plugin generate
+        description: Build a context plugin from published SDKs.
+      - command: apimatic plugin publish
+        description: Print or run the commands that publish a context plugin to GitHub.
+  - group: publishing
+    commands:
+      - command: apimatic publishing profile list
+        description: List the publishing profiles configured in the APIMatic app.
+  - group: auth
+    commands:
+      - command: apimatic auth login
+        description: Authenticate the CLI against an APIMatic account.
+      - command: apimatic auth logout
+        description: Clear stored credentials.
+      - command: apimatic auth status
+        description: Report the current authentication state.
+  - group: help
+    commands:
+      - command: apimatic help <topic> --nested-commands
+        description: In-depth help, including nested subcommands.
+key_flows:
+  - name: Docs as Code portal build
+    steps: [apimatic auth login, apimatic portal toc new, apimatic portal generate, apimatic portal serve --open]
+  - name: CI SDK release
+    steps: [apimatic api validate --file, apimatic sdk generate --language, apimatic sdk publish --profile-id]
+  - name: Agent-ready context
+    steps: [apimatic sdk publish, apimatic plugin generate, apimatic plugin publish]
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

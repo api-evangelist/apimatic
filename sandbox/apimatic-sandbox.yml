@@ -1,0 +1,59 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  https://www.apimatic.io/pricing ; https://www.apimatic.io/solution/transformer ;
+  https://docs.apimatic.io/platform-api/ (portal config: enableConsoleCalls) ;
+  https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/client.md ;
+  https://docs.apimatic.io/kubernetes-operator/apimatic-operator-overview/
+note: >-
+  APIMatic publishes no test-mode key prefix, no magic test values and no fixture tooling for
+  its own Platform API — there is one live environment and one kind of Auth Key. What it does
+  publish is a live API console on its own reference portal, free no-signup tools, a 14-day
+  trial, and a customer-side testing environment. Recorded as found; nothing invented.
+test_vs_live:
+  separation: none
+  note: >-
+    A single production environment. The generated client exposes Environment.Production plus a
+    `customUrl` whose documented default is https://localhost:44301/api — that is the on-prem /
+    self-hosted testing domain, not an APIMatic-hosted sandbox.
+  source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/client.md
+console:
+  available: true
+  url: https://docs.apimatic.io/platform-api/
+  note: >-
+    APIMatic's own Platform API reference is an APIMatic developer portal with live console
+    calls enabled ("enableConsoleCalls": true, "useProxyForConsoleCalls": false in
+    https://docs.apimatic.io/platform-api/static/js/portal.js). Requests are issued from the
+    reference page against https://api.apimatic.io with the reader's own Auth Key.
+  interactive_playground: true
+free_tools:
+  - name: API Transformer
+    url: https://www.apimatic.io/transformer
+    signup_required: false
+    note: Convert a specification between 15+ formats without an account.
+  - name: Score My OpenAPI
+    url: https://www.apimatic.io/solution/score-my-openapi
+  - name: Fix My OpenAPI
+    url: https://www.apimatic.io/solution/fix-my-openapi
+  - name: API AI-Readiness Audit
+    url: https://www.apimatic.io/solution/ai-readiness-audit
+trial:
+  available: true
+  length_days: 14
+  signup: https://app.apimatic.io/account/register
+  source: https://www.apimatic.io/pricing
+  note: >-
+    "Select your integrations, choose your languages, and enjoy APIMatic free for 14 days."
+    No credit-card statement is published.
+self_hosted:
+  available: true
+  note: >-
+    APIMatic ships an on-prem Kubernetes Operator, which is the supported way to run the code
+    generation surface inside a customer's own cluster.
+  docs: https://docs.apimatic.io/kubernetes-operator/apimatic-operator-overview/
+test_values: []
+test_clocks: false
+fixtures: false
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

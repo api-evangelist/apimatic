@@ -1,15 +1,81 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/apimatic-platform-api.yaml
+generated: '2026-09-15'
+method: searched
+docs: https://docs.apimatic.io/account-management/obtaining-auth-keys/
+source: |-
+  https://docs.apimatic.io/account-management/obtaining-auth-keys/ ;
+  https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/auth/custom-header-signature.md ;
+  https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server (probed 2026-09-15) ;
+  openapi/apimatic-*-openapi.yml securitySchemes
 summary:
   types:
   - apiKey
+  - oauth2
   api_key_in:
   - header
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  note: >-
+    Two unrelated auth surfaces. The PLATFORM API (api.apimatic.io) uses a single long-lived
+    Auth Key sent verbatim in the Authorization header — no scopes, no expiry, no refresh, no
+    OAuth. The hosted MCP server (chatbotapi.apimatic.io) advertises a full OAuth 2.0
+    authorization server with PKCE and dynamic client registration, and also answers
+    anonymously. OAuth 2.0 additionally appears as an SDK GENERATION feature for customers'
+    APIs, which is a product capability and not APIMatic's own auth.
 schemes:
 - name: apiKey
   type: apiKey
   in: header
   parameter: Authorization
+  applies_to: platform-api
+  scheme_note: >-
+    "The Auth Key is required to authenticate the APIMatic APIs. It is passed in as an
+    Authorization header." Generated first-party SDKs model it as a Custom Header Signature,
+    not as a bearer token.
+  lifecycle: >-
+    Created and named under Settings -> Account Settings -> API Authentication in the APIMatic
+    dashboard; revoked from the same screen. No documented expiry or rotation policy.
+  docs: https://docs.apimatic.io/account-management/obtaining-auth-keys/
   sources:
-  - openapi/apimatic-platform-api.yaml
+  - openapi/apimatic-apis-api-openapi.yml
+  - openapi/apimatic-portals-api-openapi.yml
+  - openapi/apimatic-sdk-generation-api-openapi.yml
+  - openapi/apimatic-transformation-api-openapi.yml
+  - openapi/apimatic-validation-api-openapi.yml
+  - https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/auth/custom-header-signature.md
+- name: chatbotapi-mcp-oauth
+  type: oauth2
+  applies_to: mcp
+  issuer: https://chatbotapi.apimatic.io
+  metadata: https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server
+  protected_resource: https://chatbotapi.apimatic.io/.well-known/oauth-protected-resource
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://chatbotapi.apimatic.io/authorize
+    tokenUrl: https://chatbotapi.apimatic.io/token
+    scopes: [mcp:tools]
+  - flow: clientCredentials
+    tokenUrl: https://chatbotapi.apimatic.io/token
+    scopes: [mcp:tools]
+  pkce: [S256]
+  dynamic_client_registration: https://chatbotapi.apimatic.io/register
+  token_endpoint_auth_methods_supported: [none]
+  enforced: false
+  enforced_note: initialize and tools/list both answered HTTP 200 with no Authorization header on 2026-09-15
+  sources:
+  - well-known/apimatic-oauth-authorization-server.json
+  - well-known/apimatic-oauth-protected-resource.json
+cli_auth:
+  commands: [apimatic auth login, apimatic auth status, apimatic auth logout]
+  flow: browser-based login, credentials cached locally
+  docs: https://docs.apimatic.io/apimatic-cli/commands/
+sso:
+  available: true
+  tier: Enterprise
+  docs: https://docs.apimatic.io/platform/sso/
+cross_links:
+  scopes: scopes/apimatic-scopes.yml
+  conventions: conventions/apimatic-conventions.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

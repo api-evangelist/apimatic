@@ -1,0 +1,27 @@
+# APIMatic
+
+> APIMatic turns one OpenAPI spec into SDKs, an API developer portal, docs, code samples, Context Plugins, and MCP servers, agent-ready API context for AI coding assistants like Cursor, Claude Code, and Copilot and for the developers who build against your API.
+
+APIMatic generates every artifact your API's consumers need from a single OpenAPI spec and regenerates them on every change, so humans and AI agents get the same authoritative, current answer.
+
+## Products
+
+- [Context Plugins](https://www.apimatic.io/product/context-plugins): Ground AI coding assistants (Cursor, Claude Code, Copilot) in deterministic, spec-derived context so they write API integrations that run and pass review instead of guessing.
+- [MCP Server Generator](https://www.apimatic.io/product/mcp-server-generator): Generate a governed, versioned MCP server from your OpenAPI and Arazzo specs so agents call your API through a real contract, not a naive wrapper.
+- [SDKs](https://www.apimatic.io/product/sdks): Idiomatic SDKs in seven or more languages generated from one OpenAPI spec, with type safety, authentication, pagination, and resilience built in.
+- [API Developer Portal](https://www.apimatic.io/product/developer-portal): A branded developer portal from your spec, with SDK and API documentation, runnable code samples, an interactive API playground, and API Copilot.
+- [How it works](https://www.apimatic.io/product): One governed OpenAPI spec in, every consumption artifact out; CI regenerates them on every change so nothing drifts.
+
+## Customers
+
+- [Customers](https://www.apimatic.io/customers): API teams at PayPal, Verizon, Maxio, and others run their SDKs and developer portals on APIMatic.
+
+## Learn
+
+- [OpenAPI guides](https://www.apimatic.io/openapi/additionalproperties): Practical OpenAPI reference from APIMatic's guide library (additionalProperties, operationId, oneOf, string formats).
+- [Documentation](https://docs.apimatic.io/): Product docs for generating SDKs, developer portals, Context Plugins, and MCP servers.
+
+## Company
+
+- [Pricing](https://www.apimatic.io/pricing): Plans and what each includes.
+- [About](https://www.apimatic.io/about): What APIMatic is and who it is for.

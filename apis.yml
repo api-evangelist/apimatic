@@ -18,19 +18,25 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: freemium
+  pricing: paid
   onboarding: self-serve
-  trial: false
+  trial: true
+  trial_days: 14
   try_now: true
   public: false
-  label: Freemium · Self-serve signup
-  confidence: medium
+  label: Paid · 14-day free trial · Self-serve signup
+  confidence: high
   source:
-  - plans
-  - authentication
-  - security
-  generated: '2026-09-03'
-  method: derived
+  - https://www.apimatic.io/pricing
+  - plans/apimatic-plans-pricing.yml
+  - authentication/apimatic-authentication.yml
+  generated: '2026-09-15'
+  method: searched
+  note: >-
+    Corrected 2026-09-15 from a derived "freemium / trial: false" reading. The published pricing
+    page has no free tier — the cheapest plan is $10/month — and does advertise a 14-day free
+    trial. Free no-signup tools (API Transformer, Score My OpenAPI, Fix My OpenAPI) exist but are
+    not an API tier.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apimatic.png
 tags:
 - API Transformation
@@ -41,7 +47,7 @@ tags:
 - SDK Generation
 url: https://raw.githubusercontent.com/api-evangelist/apimatic/refs/heads/main/apis.yml
 created: '2025-01-08'
-modified: '2026-05-19'
+modified: '2026-09-15'
 specificationVersion: '0.23'
 apis:
 - aid: apimatic:apimatic-api-transformer-api
@@ -269,6 +275,113 @@ common:
   - name: Agent Skills
     url: https://github.com/apimatic/skills
     type: AgentSkills
+  - type: Packages
+    url: packages/apimatic-packages.yml
+    name: APIMatic first-party packages
+  - type: SDKs
+    url: packages/apimatic-packages.yml
+    name: APIMatic SDKs
+  - type: WellKnown
+    url: well-known/apimatic-well-known.yml
+    name: APIMatic .well-known discovery probe
+  - type: MCPServer
+    url: mcp/apimatic-mcp.yml
+    name: APIMatic MCP servers (hosted Integration Agent + local validator)
+  - type: ToolCrosswalk
+    url: mcp/apimatic-tool-crosswalk.yml
+    name: APIMatic MCP tool crosswalk
+  - type: LLMsTxt
+    url: llms/apimatic-llms.txt
+    name: APIMatic llms.txt
+  - type: Overlay
+    url: overlays/apimatic-apis-api-overlay.yaml
+    name: APIs API overlay
+  - type: Overlay
+    url: overlays/apimatic-portals-api-overlay.yaml
+    name: Portals API overlay
+  - type: Overlay
+    url: overlays/apimatic-sdk-generation-api-overlay.yaml
+    name: SDK Generation API overlay
+  - type: Overlay
+    url: overlays/apimatic-transformation-api-overlay.yaml
+    name: Transformation API overlay
+  - type: Overlay
+    url: overlays/apimatic-validation-api-overlay.yaml
+    name: Validation API overlay
+  - type: Conformance
+    url: conformance/apimatic-conformance.yml
+    name: APIMatic standards conformance
+  - type: ErrorCatalog
+    url: errors/apimatic-problem-types.yml
+    name: APIMatic problem types (RFC 9457)
+  - type: Lifecycle
+    url: lifecycle/apimatic-lifecycle.yml
+    name: APIMatic lifecycle
+  - type: Deprecation
+    url: https://docs.apimatic.io/web-dashboard-retired/
+    name: Web Dashboard retirement notice
+  - type: OAuthScopes
+    url: scopes/apimatic-scopes.yml
+    name: APIMatic OAuth scopes (MCP resource server)
+  - type: Authentication
+    url: authentication/apimatic-authentication.yml
+    name: APIMatic authentication profile
+  - type: Conventions
+    url: conventions/apimatic-conventions.yml
+    name: APIMatic API conventions
+  - type: ChangeLog
+    url: changelog/apimatic-changelog.yml
+    name: APIMatic changelog (structured)
+  - type: CLI
+    url: cli/apimatic-cli.yml
+    name: APIMatic CLI command surface
+  - type: Components
+    url: components/apimatic-components.yml
+    name: APIMatic embeddable components
+  - type: DataModel
+    url: data-model/apimatic-data-model.yml
+    name: APIMatic data model
+  - type: Sandbox
+    url: sandbox/apimatic-sandbox.yml
+    name: APIMatic sandbox, console and free tools
+  - type: Plans
+    url: plans/apimatic-plans-pricing.yml
+    name: APIMatic plans and pricing
+  - type: RateLimits
+    url: rate-limits/apimatic-rate-limits.yml
+    name: APIMatic published limits
+  - type: FinOps
+    url: finops/apimatic-finops.yml
+    name: APIMatic FinOps framework
+  - type: Vocabulary
+    url: vocabulary/apimatic-vocabulary.yaml
+    name: APIMatic vocabulary
+  - type: SpectralRules
+    url: rules/apimatic-jsonschema-spectral-rules.yml
+    name: APIMatic Spectral ruleset
+  - type: Examples
+    url: examples/apimatic-api-entity-example.json
+    name: API entity example
+  - type: Examples
+    url: examples/apimatic-sdk-generation-example.json
+    name: SDK generation example
+  - type: AgentSkill
+    url: skills/_index.yml
+    name: APIMatic Agent Skills (provider-authored)
+  - type: PostmanCollection
+    url: postman/apimatic-platform-api.postman_collection.json
+    name: APIMatic Platform API Postman collection
+  - type: DeveloperPortal
+    url: https://docs.apimatic.io/
+    name: APIMatic developer documentation
+  - type: APIReference
+    url: https://docs.apimatic.io/platform-api/
+    name: APIMatic Platform API reference
+x-enrichment:
+  date: '2026-09-15'
+  status: enriched
+  artifacts_added: 23
+  pass: push-v3
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

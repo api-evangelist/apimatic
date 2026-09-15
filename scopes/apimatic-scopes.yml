@@ -1,0 +1,42 @@
+generated: '2026-09-15'
+method: probed
+source: https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server
+docs: null
+note: >-
+  APIMatic's PLATFORM API has no OAuth surface — it authenticates with a custom Authorization
+  header carrying an Auth Key (see authentication/apimatic-authentication.yml). The only OAuth
+  scope APIMatic publishes belongs to its hosted MCP server, whose RFC 8414 and RFC 9728
+  discovery documents were fetched live on 2026-09-15. Recorded here because a scope an agent
+  can actually request is a scope, whichever surface serves it; it is NOT evidence of OAuth on
+  the Platform API.
+applies_to: mcp
+schemes:
+  - name: chatbotapi-mcp-oauth
+    source: https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server
+    issuer: https://chatbotapi.apimatic.io
+    resource: https://chatbotapi.apimatic.io
+    token_endpoint_auth_methods_supported: [none]
+    code_challenge_methods_supported: [S256]
+    registration_endpoint: https://chatbotapi.apimatic.io/register
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://chatbotapi.apimatic.io/authorize
+        tokenUrl: https://chatbotapi.apimatic.io/token
+      - flow: clientCredentials
+        tokenUrl: https://chatbotapi.apimatic.io/token
+scopes:
+  - scope: mcp:tools
+    description: >-
+      Call the tools exposed by the APIMatic Integration Agent MCP server (ask, update_activity,
+      model_search, endpoint_search). The only scope the authorization server advertises.
+    flows: [authorizationCode, clientCredentials]
+    sources: [https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server]
+x-evidence:
+  fetched: '2026-09-15'
+  http_status: 200
+  note: >-
+    The MCP endpoint also answered an anonymous initialize and tools/list with HTTP 200, so this
+    OAuth surface is offered rather than enforced.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

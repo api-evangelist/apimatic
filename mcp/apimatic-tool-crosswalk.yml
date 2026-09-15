@@ -1,0 +1,76 @@
+generated: '2026-09-15'
+method: derived
+source: |-
+  mcp/apimatic-mcp.yml (live tools/list, 2026-09-15) bound against the operationIds in
+  openapi/ and the first-party SDK reference at
+  https://github.com/apimatic/apimatic-sdk-for-js/tree/main/doc/controllers
+headline: >-
+  APIMatic's hosted MCP server is NOT a wrapper over its REST operations. All four published
+  tools are copilot/retrieval tools over the generated SDK's documentation; none of them calls
+  an APIMatic Platform API operation. An agent that connects to this server can ask how to
+  integrate, and can look up a model or an endpoint signature — it cannot import an API, run a
+  transformation, generate an SDK or publish a portal. Recording that divergence is the point
+  of this file.
+surfaces:
+  openapi:
+    files:
+      - openapi/apimatic-apis-api-openapi.yml
+      - openapi/apimatic-portals-api-openapi.yml
+      - openapi/apimatic-sdk-generation-api-openapi.yml
+      - openapi/apimatic-transformation-api-openapi.yml
+      - openapi/apimatic-validation-api-openapi.yml
+    original: openapi/_original/apimatic-platform-api.yaml
+    gated: false
+    note: >-
+      Six operations. The first-party SDK documents roughly fifty across thirteen controllers,
+      so the captured contract is a subset of what the API actually exposes; APIMatic publishes
+      no fetchable OpenAPI for its own Platform API (see x-coverage in apis.yml).
+  graphql:
+    endpoint: null
+  mcp:
+    url: https://chatbotapi.apimatic.io/mcp/94e710f6-2d9c-4097-88a3-25b38df496c1/{language}
+    gated: false
+    note: tools/list answered anonymously; input schemas below are the server's own, verbatim.
+crosswalk: []
+mcp_only:
+  - tool: ask
+    reason: >-
+      Retrieval-augmented copilot over the portal's own documentation and generated SDK. No
+      REST operation backs it; it returns integration steps, not API results.
+  - tool: update_activity
+    reason: >-
+      Server-side session telemetry (integration milestone). Has no public REST equivalent.
+  - tool: model_search
+    reason: >-
+      Documentation lookup over generated SDK model definitions. The closest REST relative is
+      downloading the API specification, which is a different capability and a different shape.
+  - tool: endpoint_search
+    reason: >-
+      Documentation lookup over generated SDK endpoint signatures. Same note as model_search.
+rest_only:
+  - capability: API definition management
+    operations: [listApiEntities, importApiDefinition]
+    note: >-
+      Plus, in the first-party SDK but not in any published spec — Import API via File/URL,
+      Import New API Version, Inplace API Import, Fetch API Entity, Download API Specification.
+  - capability: Validation and linting
+    operations: [validateApiDefinition]
+  - capability: SDK generation
+    operations: [generateSdk]
+  - capability: Format transformation
+    operations: [transformApiDefinition]
+  - capability: Portal generation
+    operations: [generatePortal]
+coverage:
+  tools_named: 4
+  tools_bound_to_rest: 0
+  mcp_only: 4
+  rest_operations_total: 6
+  rest_operations_with_a_tool: 0
+  confidence: high
+  note: >-
+    Zero binding is the finding, not a gap in the mapping. Confidence is high because the live
+    tool list and its input schemas were read from the server itself.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

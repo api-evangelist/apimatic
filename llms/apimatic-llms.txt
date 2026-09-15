@@ -1,0 +1,272 @@
+# APIMatic Docs
+
+> One Source, Many Outputs. APIMatic generates SDKs, API docs, code samples, MCP servers, context plugins, and developer portals from OpenAPI specs.
+
+Full markdown source for any page is available by appending `.md` to its URL (e.g., `https://docs.apimatic.io/getting-started/creating-your-first-portal.md`).
+
+Full concatenated content: https://docs.apimatic.io/llms-full.txt
+
+- [Introduction](https://docs.apimatic.io/): APIMatic is a Developer Experience platform for APIs. The APIMatic documentation gives you hands-on experience in automating SDK generation, API portals and transforming APIs.
+
+## Getting Started
+
+
+### For CLI users
+
+- [Quickstart](https://docs.apimatic.io/cli-getting-started/portal-quickstart-dac/): Describes how users can generate their first API portal using the APIMatic CLI.
+- [Customize your API Portal](https://docs.apimatic.io/cli-getting-started/advanced-portal-setup/): Describes how users can enhance their API Portal using the APIMatic CLI.
+
+## Define, Lint and Validate API Definitions
+
+
+### Manage API Definitions
+
+- [Specifying API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata/): You can import or transform your API definition along with a metadata file that will allow you to configure certain processes in APIMatic as well as help override or filter out certain parts of the AP
+- [Import and Export Settings](https://docs.apimatic.io/manage-apis/import-export-settings/): Reference for the APIMatic Metadata import settings and export settings that control how API definitions are read in by APIMatic and written back out to other specification formats.
+- [Merge Multiple API Definitions](https://docs.apimatic.io/manage-apis/api-merging/): How to merge multiple API definitions to create a unified API portal
+- [Get API Integration Keys](https://docs.apimatic.io/manage-apis/get-api-keys/): How to get API keys for your API in APIMatic.
+- [View API Logs](https://docs.apimatic.io/manage-apis/view-api-logs/): How to view code generation and package publishing logs for an API
+
+### Validate and Lint API Definitions
+
+- [Overview](https://docs.apimatic.io/validate-lint-apis/overview/): Overview of validation and linting support for API specs.
+
+#### APIMatic for VS Code
+
+- [VS Code APIMatic Extension Overview](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/overview/): Provides an overview of the APIMatic for VS Code extension.
+- [Setting Up an API Workspace](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/setting-up-api-workspace/): Describes various ways to help set up an API definition workspace in the VS code extension.
+- [Validating an API Workspace](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/validating-api-workspace/): Describes various features available to provide a richer validation experience for API definitions in the VS code extension.
+- [Auto Fixing an API Workspace](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/auto-fixing-api-workspace/): Describes what the auto fixing feature does and how it can speed up API definition finalization process.
+- [Building an API Workspace](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/building-api-workspace/): Describes what the build feature in the VS code extension does and how it can be useful.
+- [Exporting an API Workspace to APIMatic Dashboard](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/exporting-api-workspace/): Learn to export an API workspace to the APIMatic Dashboard and the requirements for that.
+- [Transforming API Workspace Specification Format](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/transforming-api-workspace/): Learn to transform the specification format being used by the API workspace to selected format.
+- [About Extension Components](https://docs.apimatic.io/validate-lint-apis/vs-code-apimatic-extension/about-extension-components/): Learn in-depth detail about each component involved in the APIMatic VS Code extension.
+
+#### GitHub App - APIMatic OpenAPI Linter
+
+- [GitHub App Overview](https://docs.apimatic.io/validate-lint-apis/apimatic-github-app/github-app-overview/): Provides detailed information about APIMatic OpenAPI Linter - GitHub App
+- [Installing GitHub App](https://docs.apimatic.io/validate-lint-apis/apimatic-github-app/installing-github-app/): Provides detailed information about APIMatic OpenAPI Linter - GitHub App
+- [Configuring Validation](https://docs.apimatic.io/validate-lint-apis/configuring-validation/): Learn how to configure validation and linting process as per user needs.
+- [Adding Your Own Rules](https://docs.apimatic.io/validate-lint-apis/adding-your-own-rules/): Describes the process to add custom rules for linting purposes.
+
+#### Validation Rulesets
+
+- [Overview](https://docs.apimatic.io/rulesets/overview/)
+- [APIMatic Rulesets](https://docs.apimatic.io/rulesets/apimatic/): The list of rulesets currently used by APIMatic for validating any API specification document is given below. These may include additional checks that a specification's standard may not enforce itself
+- [OpenAPI Rulesets](https://docs.apimatic.io/rulesets/openapi/): The list of rulesets currently used by APIMatic for validating OpenAPI documents v1.x, v2.0, v3.x is provided below. These include rules defined by the standard as well as additional checks enforced b
+- [API Blueprint Rulesets](https://docs.apimatic.io/rulesets/api-blueprint/): The list of rulesets currently used by APIMatic for validating API Blueprint documents is provided below. These include rules defined by the standard as well as additional checks enforced by APIMatic 
+- [RAML Rulesets](https://docs.apimatic.io/rulesets/raml/): The list of rulesets currently used by APIMatic for validating RAML documents v0.8, v1.0 is provided below. These include rules defined by the standard as well as additional checks enforced by APIMati
+- [Postman Rulesets](https://docs.apimatic.io/rulesets/postman/): The list of rulesets currently used by APIMatic for validating Postman documents e.g. Postman Collections v1.0 or v2.x, Postman Data Dump, Postman Environment file, etc. is provided below. These inclu
+- [HAR Rulesets](https://docs.apimatic.io/rulesets/har/): The list of rulesets currently used by APIMatic for validating HAR documents is provided below. These include rules defined by the standard as well as additional checks enforced by APIMatic for a bett
+- [Insomnia Rulesets](https://docs.apimatic.io/rulesets/insomnia/): The list of rulesets currently used by APIMatic for validating Insomnia Export format documents is provided below. These include rules defined by the standard as well as additional checks enforced by 
+- [WADL Rulesets](https://docs.apimatic.io/rulesets/wadl/): The list of rulesets currently used by APIMatic for validating WADL v2006 and v2009 documents is provided below. These include rules defined by the standard as well as additional checks enforced by AP
+- [WSDL Rulesets](https://docs.apimatic.io/rulesets/wsdl/): The list of rulesets currently used by APIMatic for validating WSDL v1.1 documents is provided below. These include rules defined by the standard as well as additional checks enforced by APIMatic for 
+- [I/O Docs Rulesets](https://docs.apimatic.io/rulesets/i-o-docs/): The list of rulesets currently used by APIMatic for validating I/O Docs documents is provided below. These include rules defined by the standard as well as additional checks enforced by APIMatic for a
+- [Google Discovery Rulesets](https://docs.apimatic.io/rulesets/google-discovery/): The list of rulesets currently used by APIMatic for validating Google Discovery documents is provided below. These include rules defined by the standard as well as additional checks enforced by APIMat
+- [Data Rulesets](https://docs.apimatic.io/rulesets/data/): The list of rulesets currently used by APIMatic for validating data documents e.g. JSON data, JSON schema, YAML data, XML data, XML schema is provided below. These rulesets help verify compatibility o
+
+### Use Specification Extensions
+
+- [Specification Extensions Overview](https://docs.apimatic.io/specification-extensions/spec-extensions-overview/): APIMatic allows specifying additional properties as extensions with API specification files to customize behavior and configure API Transformer and CodeGen settings not available in other formats.
+- [OpenAPI CodeGen Extensions](https://docs.apimatic.io/specification-extensions/swagger-codegen-extensions/): How to use APIMatic Code Generation extensions for OpenAPI/Swagger to customize SDKs generated using APIMatic.
+- [OpenAPI Test Case Extensions](https://docs.apimatic.io/specification-extensions/swagger-test-cases-extensions/): How to use APIMatic Test Case Extensions for OpenAPI/Swagger to describe testcases using Gavel.
+- [OpenAPI Server Configuration Extensions](https://docs.apimatic.io/specification-extensions/swagger-server-configuration-extensions/): Using APIMatic Server Configuration extensions for OpenAPI/Swagger to create multiple environments, multiple servers that can be used with specific endpoints and server urls.
+- [API Blueprint Extensions](https://docs.apimatic.io/specification-extensions/blueprint-extensions/): How to use APIMatic Extensions for Blueprint to configure Code Generation settings and to use parameter types not natively available in Blueprint format.
+- [APIMatic RAML Annotations](https://docs.apimatic.io/specification-extensions/raml-apimatic-annotations/): Lists down all available annotations that RAML users can add in their specs to configure APIMatic products
+
+### Transform API Specification Formats
+
+- [API Transformer Overview](https://docs.apimatic.io/api-transformer/overview-transformer/): API transformer converts API definition files into 15 supported API specification formats including OpenAPI, RAML, API Blueprint and more.
+- [Transforming API Specifications](https://docs.apimatic.io/api-transformer/transform-api-spec/): How to transform API definition formats using APIMatic Web and API
+- [Configuring Transformer](https://docs.apimatic.io/api-transformer/configuring-transformer/): How to configure additional settings for APIMatic Transformer to provide extensibility.
+- [Transformer FAQs and Troubleshooting](https://docs.apimatic.io/api-transformer/transformer-faqs/): Frequently asked questions and troubleshooting issues when using the APIMatic API Transformer to convert API definition for one format to another.
+
+## Generate Context Plugins
+
+- [Context Plugins Overview](https://docs.apimatic.io/context-plugins/overview/): APIMatic context plugins give AI coding agents accurate, version-aware API context so developers can go from zero to working integration in minutes.
+
+## Generate SDKs
+
+- [SDK Generation Overview](https://docs.apimatic.io/generate-sdks/overview-sdks/): APIMatic offers SDK generation in all popular languages like Java, .NET, Python, Ruby and more. These SDKs come with utility classes, authentication helpers and configuration files.
+
+### Create SDK
+
+- [Create SDK through API](https://docs.apimatic.io/generate-sdks/create-sdks/create-sdks-through-api/): Steps to create SDK through API.
+- [Create SDK through APIMatic CLI](https://docs.apimatic.io/generate-sdks/create-sdks/create-sdks-through-cli/): Steps to create SDK through CLI.
+
+### Customize SDK
+
+- [Custom Code Injection](https://docs.apimatic.io/generate-sdks/customize-sdks/custom-code-injection/): Learn how to preserve your custom SDK logic across regenerations using the APIMatic CLI.
+
+#### Codegen Settings
+
+- [Code Generation Settings Overview](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/codegen-settings-overview/): List of all CodeGen settings.
+- [Endpoint](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/endpoint-settings/): List of all endpoint settings.
+- [Model](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/model-settings/): List of all model related settings.
+- [Enum](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/enum-settings/): List of all enum settings.
+- [HTTP Configuration](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/http-configuration-settings/): CodeGen settings for HTTP configuration.
+- [SDK Interface Customization](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/sdk-interface-customization/): List of all CodeGen settings that allow customization of SDK interface.
+- [Timeout and Retries](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/timeout-and-retries-settings/): List of all miscellaneous CodeGen settings.
+- [Serialization](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/serialization-settings/): CodeGen settings serialization configuration.
+- [User Agent](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/user-agent-settings/): List of all user agent related settings.
+- [Code Branding](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/code-branding-settings/): List of all model related settings.
+- [SDK Docs Configuration](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/docs-settings/): List of all DocsGen settings.
+- [Exception](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/exception-settings/): List of all model related settings.
+- [Miscellaneous](https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/miscellaneous-settings/): List of all miscellaneous CodeGen settings.
+
+### Deploy SDK
+
+- [SDK Publishing Overview](https://docs.apimatic.io/generate-sdks/sdk-publishing/sdk-publishing-overview/): Why APIMatic builds and publishes SDKs for you, which package registries are supported (npm, PyPI, NuGet, Packagist, RubyGems, Maven Central), and how Publishing Center setup and CLI publishing fit together.
+- [Setup Publishing Profiles](https://docs.apimatic.io/generate-sdks/sdk-publishing/setup-publishing-profiles/): Create a publishing profile in the APIMatic Publishing Center, configure package and source code settings for each language, and add the package registry and GitHub credentials APIMatic needs to publish your SDKs.
+- [Publish Via CLI](https://docs.apimatic.io/generate-sdks/sdk-publishing/publish-via-cli/): Use the APIMatic CLI to publish an SDK to a package registry or a GitHub repository from your terminal or CI/CD pipeline, and monitor each publishing run in the Publishing Center.
+
+### Consume SDK
+
+- [Consume SDK via Project Reference](https://docs.apimatic.io/generate-sdks/consume-sdk-through-project-reference/): Explains how to consume an SDK through project reference.
+
+### Generate SDK Tests
+
+- [Test Generation Overview](https://docs.apimatic.io/testing/overview/): Overview of testcases as part of the API definition and generating unit tests in multiple languages.
+- [Defining Test Case](https://docs.apimatic.io/testing/defining-test-case/)
+- [Running a Test Case](https://docs.apimatic.io/testing/running-test-case/): How to run a unit test generated from a test case in C#.
+- [Testing Frameworks](https://docs.apimatic.io/testing/testing-frameworks/): What testing frameworks are supported by APIMatic Code Generator and how to run the unit tests.
+- [Configure Test Case Generation Settings](https://docs.apimatic.io/testing/configure-test-case-generation/): How to configure additional settings for APIMatic CodeGen to provide extensibility.
+- [Troubleshooting Tests](https://docs.apimatic.io/testing/test-faq/): Frequently Asked Questions about Testing in APIMatic.
+
+### SDK Features
+
+- [SDK Features Overview](https://docs.apimatic.io/generate-sdks/sdk-features/): APIMatic offers SDK generation in all popular languages like Java, .NET, Python, Ruby and more. These SDKs come with additional features from the consumers perspective.
+- [Additional Model Properties](https://docs.apimatic.io/generate-sdks/sdk-features/additional-model-properties/): Enable type-safe additional properties in your API models with APIMatic's enhanced SDK feature.
+- [Array Serialization Formats](https://docs.apimatic.io/generate-sdks/sdk-features/array-serialization-formats/): Simplify array serialization in query and form parameters with APIMatic’s versatile SDK feature.
+- [Auto-Refresh OAuth 2.0 Tokens](https://docs.apimatic.io/generate-sdks/sdk-features/auto-refresh-oauth-2-tokens/): Automatic token retrieval and refreshing in the OAuth 2.0 grant types
+- [Client Initialization from Environment Variables](https://docs.apimatic.io/generate-sdks/sdk-features/client-initialization-from-environment/): Configure SDK clients automatically using environment variables.
+- [Configurable Http Clients](https://docs.apimatic.io/generate-sdks/sdk-features/configurable-http-clients/): Provide your own instance of the HTTP Client during client initialization.
+- [Custom Error Messages](https://docs.apimatic.io/generate-sdks/sdk-features/custom-error-messages/): SDK feature to customize error response messages.
+- [Deprecating API Endpoints](https://docs.apimatic.io/generate-sdks/sdk-features/deprecating-api-endpoints/): Enable developers to identify and migrate from deprecated endpoints using clear messages and compiler warnings.
+- [Dynamic Error Messages](https://docs.apimatic.io/generate-sdks/sdk-features/dynamic-error-messages/): SDK feature to customize error response messages.
+- [Inheritance and Polymorphism with AllOf](https://docs.apimatic.io/generate-sdks/sdk-features/inheritance-and-polymorphism-with-all-of/): AllOf types supporting inheritence and polymorphism in SDKs
+- [Logging](https://docs.apimatic.io/generate-sdks/sdk-features/logging/): Configurable logging support for SDKs.
+- [Multiple Authentication](https://docs.apimatic.io/generate-sdks/sdk-features/multiple-authentication/): Multiple Authentication support in the SDKs
+- [OAuth 2.0 Support](https://docs.apimatic.io/generate-sdks/sdk-features/oauth-2-support/): OAuth 2.0 support in SDKs
+- [OneOf and AnyOf](https://docs.apimatic.io/generate-sdks/sdk-features/oneOf-and-anyOf/): OneOf and AnyOf types support in SDKs
+- [Optional and Nullable Properties](https://docs.apimatic.io/generate-sdks/sdk-features/optional-nullable-properties/): Accurately handle optional and nullable field behaviors for models in all SDKs.
+- [Pagination](https://docs.apimatic.io/generate-sdks/sdk-features/pagination/): Handles large datasets in API calls in a developer friendly way.
+- [Proxy Configuration Support](https://docs.apimatic.io/generate-sdks/sdk-features/proxy-configuration-support/): Comprehensive proxy server configuration in SDKs for enterprise environments
+- [Request Parameter Collections](https://docs.apimatic.io/generate-sdks/sdk-features/request-parameter-collections/): Simplify endpoint parameters in your SDKs by creating collections.
+- [Retries with Exponential Backoff](https://docs.apimatic.io/generate-sdks/sdk-features/retries-with-exponential-backoff/): Handle transient failures with Retries with Exponential Backoff .
+- [Schema Constraints](https://docs.apimatic.io/generate-sdks/sdk-features/schema-constraints/): Generated models carry OpenAPI schema constraints as declarative .NET validation attributes, so you can validate requests and responses using standard .NET validation.
+- [Server-Sent Events (SSE) Streaming](https://docs.apimatic.io/generate-sdks/sdk-features/server-sent-events-streaming/): Consume streaming API responses as a typed, async-iterable stream of decoded server-sent events.
+- [Webhooks and Callbacks](https://docs.apimatic.io/generate-sdks/sdk-features/webhooks-and-callbacks/): Handle webhooks and callbacks with type-safe event processing and signature verification.
+- [Supported Versions and Dependencies](https://docs.apimatic.io/generate-sdks/supported-sdk-version-dependencies/): A breakdown of all APIMatic-supported languages and dependencies for SDK/code generation in v3.
+- [SDK Coding Standards](https://docs.apimatic.io/generate-sdks/sdk-coding-standards/): Coding standards followed in SDKs generated by APIMatic Code Generator.
+- [CodeGen FAQs](https://docs.apimatic.io/generate-sdks/frequently-asked-questions/): Answers frequently asked questions about CodeGen engine.
+
+## Generate API Documentation Portals
+
+- [Api Portal Overview](https://docs.apimatic.io/publish-apis/api-portal-overview/)
+
+### Use Docs as Code with CLI
+
+- [Docs as Code Overview](https://docs.apimatic.io/docs-as-code/documentation-as-code-overview/): This is a general overview about docs as code and its benefits.
+- [Contents of the Build Directory](https://docs.apimatic.io/docs-as-code/contents-of-the-build-directory/): Learn about the contents of the build directory used to generate API portal using docs as code.
+- [Automate API Portal Generation with Github Actions](https://docs.apimatic.io/docs-as-code/automate-api-portal-generation-via-apimatic-docs-as-code/): This page tells how to automate APIMatic docs as code to generate API Portal via GitHub Actions using the sync APIMatic API.
+- [Migrate from Web UI to the Docs as Code Workflow](https://docs.apimatic.io/docs-as-code/backup-hosted-portal-feature/): This page tells how to migrate from an existing portal created using the UI workflow to the docs as code workflow via a build input.
+
+### Use Docs as Code API
+
+- [Generate a Portal using the Sync API](https://docs.apimatic.io/docs-as-code/generate-api-portal-via-apimatic-docs-as-code/generate-using-sync-api/): This page tells how to use APIMatic docs as code manually to synchronously generate API Portal using Build Input.
+- [Generate a Portal using the Async API](https://docs.apimatic.io/docs-as-code/generate-api-portal-via-apimatic-docs-as-code/generate-using-async-api/): This page tells how to use APIMatic docs as code manually to asynchronously generate API Portal using Build Input.
+- [Hosting Your Generated Portal](https://docs.apimatic.io/docs-as-code/hosting-your-generated-portal/): The API portal that APIMatic generates is a static site. Learn where to host it, from Netlify and Cloudflare to Vercel, Azure, and AWS.
+
+### AI Capabilities
+
+- [Api Copilot](https://docs.apimatic.io/ai-capabilities/api-copilot/)
+- [Llms Txt](https://docs.apimatic.io/ai-capabilities/llms-txt/)
+
+## Generate MCP Servers
+
+- [Mcp Server Overview](https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/)
+
+## APIs, CLI and Skills
+
+
+### type
+
+
+### label
+
+
+### href
+
+
+### APIMatic CLI
+
+- [Installing APIMatic CLI](https://docs.apimatic.io/apimatic-cli/intro-and-install/): A guide to show what's APIMatic CLI and how it's installed.
+- [Getting Started with APIMatic CLI](https://docs.apimatic.io/apimatic-cli/getting-started/): A getting started guide to show how to use APIMatic CLI and its commands.
+- [APIMatic CLI Commands](https://docs.apimatic.io/apimatic-cli/commands/): Reference guide to APIMatic CLI commands for developer tooling, API integration, and automation.
+
+### Code Sample API
+
+- [Overview](https://docs.apimatic.io/code-sample-api/overview/): This page provides an overview of the Code Sample API.
+- [Getting Started](https://docs.apimatic.io/code-sample-api/getting-started/): This page tells how to get started with the Code Sample API.
+
+#### License
+
+- [APIMatic Commercial Software License Agreement](https://docs.apimatic.io/license/commercial-license/): All the products of APImatic are using this license.
+
+### Skills
+
+- [Overview](https://docs.apimatic.io/skills/overview/)
+- [Apimatic Portal](https://docs.apimatic.io/skills/apimatic-portal/)
+- [Apimatic Sdk](https://docs.apimatic.io/skills/apimatic-sdk/)
+
+## Platform
+
+
+### Account Management
+
+- [Account Management Overview](https://docs.apimatic.io/account-management/overview/): Overview of managing accounts on APIMatic.
+- [Managing Teams](https://docs.apimatic.io/account-management/teams/): How to collaborate on API definitions on the APIMatic platform by creating a team.
+- [Managing Subscriptions](https://docs.apimatic.io/account-management/subscriptions/): Managing subscription for your APIMatic account.
+- [Managing Credit Card Payments](https://docs.apimatic.io/account-management/managing-credit-card-payments/): Managing credit card payments for your APIMatic account.
+- [Obtaining Authentication Keys](https://docs.apimatic.io/account-management/obtaining-auth-keys/): A guide to show how to obtain authentication keys from APIMatic dashboard.
+- [Code Generation Profile](https://docs.apimatic.io/account-management/codegen-profile/): How to change the default Code Generation settings for APIMatic.
+- [View SDK Generation Activity Log](https://docs.apimatic.io/account-management/activity-log/): The activity log lists down all the SDKs that were generated from the user's account recently.
+- [Update User Profile & Email](https://docs.apimatic.io/account-management/update-profile/): How to update user profile and change credentials for APIMatic account.
+
+### Integrations
+
+- [Microsoft Azure](https://docs.apimatic.io/integrations/azure/): How to plug-in APIMatic's embeddable widget into your Azure Portal for one click access to downloadable client libraries and SDK documentation.
+- [MuleSoft Anypoint](https://docs.apimatic.io/integrations/anypoint/): Integrating APIMatic with MuleSoft Anypoint Platform.
+- [Apiary](https://docs.apimatic.io/integrations/apiary/): Embedding APIMatic's SDK generation widget in Apiary portal.
+- [GitHub](https://docs.apimatic.io/integrations/github/): How to publish SDKs generated using APIMatic on GitHub.
+- [GitHub Actions](https://docs.apimatic.io/integrations/github-actions/): Using APIMatic Transformer on GitHub Actions to automate workflows directly into your GitHub repos.
+- [Widgets](https://docs.apimatic.io/integrations/widgets/): Customizing APIMatic widgets for Anypoint and other integrations.
+
+#### CI/CD Pipelines
+
+- [Jenkins](https://docs.apimatic.io/integrations/jenkins/): How to set-up continuous integration for SDKs generated using APIMatic on Jenkins.
+- [Travis CI](https://docs.apimatic.io/integrations/travis/): How to set-up continuous integration for SDKs generated using APIMatic on Travis CI.
+- [CircleCI](https://docs.apimatic.io/integrations/circleci/): How to set-up continuous integration for SDKs generated using APIMatic on CircleCI.
+- [Appveyor CI](https://docs.apimatic.io/integrations/appveyor/): How to set-up continuous integration for SDKs generated using APIMatic on Appveyor CI.
+
+### On-Prem deployment
+
+
+#### APIMatic Kubernetes Operator
+
+- [APIMatic Kubernetes Operator Overview](https://docs.apimatic.io/kubernetes-operator/apimatic-operator-overview/): This is a general overview of the features and prerequisites for the APIMatic Kubernetes Operator.
+- [Direct Deployment of Operator](https://docs.apimatic.io/kubernetes-operator/direct-deployment-of-operator/): This guide talks about one of the method required to run the APIMatic Kubernetes Operator.
+- [OLM Deployment of Operator](https://docs.apimatic.io/kubernetes-operator/olm-deployment-of-operator/): This guide talks about one of the method required to run the APIMatic Kubernetes Operator.
+
+#### type
+
+
+#### label
+
+
+#### href
+
+- [Enterprise SSO](https://docs.apimatic.io/platform/sso/): Enterprise SSO capabilities in APIMatic for streamlined user management and secure authentication.
+- [Troubleshooting](https://docs.apimatic.io/troubleshooting/troubleshooting/): Frequently asked questions and troubleshooting issues when using the APIMatic products.
+- [Web Dashboard (Retired)](https://docs.apimatic.io/web-dashboard-retired/): The APIMatic Web Dashboard (the web-based API Editor, Portal Editor, and SDK generation) is being retired. New projects use the CLI flow. These pages stay available while existing customers migrate.

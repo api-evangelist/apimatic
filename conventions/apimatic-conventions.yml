@@ -1,0 +1,134 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  https://docs.apimatic.io/account-management/obtaining-auth-keys/ ;
+  https://github.com/apimatic/apimatic-sdk-for-js (doc/auth, doc/client, doc/controllers) ;
+  https://docs.apimatic.io/docs-as-code/generate-api-portal-via-apimatic-docs-as-code/ ;
+  openapi/_original/apimatic-platform-api.yaml
+authentication:
+  style: custom-header-api-key
+  header: Authorization
+  value: the APIMatic Auth Key, sent verbatim (not a Bearer token, not OAuth)
+  docs: https://docs.apimatic.io/account-management/obtaining-auth-keys/
+  rotation: >-
+    Keys are created and revoked by name under Settings -> Account Settings -> API
+    Authentication. No documented expiry, no refresh flow, no scoping.
+  see_also: authentication/apimatic-authentication.yml
+idempotency:
+  supported: false
+  coverage: none
+  header: null
+  note: >-
+    APIMatic's own Platform API documents no idempotency key on any mutating operation, and no
+    replay-protection contract of any kind. Every occurrence of "idempotent" in APIMatic's
+    documentation and changelog is about the SDKs it GENERATES FOR CUSTOMERS — automatic
+    idempotency keys in C# v4 SDKs, retry-only-idempotent-endpoints defaults, HTTP caching for
+    idempotent methods. Crediting APIMatic with idempotency on that basis would score the
+    product it sells rather than the API it runs. Deliberately NOT emitting an Idempotency
+    pointer.
+  customer_facing_feature:
+    url: https://docs.apimatic.io/changelog/added-sdk-identification-headers-and-idempotency-key-in-csharp-v4
+reversibility:
+  grade: documented
+  write_surface: true
+  note: >-
+    Reversal operations exist and are first-party documented, but no window is stated anywhere
+    for any of them, so this grades `documented` and not `verified`. Never assert a window
+    APIMatic has not published.
+  operations:
+    - action: Publish Hosted Portal / Publish Embedded Portal
+      reversal: Unpublish Portal
+      operation_id: unpublishPortal
+      source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/docs-portal-management.md
+      window: null
+    - action: Generate SDK (external APIs)
+      reversal: Delete Code Generation for External APIs
+      source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/code-generation-external-apis.md
+      window: null
+    - action: Generate SDK (imported APIs)
+      reversal: Delete Code Generation
+      source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/code-generation-imported-apis.md
+      window: null
+    - action: Transform via File / Transform via URL
+      reversal: Delete Transformation
+      source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/transformation.md
+      window: null
+  not_reversible:
+    - >-
+      Import API / Import New API Version / Inplace API Import — the published operation set
+      exposes no delete for an API entity through the API. Entity deletion is a dashboard action
+      (https://docs.apimatic.io/manage-apis/update-delete-api, a retired Web Dashboard page).
+    - >-
+      An SDK already published to npm, PyPI, NuGet, Packagist, RubyGems or Maven Central by
+      `apimatic sdk publish` cannot be unpublished by APIMatic; the registry's own policy governs.
+dry_run_mode:
+  supported: partial
+  note: >-
+    `apimatic api validate` and the API Validation controllers are a genuine rehearsal surface —
+    they lint a specification and return a summary without producing or publishing anything, and
+    they are the documented step before generation. There is no dry_run / simulate /
+    validate_only PARAMETER on the generating or publishing operations themselves, so an agent
+    cannot rehearse a portal publish or an SDK release.
+  rehearsal_operations: [validateApiDefinition, Validate API via File, Validate API via URL, Validate API for Docs]
+pagination:
+  documented: false
+  note: >-
+    No pagination contract is published for the Platform API. The list operations (List All Code
+    Generations, List All Transformations) document no page, cursor or limit parameter. Pagination
+    appears in APIMatic's documentation only as an SDK GENERATION feature covering four strategies
+    (offset, page, cursor, link) for customers' APIs.
+  customer_facing_feature: https://docs.apimatic.io/generate-sdks/sdk-features/pagination/
+async_jobs:
+  pattern: submit-then-poll
+  note: >-
+    The long-running surface — SDK generation, portal generation, V2 SDK generation, SDK source
+    tree generation — is explicitly asynchronous. A submit operation returns a generation id, a
+    status operation is polled, and a download operation retrieves the artifact once complete.
+    This is the closest thing APIMatic has to an event surface; there are no webhooks and no
+    callbacks.
+  triples:
+    - {submit: Generate SDK via Build Input Async, status: Get SDK Generation Status, fetch: Download Generated SDK}
+    - {submit: Generate on-Prem Portal via Build Input Async, status: Get Portal Generation Status, fetch: Download Generated Portal}
+    - {submit: Generate V2 SDK via Build Input Async, status: Get V2 SDK Generation Status, fetch: Download Generated V2 SDK}
+versioning:
+  style: controller-generation
+  note: >-
+    No URI version segment, no version header, no date-based version. Generations are separated
+    by controller (Code Generation vs V2 SDK Generation). See lifecycle/apimatic-lifecycle.yml.
+error_envelope:
+  primary: application/problem+json (RFC 9457)
+  fields: [type, title, status, detail, instance, errors]
+  secondary: 'application/json {message}'
+  binary_case: >-
+    422 on portal and SDK builds returns an error.zip carrying build diagnostics rather than JSON.
+  see_also: errors/apimatic-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  note: >-
+    No X-RateLimit-* or RateLimit-* headers and no 429 contract are documented for APIMatic's own
+    API. See rate-limits/apimatic-rate-limits.yml for the plan entitlements that ARE published.
+request_tracing:
+  request_id_header: null
+  documented: false
+  note: >-
+    Generated C# v4 SDKs send X-APIMatic-* identification headers on requests to the CUSTOMER's
+    API; nothing documents a correlation id on APIMatic's own responses.
+field_expansion:
+  supported: false
+metadata:
+  supported: true
+  note: >-
+    APIMatic Metadata (APIMATIC-META.json / x-apimatic-* extensions) is how a caller configures
+    import, export, codegen and testgen behaviour alongside a specification.
+  docs: https://docs.apimatic.io/manage-apis/apimatic-metadata/
+cross_links:
+  authentication: authentication/apimatic-authentication.yml
+  errors: errors/apimatic-problem-types.yml
+  lifecycle: lifecycle/apimatic-lifecycle.yml
+  rate_limits: rate-limits/apimatic-rate-limits.yml
+  plans: plans/apimatic-plans-pricing.yml
+  sandbox: sandbox/apimatic-sandbox.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

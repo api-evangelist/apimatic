@@ -1,0 +1,84 @@
+generated: '2026-09-15'
+method: derived
+source: |-
+  openapi/_original/apimatic-platform-api.yaml (components.schemas + path parameters) and the
+  first-party model reference at
+  https://github.com/apimatic/apimatic-sdk-for-js/tree/main/doc/models
+note: >-
+  The APIMatic Platform API is a job-oriented model, not a CRUD graph. One durable root entity —
+  the API Entity — owns a set of generation jobs (SDK, portal, transformation, validation), each
+  of which is created, polled for status, and downloaded. The entity graph below is derived from
+  the captured contract's schemas and path parameters plus the first-party SDK model reference;
+  entities marked `source: sdk-docs` are documented by APIMatic but absent from any fetchable
+  specification, so they are recorded as evidence rather than as contract.
+root_entity: ApiEntity
+entities:
+  - name: ApiEntity
+    id_field: id
+    id_in_path: apiEntityId
+    description: An API definition imported into an APIMatic account. The root of everything else.
+    source: openapi
+    fields: [id, name, description, version, createdAt, updatedAt]
+    required: [id, name]
+  - name: SdkGenerationRequest
+    description: The instruction to generate an SDK — a target platform enum.
+    source: openapi
+    fields: [platform]
+    enum_platform: [CS_NET_STANDARD_LIB, JAVA_ECLIPSE_JRE_LIB, PHP_GENERIC_LIB, PYTHON_GENERIC_LIB, RUBY_GENERIC_LIB, TYPESCRIPT_GENERIC_LIB, GO_GENERIC_LIB]
+  - name: SdkGenerationResult
+    description: The outcome of an SDK generation — a signed, expiring download URL.
+    source: openapi
+    fields: [downloadUrl, expiresAt]
+    note: >-
+      `expiresAt` is the one time-bounded field in the captured contract. The docs state no
+      duration, so the window is observable per response but not published.
+  - name: ValidationResult
+    description: Validation and linting outcome for a specification.
+    source: openapi
+    fields: [valid, errors, warnings]
+    nested:
+      - {name: ValidationEntry, fields: [message, path, severity], severity_enum: [error, warning, info]}
+  - name: CodeGeneration
+    description: A code-generation job, listable, fetchable by id and deletable.
+    source: sdk-docs
+    evidence: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/code-generation-imported-apis.md
+  - name: Transformation
+    description: A format-transformation job, listable, fetchable by id and deletable.
+    source: sdk-docs
+    evidence: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/transformation.md
+  - name: Portal
+    description: A generated developer portal — hosted, embedded or on-prem.
+    source: sdk-docs
+    evidence: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/docs-portal-management.md
+  - name: BuildInput
+    description: The docs-as-code build directory (APIMATIC-BUILD.json + toc.yml + content) that portal and SDK generation consume.
+    source: sdk-docs
+    evidence: https://docs.apimatic.io/docs-as-code/contents-of-the-build-directory/
+  - name: CodeGenSettings
+    description: CodeGen configuration applied to a generation (endpoint, model, enum, HTTP, serialization, branding, docs, exception, user-agent, timeout/retry settings).
+    source: sdk-docs
+    evidence: https://docs.apimatic.io/generate-sdks/customize-sdks/codegen-settings/codegen-settings-overview/
+  - name: ProblemDetailsError
+    description: RFC 9457 error envelope. See errors/apimatic-problem-types.yml.
+    source: sdk-docs
+relationships:
+  - {from: ApiEntity, to: CodeGeneration, kind: has_many, via: apiEntityId}
+  - {from: ApiEntity, to: Transformation, kind: has_many, via: apiEntityId}
+  - {from: ApiEntity, to: Portal, kind: has_many, via: apiEntityId}
+  - {from: ApiEntity, to: ValidationResult, kind: has_many, via: apiEntityId}
+  - {from: CodeGeneration, to: SdkGenerationRequest, kind: has_one, via: request body}
+  - {from: CodeGeneration, to: SdkGenerationResult, kind: has_one, via: status/download}
+  - {from: CodeGeneration, to: ApiEntity, kind: belongs_to, via: apiEntityId}
+  - {from: Transformation, to: ApiEntity, kind: belongs_to, via: apiEntityId}
+  - {from: Portal, to: BuildInput, kind: has_one, via: build directory upload}
+  - {from: Portal, to: ApiEntity, kind: belongs_to, via: apiEntityId}
+  - {from: CodeGeneration, to: CodeGenSettings, kind: has_one, via: x-codegen-settings in the specification}
+id_conventions:
+  api_entity_id: opaque string path segment (apiEntityId)
+  note: No documented id prefixes or checksummed id scheme.
+lifecycle_pattern:
+  name: submit-poll-download
+  note: See conventions/apimatic-conventions.yml#async_jobs.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

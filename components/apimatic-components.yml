@@ -1,0 +1,54 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  https://docs.apimatic.io/integrations/widgets/ ; https://docs.apimatic.io/integrations/azure/ ;
+  https://docs.apimatic.io/integrations/anypoint/ ; https://docs.apimatic.io/integrations/apiary/ ;
+  https://docs.apimatic.io/platform-api/static/js/portal.js ;
+  https://github.com/apimatic/dx-portal-embedded
+note: >-
+  APIMatic's embeddable surface is the developer-portal widget itself — a hosted JS bundle that
+  renders a full API reference, code playground and API Copilot into a host page. APIMatic uses
+  it on its own Platform API reference, which is the observed instance below.
+families:
+  - name: Developer Portal Widget
+    description: >-
+      Client-side widget that renders a complete APIMatic developer portal (API reference,
+      runnable code samples, interactive playground, API Copilot, AI Assist menu) into a single
+      container element on a host page.
+    loader: https://dxjs.apimatic.io/v7/static/js/portal.v7.js
+    global: APIMaticDevPortal
+    version: v7
+    mount: 'APIMaticDevPortal.show({ container: "apimatic-widget", apiKey: "<portal key>", baseUrl: "./" })'
+    observed_on: https://docs.apimatic.io/platform-api/
+    configuration:
+      - {option: portalStyle, values: [default]}
+      - {option: theme.baseTheme, values: [cosmos]}
+      - {option: theme.colorMode.defaultMode, values: [system, light, dark]}
+      - {option: enableConsoleCalls, description: enable live "Try it" calls from the rendered reference}
+      - {option: useProxyForConsoleCalls, description: route console calls through an APIMatic proxy}
+      - {option: enableExport, description: expose specification exports from the portal}
+      - {option: maskSensitiveValues}
+      - {option: aiAssistMenu, description: 'per-tool toggles for chatgpt, claude, perplexity, grok, googleAiStudio; plus showCopyPage and showViewAsMarkdown'}
+      - {option: enableFeedbackWidget}
+      - {option: codegenApiRoutes, description: 'templated routes for docsgen, codegen and transform artifacts'}
+    registerable_workflows: true
+    workflow_api: 'APIMaticDevPortal.ready(({ registerWorkflow }) => registerWorkflow(pageId, title, Component))'
+  - name: Embedded Portal (React)
+    description: First-party example of hosting the portal widget inside an application shell.
+    repo: https://github.com/apimatic/dx-portal-embedded
+  - name: SDK download widget
+    description: >-
+      Embeddable widget that offers downloadable client libraries and SDK documentation from
+      inside a third-party portal.
+    integrations:
+      - {host: Microsoft Azure API Management, docs: https://docs.apimatic.io/integrations/azure/}
+      - {host: MuleSoft Anypoint, docs: https://docs.apimatic.io/integrations/anypoint/}
+      - {host: Apiary, docs: https://docs.apimatic.io/integrations/apiary/}
+    docs: https://docs.apimatic.io/integrations/widgets/
+  - name: Context Plugins installer
+    description: Installer that wires a generated context plugin into a developer's AI coding tool.
+    repo: https://github.com/apimatic/context-plugins-installer
+    docs: https://docs.apimatic.io/context-plugins/overview/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

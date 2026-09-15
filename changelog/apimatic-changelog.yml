@@ -1,0 +1,108 @@
+generated: '2026-09-15'
+method: searched
+source: https://docs.apimatic.io/changelog/
+feeds:
+  json: https://docs.apimatic.io/changelog/feed.json
+  rss: https://docs.apimatic.io/changelog/rss.xml
+  atom: https://docs.apimatic.io/changelog/atom.xml
+scheme: dated-entries
+note: >-
+  A dated, tagged, machine-readable changelog with three feed serialisations. Entries describe
+  the APIMatic PLATFORM and the SDKs it generates; the Platform API itself carries no released
+  version number, so there is no "current version" to record. Recent window only — the feed
+  holds the full history.
+current_version: null
+entries:
+  - date: '2026-08-27'
+    title: Generate and Publish Context Plugins from the APIMatic CLI
+    url: https://docs.apimatic.io/changelog/generate-and-publish-context-plugins-from-the-cli
+    tags: [CLI, New Feature, AI]
+    breaking: false
+    additions: ["apimatic plugin generate", "apimatic plugin publish"]
+  - date: '2026-07-20'
+    title: Schema Constraint Attributes and Constraint-Aware AnyOf in C# v4 SDKs (Beta)
+    url: https://docs.apimatic.io/changelog/added-schema-constraints-in-csharp-v4
+    tags: [New Feature, SDKs, 'C#']
+    breaking: false
+  - date: '2026-07-13'
+    title: Server-Sent Events (SSE) Streaming in TypeScript SDKs
+    url: https://docs.apimatic.io/changelog/added-server-sent-events-streaming-in-typescript
+    tags: [New Feature, SDKs, TypeScript]
+    breaking: false
+  - date: '2026-07-10'
+    title: Pagination Support in C# v4 SDKs (Beta)
+    url: https://docs.apimatic.io/changelog/added-pagination-support-in-csharp-v4
+    tags: [New Feature, SDKs, 'C#']
+    breaking: false
+    highlights: [Offset, Page, Cursor, Link]
+  - date: '2026-07-10'
+    title: SDK Identification Headers and Automatic Idempotency Keys in C# v4 SDKs (Beta)
+    url: https://docs.apimatic.io/changelog/added-sdk-identification-headers-and-idempotency-key-in-csharp-v4
+    tags: [New Feature, SDKs, 'C#']
+    breaking: false
+    note: >-
+      Generated C# v4 SDKs send X-APIMatic-* identification headers and attach a retry-safe
+      idempotency key on non-GET requests. This is a property of the SDKs APIMatic generates,
+      not of APIMatic's own Platform API.
+  - date: '2026-06-19'
+    title: Reimagined API Copilot, Plus the New API Copilot Home (Beta)
+    url: https://docs.apimatic.io/changelog/api-copilot-home
+    tags: [Improvement, Developer Portal, API Copilot]
+    breaking: false
+  - date: '2026-06-19'
+    title: Major Improvements to the C# v4 SDK (Beta)
+    url: https://docs.apimatic.io/changelog/major-improvements-csharp-v4-sdk
+    tags: [Improvement, 'C#', SDKs]
+    breaking: false
+  - date: '2026-06-19'
+    title: Enable Context Plugins Without SDK Publishing
+    url: https://docs.apimatic.io/changelog/self-hosted-sdk-support-in-ai-coding-tools
+    tags: [AI, SDKs, Developer Portal, New Feature]
+    breaking: false
+  - date: '2026-06-17'
+    title: Bring Your API Into Every Developer's AI Coding Tool
+    url: https://docs.apimatic.io/changelog/ai-assisted-integration-tab
+    tags: [AI, Developer Portal, Improvement]
+    breaking: false
+    note: The change that introduced the per-portal hosted MCP endpoint recorded in mcp/apimatic-mcp.yml.
+  - date: '2026-06-15'
+    title: Idiomatic Code Samples for Models, Enums, and Errors
+    url: https://docs.apimatic.io/changelog/ai-ready-sdks-and-model-page-code-samples
+    tags: [Enhancement, SDKs, Developer Portal, Code Samples, AI]
+    breaking: false
+  - date: '2026-05-18'
+    title: AI Assist Menu for Instant Documentation Context
+    url: https://docs.apimatic.io/changelog/ai-assist-menu
+    tags: [New Feature, Developer Portal]
+    breaking: false
+  - date: '2026-05-15'
+    title: New C# SDK Now Available in Beta
+    url: https://docs.apimatic.io/changelog/added-csharp-sdk-v4-beta
+    tags: [CLI, SDKs, 'C#', Feature]
+    breaking: false
+  - date: '2026-05-14'
+    title: New Validation Rules for API Entity Names Exceeding 100 Characters
+    url: https://docs.apimatic.io/changelog/added-max-name-length-validation-rules
+    tags: [New Feature, Validation, Linting]
+    breaking: false
+    note: >-
+      Error-severity rule — an existing API entity whose name exceeds 100 characters now fails
+      validation. The closest thing to a breaking change in the recent window.
+  - date: '2026-05-14'
+    title: Custom URL Slugs in Developer Portals
+    url: https://docs.apimatic.io/changelog/added-support-for-slug-in-toc
+    tags: [Developer Portal, New Feature]
+    breaking: false
+  - date: '2026-05-14'
+    title: Revamped LLM Context Files and Per-Page Markdown Exports
+    url: https://docs.apimatic.io/changelog/revamped-llm-context-files-and-added-per-page-markdown-exports
+    tags: [Enhancement, Developer Portal, AI]
+    breaking: false
+  - date: '2026-04-27'
+    title: 'CLI: New SDK Publish and Publishing Profile List Commands'
+    url: https://docs.apimatic.io/changelog/cli-sdk-publish-and-publishing-profile-list
+    tags: [CLI, SDKs, SDK Publishing]
+    breaking: false
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

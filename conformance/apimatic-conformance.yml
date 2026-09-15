@@ -1,0 +1,155 @@
+generated: '2026-09-15'
+method: searched
+source: |-
+  https://docs.apimatic.io/rulesets/overview/ and the per-format ruleset pages beneath it;
+  https://docs.apimatic.io/api-transformer/overview-transformer/;
+  https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/models/export-formats.md;
+  https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/models/problem-details-error.md;
+  openapi/_original/apimatic-platform-api.yaml
+note: >-
+  APIMatic's market IS API description standards, so its domain-standard signature is unusually
+  direct: the contract's own ExportFormats enumeration names the specification formats the
+  Transformer emits, and the published ruleset pages name the formats it validates. Those are
+  claims in the product surface, not marketing copy.
+standards:
+  - id: openapi-3-0
+    conforms: true
+    role: consumes-and-produces
+    evidence: >-
+      ExportFormats enum member `Oas3` ("OpenAPI v3.0 (JSON)") and `Openapi3Yaml`; validation
+      ruleset published at https://docs.apimatic.io/rulesets/openapi/
+  - id: openapi-3-1
+    conforms: true
+    role: consumes
+    evidence: >-
+      https://docs.apimatic.io/rulesets/openapi/ covers OpenAPI v3.x; the SDK generator
+      documents 3.1 constructs (oneOf/anyOf, nullable, additionalProperties)
+  - id: swagger-2-0
+    conforms: true
+    role: consumes-and-produces
+    evidence: ExportFormats enum members `Swagger20`, `Swaggeryaml`, `Swagger10`
+  - id: raml
+    conforms: true
+    role: consumes-and-produces
+    evidence: >-
+      ExportFormats `Raml`, `Raml10`; ruleset at https://docs.apimatic.io/rulesets/raml/ for
+      RAML 0.8 and 1.0; RAML annotations at
+      https://docs.apimatic.io/specification-extensions/raml-apimatic-annotations/
+  - id: api-blueprint
+    conforms: true
+    role: consumes-and-produces
+    evidence: ExportFormats `Apiblueprint`; https://docs.apimatic.io/rulesets/api-blueprint/
+  - id: wsdl-1-1
+    conforms: true
+    role: consumes-and-produces
+    evidence: ExportFormats `Wsdl`; https://docs.apimatic.io/rulesets/wsdl/ (WSDL v1.1)
+  - id: wadl
+    conforms: true
+    role: consumes-and-produces
+    evidence: ExportFormats `Wadl2009`; https://docs.apimatic.io/rulesets/wadl/ (WADL 2006, 2009)
+  - id: postman-collection
+    conforms: true
+    role: consumes-and-produces
+    evidence: >-
+      ExportFormats `Postman10`, `Postman20`; https://docs.apimatic.io/rulesets/postman/
+  - id: graphql-sdl
+    conforms: true
+    role: produces
+    evidence: ExportFormats `Graphqlschema`
+  - id: har
+    conforms: true
+    role: consumes
+    evidence: https://docs.apimatic.io/rulesets/har/
+  - id: insomnia
+    conforms: true
+    role: consumes
+    evidence: https://docs.apimatic.io/rulesets/insomnia/
+  - id: io-docs
+    conforms: true
+    role: consumes
+    evidence: https://docs.apimatic.io/rulesets/i-o-docs/
+  - id: google-discovery
+    conforms: true
+    role: consumes
+    evidence: https://docs.apimatic.io/rulesets/google-discovery/
+  - id: json-schema
+    conforms: true
+    role: consumes
+    evidence: >-
+      https://docs.apimatic.io/rulesets/data/ (JSON data, JSON Schema, YAML, XML, XML Schema)
+  - id: rfc9457-problem-details
+    conforms: true
+    role: implements
+    evidence: >-
+      The Platform API returns application/problem+json with type/title/status/detail/instance/
+      errors; modelled first-party as ProblemDetailsError in @apimatic/sdk.
+  - id: modelcontextprotocol
+    conforms: true
+    role: implements-and-produces
+    evidence: >-
+      Live MCP server at chatbotapi.apimatic.io speaking protocol version 2025-06-18 (probed
+      2026-09-15); MCP server generation shipped as a product
+      (https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/)
+  - id: agent-skills
+    conforms: true
+    role: implements
+    evidence: >-
+      https://docs.apimatic.io/skills/overview/ — "Skills follow the open Agent Skills
+      specification (https://agentskills.io)"; two SKILL.md files published at
+      https://github.com/apimatic/skills
+  - id: arazzo
+    conforms: true
+    role: consumes
+    evidence: >-
+      https://www.apimatic.io/llms.txt — "Generate a governed, versioned MCP server from your
+      OpenAPI and Arazzo specs"
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    role: implements
+    evidence: >-
+      https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server (HTTP 200, issuer
+      present, probed 2026-09-15)
+  - id: rfc9728-oauth-protected-resource-metadata
+    conforms: true
+    role: implements
+    evidence: >-
+      https://chatbotapi.apimatic.io/.well-known/oauth-protected-resource (HTTP 200, resource +
+      authorization_servers present, probed 2026-09-15)
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    role: implements
+    evidence: registration_endpoint https://chatbotapi.apimatic.io/register in the RFC 8414 document
+  - id: rfc7636-pkce
+    conforms: true
+    role: implements
+    evidence: code_challenge_methods_supported [S256] in the RFC 8414 document
+  - id: llms-txt
+    conforms: true
+    role: implements-and-produces
+    evidence: >-
+      https://docs.apimatic.io/llms.txt and https://www.apimatic.io/llms.txt both HTTP 200;
+      llms.txt generation is a portal feature
+      (https://docs.apimatic.io/ai-capabilities/llms-txt/)
+  - id: asyncapi
+    conforms: false
+    evidence: No AsyncAPI surface found on any APIMatic host, and none listed in the ruleset or transformer format tables.
+  - id: oauth2
+    conforms: false
+    scope: platform-api
+    evidence: >-
+      The Platform API authenticates with a custom Authorization header carrying an Auth Key,
+      not OAuth. OAuth 2.0 appears only as an SDK generation feature and on the MCP resource
+      server above.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on all six APIMatic hosts probed 2026-09-15.
+compliance_program:
+  published: false
+  note: >-
+    No trust center, no security page, and no named certification (SOC 2, ISO 27001, PCI DSS,
+    HIPAA, FedRAMP, GDPR) appears anywhere on apimatic.io, docs.apimatic.io or in the 954 KB
+    llms-full.txt. trust.apimatic.io and security.apimatic.io do not resolve. Deliberately NOT
+    emitting a Compliance pointer.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

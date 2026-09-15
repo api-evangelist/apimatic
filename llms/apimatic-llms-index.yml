@@ -1,0 +1,39 @@
+generated: '2026-09-15'
+method: searched
+note: >-
+  APIMatic serves two distinct llms.txt files and they cover different ground. The docs host
+  carries the full product documentation index (~28 KB, ~250 links) and points at a
+  concatenated llms-full.txt. The marketing host carries a short product/company index. Both
+  were fetched verbatim on 2026-09-15.
+files:
+  - file: apimatic-llms.txt
+    source: https://docs.apimatic.io/llms.txt
+    http_status: 200
+    bytes: 27835
+    primary: true
+  - file: apimatic-www-llms.txt
+    source: https://www.apimatic.io/llms.txt
+    http_status: 200
+    bytes: 2204
+    primary: false
+full_text:
+  url: https://docs.apimatic.io/llms-full.txt
+  http_status: 200
+  bytes: 954481
+  committed: false
+  note: >-
+    Deliberately NOT committed — *-llms-full.txt is gitignored across the network because these
+    dumps embed vendor example tokens that trip GitHub push protection.
+findings:
+  - >-
+    Three product links in https://www.apimatic.io/llms.txt are dead as published:
+    /product/mcp-server-generator, /product/sdks and /product/developer-portal all return 404.
+    The live equivalents are /product/generate, /product/publish and /product/context-plugins.
+    An agent following APIMatic's own llms.txt hits three 404s out of five product links.
+  - >-
+    The docs llms.txt "APIs, CLI and Skills" section emits three empty headings — "### type",
+    "### label", "### href" — where a navigation object was rendered as headings instead of
+    links. The same defect repeats under "On-Prem deployment".
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

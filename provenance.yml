@@ -25,7 +25,13 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   authentication/apimatic-authentication.yml:
-    method: derived
+    method: searched
+    evidence: declared in the artifact
+  changelog/apimatic-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/apimatic-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/apimatic-apis-api.opencollection.json:
     method: derived
@@ -57,6 +63,21 @@ artifacts:
   collections/apimatic-validation-api.postman_collection.json:
     method: derived
     evidence: openapi/apimatic-validation-api
+  components/apimatic-components.yml:
+    method: searched
+    evidence: declared in the artifact
+  conformance/apimatic-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conventions/apimatic-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/apimatic-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/apimatic-problem-types.yml:
+    method: searched
+    evidence: declared in the artifact
   examples/apimatic-api-entity-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -81,25 +102,7 @@ artifacts:
   json-structure/apimatic-sdk-generation-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
+  kin/checks-2026-09-14T225847.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-17T064519.yml:
@@ -216,6 +219,84 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/apimatic-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/apimatic-llms-index.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/apimatic-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  llms/apimatic-www-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/apimatic-mcp.yml:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/apimatic-tool-crosswalk.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/_original/apimatic-platform-api.yaml:
     method: harvested
     evidence: fetched from the provider as-is; byte-identical to the source
@@ -234,21 +315,57 @@ artifacts:
   openapi/apimatic-validation-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  plans/apimatic-plans-pricing.yml:
+  overlays/apimatic-apis-api-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/apimatic-portals-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apimatic-sdk-generation-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apimatic-transformation-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/apimatic-validation-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/apimatic-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/apimatic-plans-pricing.yml:
+    method: searched
     evidence: declared in the artifact
   postman/apimatic-platform-api.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
   rate-limits/apimatic-rate-limits.yml:
-    method: generated
+    method: searched
     evidence: declared in the artifact
   rules/apimatic-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  sandbox/apimatic-sandbox.yml:
+    method: searched
+    evidence: declared in the artifact
+  scopes/apimatic-scopes.yml:
+    method: unknown
+    evidence: no authorship recorded
   security/apimatic-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
+  skills/_index.yml:
+    method: searched
+    evidence: declared in the artifact
   vocabulary/apimatic-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/apimatic-oauth-authorization-server.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/apimatic-oauth-protected-resource.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/apimatic-well-known.yml:
     method: unknown
     evidence: no authorship recorded
