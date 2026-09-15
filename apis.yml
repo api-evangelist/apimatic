@@ -380,7 +380,7 @@ common:
 x-enrichment:
   date: '2026-09-15'
   status: enriched
-  artifacts_added: 23
+  artifacts_added: 25
   pass: push-v3
 maintainers:
 - FN: Kin Lane
