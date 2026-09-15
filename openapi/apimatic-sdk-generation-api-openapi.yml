@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: APIMatic Platform APIs SDK Generation API
+  title: APIMatic Platform SDK Generation API
   description: The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation. Integrate APIMatic into your CI/CD workflows to automate your developer experience suite.
   version: 1.0.0
   contact:
@@ -51,26 +51,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  examples:
-    SdkGenerationRequestExample:
-      value:
-        platform: PYTHON_GENERIC_LIB
-    SdkGenerationResultExample:
-      value:
-        downloadUrl: https://api.apimatic.io/downloads/sdk_xyz789
-        expiresAt: '2026-04-20T10:00:00Z'
   schemas:
-    SdkGenerationResult:
-      type: object
-      properties:
-        downloadUrl:
-          type: string
-          format: uri
-          description: URL to download the generated SDK
-        expiresAt:
-          type: string
-          format: date-time
-          description: Expiration time of the download URL
     SdkGenerationRequest:
       type: object
       properties:
@@ -87,6 +68,25 @@ components:
           description: Target SDK platform
       required:
       - platform
+    SdkGenerationResult:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the generated SDK
+        expiresAt:
+          type: string
+          format: date-time
+          description: Expiration time of the download URL
+  examples:
+    SdkGenerationRequestExample:
+      value:
+        platform: PYTHON_GENERIC_LIB
+    SdkGenerationResultExample:
+      value:
+        downloadUrl: https://api.apimatic.io/downloads/sdk_xyz789
+        expiresAt: '2026-04-20T10:00:00Z'
   securitySchemes:
     apiKey:
       type: apiKey
