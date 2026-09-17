@@ -66,27 +66,6 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.apimatic.io/api-transformer/overview-transformer/
-- aid: apimatic:apimatic-apis-api
-  name: APIMatic APIs API
-  description: The APIs API from APIMatic — 1 operation(s) for apis.
-  humanURL: https://docs.apimatic.io/platform-api/
-  baseURL: https://api.apimatic.io
-  tags: []
-  tags_raw:
-  - APIs
-  properties:
-  - type: OpenAPI
-    url: openapi/apimatic-apis-api-openapi.yml
-  - type: Documentation
-    url: https://docs.apimatic.io/platform-api/
-  - type: GettingStarted
-    url: https://docs.apimatic.io/platform-api/#/http/getting-started
-  - type: JSONSchema
-    url: json-schema/apimatic-api-entity-schema.json
-  - type: JSONSchema
-    url: json-schema/apimatic-sdk-generation-schema.json
-  - type: JSONLD
-    url: json-ld/apimatic-context.jsonld
 - aid: apimatic:apimatic-portals-api
   name: APIMatic Portals API
   description: The Portals API from APIMatic — 1 operation(s) for portals.
@@ -159,6 +138,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apimatic-validation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apimatic.io/platform-api/
+  - type: GettingStarted
+    url: https://docs.apimatic.io/platform-api/#/http/getting-started
+  - type: JSONSchema
+    url: json-schema/apimatic-api-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-sdk-generation-schema.json
+  - type: JSONLD
+    url: json-ld/apimatic-context.jsonld
+- aid: apimatic:apimatic-apis-api
+  name: APIMatic AP Is API
+  description: The APIs API from APIMatic — 1 operation(s) for apis.
+  humanURL: https://www.apimatic.io/solution/transformer
+  baseURL: https://api.apimatic.io
+  tags:
+  - APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/apimatic-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.apimatic.io/platform-api/
   - type: GettingStarted
