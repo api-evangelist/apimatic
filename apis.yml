@@ -153,7 +153,8 @@ apis:
   description: The APIs API from APIMatic — 1 operation(s) for apis.
   humanURL: https://www.apimatic.io/solution/transformer
   baseURL: https://api.apimatic.io
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
