@@ -38,6 +38,10 @@ accessModel:
     trial. Free no-signup tools (API Transformer, Score My OpenAPI, Fix My OpenAPI) exist but are
     not an API tier.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apimatic.png
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-19
+x-docs-hosting: cloudflare-pages
 tags:
 - API Transformation
 - Code Generation
