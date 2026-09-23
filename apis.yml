@@ -153,7 +153,7 @@ apis:
   - type: JSONLD
     url: json-ld/apimatic-context.jsonld
 - aid: apimatic:apimatic-apis-api
-  name: APIMatic AP Is API
+  name: APIMatic APIs API
   description: The APIs API from APIMatic — 1 operation(s) for apis.
   humanURL: https://www.apimatic.io/solution/transformer
   baseURL: https://api.apimatic.io
@@ -285,6 +285,24 @@ common:
   - type: SDKs
     url: packages/apimatic-packages.yml
     name: APIMatic SDKs
+  - type: SDKs
+    url: https://www.npmjs.com/package/@apimatic/sdk
+    name: APIMatic Platform API SDK (TypeScript)
+  - type: SDKs
+    url: https://docs.apimatic.io/platform-api/#/java/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    name: APIMatic Platform API SDK (Java)
+  - type: SDKs
+    url: https://docs.apimatic.io/platform-api/#/net-standard-library/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    name: APIMatic Platform API SDK (.NET)
+  - type: SDKs
+    url: https://docs.apimatic.io/platform-api/#/php/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    name: APIMatic Platform API SDK (PHP)
+  - type: SDKs
+    url: https://docs.apimatic.io/platform-api/#/python/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    name: APIMatic Platform API SDK (Python)
+  - type: SDKs
+    url: https://docs.apimatic.io/platform-api/#/ruby/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    name: APIMatic Platform API SDK (Ruby)
   - type: WellKnown
     url: well-known/apimatic-well-known.yml
     name: APIMatic .well-known discovery probe

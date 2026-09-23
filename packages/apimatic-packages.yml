@@ -1,4 +1,4 @@
-generated: '2026-09-15'
+generated: '2026-09-23'
 method: searched
 source: |-
   Public registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org,
@@ -26,11 +26,67 @@ packages:
     version: 0.2.0-alpha.10
     published: '2026-05-15'
     note: >-
-      The only first-party client for APIMatic's own Platform API. Still on an alpha
+      The only first-party client for APIMatic's own Platform API ON A PACKAGE REGISTRY
+      (re-profiled 2026-09-23: five more languages ship from the portal, below). Still on an alpha
       dist-tag; its 13 controllers (APIs Management, Transformation, SDK Generation Async,
       Docs Portal Generation Async, V2 SDK Generation, API Validation, Table of Contents,
       SDK Source Tree Generation) are a far wider operation surface than any spec APIMatic
       publishes at a fetchable URL.
+  - language: java
+    registry: portal-download
+    name: APIMatic Platform API SDK (Java)
+    role: api-client
+    url: https://docs.apimatic.io/platform-api/#/java/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    install: Download from the "Get SDK" button on https://docs.apimatic.io/platform-api/ (Java tab)
+    official: true
+    note: >-
+      First-party Java SDK for APIMatic's own Platform API, distributed as a download from
+      APIMatic's API reference portal rather than a package registry (no registry package
+      found on the java registry, 2026-09-23). Re-profiled from an Influence submit_artifact.
+  - language: csharp
+    registry: portal-download
+    name: APIMatic Platform API SDK (.NET)
+    role: api-client
+    url: https://docs.apimatic.io/platform-api/#/net-standard-library/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    install: Download from the "Get SDK" button on https://docs.apimatic.io/platform-api/ (.NET tab)
+    official: true
+    note: >-
+      First-party .NET SDK for APIMatic's own Platform API, distributed as a download from
+      APIMatic's API reference portal rather than a package registry (no registry package
+      found on the csharp registry, 2026-09-23). Re-profiled from an Influence submit_artifact.
+  - language: php
+    registry: portal-download
+    name: APIMatic Platform API SDK (PHP)
+    role: api-client
+    url: https://docs.apimatic.io/platform-api/#/php/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    install: Download from the "Get SDK" button on https://docs.apimatic.io/platform-api/ (PHP tab)
+    official: true
+    note: >-
+      First-party PHP SDK for APIMatic's own Platform API, distributed as a download from
+      APIMatic's API reference portal rather than a package registry (no registry package
+      found on the php registry, 2026-09-23). Re-profiled from an Influence submit_artifact.
+  - language: python
+    registry: portal-download
+    name: APIMatic Platform API SDK (Python)
+    role: api-client
+    url: https://docs.apimatic.io/platform-api/#/python/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    install: Download from the "Get SDK" button on https://docs.apimatic.io/platform-api/ (Python tab)
+    official: true
+    note: >-
+      First-party Python SDK for APIMatic's own Platform API, distributed as a download from
+      APIMatic's API reference portal rather than a package registry (no registry package
+      found on the python registry, 2026-09-23). Re-profiled from an Influence submit_artifact.
+  - language: ruby
+    registry: portal-download
+    name: APIMatic Platform API SDK (Ruby)
+    role: api-client
+    url: https://docs.apimatic.io/platform-api/#/ruby/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+    install: Download from the "Get SDK" button on https://docs.apimatic.io/platform-api/ (Ruby tab)
+    official: true
+    note: >-
+      First-party Ruby SDK for APIMatic's own Platform API, distributed as a download from
+      APIMatic's API reference portal rather than a package registry (no registry package
+      found on the ruby registry, 2026-09-23). Re-profiled from an Influence submit_artifact.
   - language: javascript
     registry: npm
     name: "@apimatic/cli"
