@@ -1,0 +1,337 @@
+openapi: 3.2.0
+info:
+  title: APIMatic SDK Generation SDK - Async API
+  version: 1.0.0
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 10 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-generated: '2026-09-23'
+  x-generator: portal-reference-json (deterministic)
+  x-engine: none
+  x-sources:
+  - https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  - https://docs.apimatic.io/platform-api/
+servers:
+- url: https://api.apimatic.io
+  description: 'production (portal ServerConfiguration: default)'
+security:
+- Authorization: []
+tags:
+- name: SDK - Async
+paths:
+  /sdk:
+    post:
+      operationId: generateSdkViaBuildInputAsync
+      summary: Generate SDK via Build Input Async
+      description: Create an async SDK Generation request by providing a Build Input
+      tags:
+      - SDK - Async
+      parameters:
+      - name: X-APIMatic-CallbackUrl
+        in: header
+        required: false
+        description: Optional header containing callback url. This url will be called by the server once the SDK generation completes
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The input file to the SDK Generator. Must contain the build file or a spec folder containing the API Specification.
+                language:
+                  $ref: '#/components/schemas/SDKLanguages'
+                  description: Languages for which SDKs can be generated.
+                packageVersion:
+                  type: string
+                  description: Optional field containing the package version to apply to the generated SDK.
+              required:
+              - file
+              - language
+      responses:
+        '202':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SdkGenerationAsyncResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > SDK - Async > Generate SDK via Build Input Async > Generate SDK via Build Input Async
+      x-evidence:
+        kind: documentation
+  /sdk/{id}/status:
+    get:
+      operationId: getSdkGenerationStatus
+      summary: Get SDK Generation Status
+      description: Get the status of an SDK generation request
+      tags:
+      - SDK - Async
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SdkGenerationStatusResponse'
+        '302':
+          description: Redirect
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > SDK - Async > Get SDK Generation Status > Get SDK Generation Status
+      x-evidence:
+        kind: documentation
+  /sdk/{id}/download:
+    get:
+      operationId: downloadGeneratedSdk
+      summary: Download Generated SDK
+      description: Downloads the SDK artifacts. The endpoint returns a zip file containing the generated SDK.
+      tags:
+      - SDK - Async
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > SDK - Async > Download Generated SDK > Download Generated SDK
+      x-evidence:
+        kind: documentation
+components:
+  schemas:
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
+    Links:
+      title: Links
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        status:
+          type: string
+        download:
+          type: string
+      required:
+      - status
+      - download
+    SDKLanguages:
+      title: SDK Languages
+      description: Languages for which SDKs can be generated.
+      example: csharp
+      x-enum-elements:
+      - name: csharp
+        description: C#
+      - name: java
+        description: Java
+      - name: php
+        description: PHP
+      - name: python
+        description: Python
+      - name: ruby
+        description: Ruby
+      - name: typescript
+        description: Typescript
+      - name: go
+        description: Go
+      type: string
+      additionalProperties: false
+      enum:
+      - csharp
+      - java
+      - php
+      - python
+      - ruby
+      - typescript
+      - go
+    SdkGenerationStatusResponse:
+      title: SdkGenerationStatusResponse
+      example:
+        status: InProgress
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        errors:
+          example:
+            file:
+            - File is required
+          type: object
+          additionalProperties:
+            type: object
+      required:
+      - status
+    SdkGenerationAsyncResponse:
+      title: SdkGenerationAsyncResponse
+      example:
+        links:
+          status: https://api.apimatic.io/sdk/0194d0da-8d75-7c04-b517-6a9342b114e8/status
+          download: https://api.apimatic.io/sdk/0194d0da-8d75-7c04-b517-6a9342b114e8/download
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - links
+    Status:
+      title: Status
+      x-enum-elements:
+      - name: Completed
+        description: ''
+      - name: InProgress
+        description: ''
+      - name: ValidationError
+        description: ''
+      - name: SubscriptionError
+        description: ''
+      - name: Failed
+        description: ''
+      type: string
+      additionalProperties: false
+      enum:
+      - Completed
+      - InProgress
+      - ValidationError
+      - SubscriptionError
+      - Failed
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Auth Header. Replace {x-auth-key} with your Auth Key. Header value form: `X-Auth-Key {x-auth-key}`.'
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json

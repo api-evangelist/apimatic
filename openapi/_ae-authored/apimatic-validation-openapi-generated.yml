@@ -1,0 +1,525 @@
+openapi: 3.1.0
+info:
+  title: APIMatic Validation API
+  version: 1.0.0
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 4 operation(s) converted deterministically
+    (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json,
+    loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied
+    from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes:
+    the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found
+    on its hosts or in its GitHub organization.'
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-generated: '2026-09-23'
+  x-generator: portal-reference-json (deterministic)
+  x-engine: none
+  x-sources:
+  - https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  - https://docs.apimatic.io/platform-api/
+servers:
+- url: https://api.apimatic.io
+  description: 'production (portal ServerConfiguration: default)'
+tags:
+- name: Validation
+- name: Validation V2
+security:
+- Authorization: []
+paths:
+  /validation/validate-via-file:
+    post:
+      operationId: validateApiViaFile
+      summary: Validate API via File
+      description: 'Validate an API by uploading the API specification file.
+
+
+        You can also specify [API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata) while validating
+        the API using this endpoint. When specifying Metadata, the uploaded file will be a zip file containing the
+        API specification file and the `APIMATIC-META` json file.'
+      tags:
+      - Validation
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The API specification file.<br>The type of the specification file should be any of
+                    the [supported formats](https://docs.apimatic.io/api-transformer/overview-transformer#supported-input-formats).
+              required:
+              - file
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiValidationSummary'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema: {}
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Validation > Validate API via File > Validate API via File
+      x-evidence:
+        kind: documentation
+  /validation/validate-via-url:
+    get:
+      operationId: validateApiViaUrl
+      summary: Validate API via URL
+      description: 'Validate an API by providing the URL of the API specification file.
+
+
+        You can also specify [API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata) while validating
+        the API using this endpoint. When specifying Metadata, the URL provided will be that of a zip file containing
+        the API specification file and the `APIMATIC-META` json file.'
+      tags:
+      - Validation
+      parameters:
+      - name: descriptionUrl
+        in: query
+        required: true
+        description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiValidationSummary'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema: {}
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Validation > Validate API via URL > Validate API via URL
+      x-evidence:
+        kind: documentation
+  /validation/v2/validate-via-file:
+    post:
+      operationId: validateApiViaFileV2
+      summary: Validate API via File - V2
+      description: 'Validate an API by uploading the API specification file.
+
+
+        You can also specify [API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata) while validating
+        the API using this endpoint. When specifying Metadata, the uploaded file will be a zip file containing the
+        API specification file and the `APIMATIC-META` json file.'
+      tags:
+      - Validation V2
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The API specification file.<br>The type of the specification file should be any of
+                    the [supported formats](https://docs.apimatic.io/api-transformer/overview-transformer#supported-input-formats).
+              required:
+              - file
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateApiResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: Subscription Issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Validation V2 > Validate API via File - V2 > Validate API via File - V2
+      x-evidence:
+        kind: documentation
+  /validation/v2/validate-via-url:
+    get:
+      operationId: validateApiViaUrlV2
+      summary: Validate API via URL - V2
+      description: 'Validate an API by providing the URL of the API specification file.
+
+
+        You can also specify [API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata) while validating
+        the API using this endpoint. When specifying Metadata, the URL provided will be that of a zip file containing
+        the API specification file and the `APIMATIC-META` json file.'
+      tags:
+      - Validation V2
+      parameters:
+      - name: url
+        in: query
+        required: true
+        description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateApiResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: Subscription Issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Validation V2 > Validate API via URL - V2 > Validate API via URL - V2
+      x-evidence:
+        kind: documentation
+      x-live-probe:
+        date: '2026-09-23'
+        result: 404 with and without descriptionUrl; documented in APIMatic's portal reference data but not answering
+          on api.apimatic.io. Every other operation in these four contracts answered 401/405.
+components:
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Auth Header. Replace {x-auth-key} with your Auth Key. Header value form: `X-Auth-Key {x-auth-key}`.'
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  schemas:
+    ApiValidationSummary:
+      title: ApiValidationSummary
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        success:
+          example: true
+          type: boolean
+        errors:
+          description: ''
+          example: []
+          type: array
+          items:
+            type: string
+        warnings:
+          description: ''
+          example:
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getRealTimeData</code></i> of group <i><code>data</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getRealTimeData</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getDataPerCategory</code></i> of group <i><code>data</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getDataPerCategory</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getData</code></i> of group <i><code>data</code></i> contains
+            an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getData</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getActiveStatuses</code></i> of group <i><code>statuses</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getActiveStatuses</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>200</code></i> in endpoint <i><code>getDevices</code></i> of group <i><code>assets</code></i>
+            contains an example value with following undeclared fields: <i><code>deviceModelId</code></i>, <i><code>manufacturer</code></i>,
+            <i><code>model</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getDevices</code></i> of group <i><code>assets</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getDevices</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getAlarms</code></i> of group <i><code>alerts</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getAlarms</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getActiveAlerts</code></i> of group <i><code>alerts</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getActiveAlerts</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getAlerts</code></i> of group <i><code>alerts</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getAlerts</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getConfiguration</code></i> of group <i><code>configuration
+            data</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getConfiguration</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getActiveAlarms</code></i> of group <i><code>alerts</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getActiveAlarms</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getPowerCurves</code></i> of group <i><code>assets</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getPowerCurves</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getDataSignals</code></i> of group <i><code>data</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getDataSignals</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getStatuses</code></i> of group <i><code>statuses</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getStatuses</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code
+            <i><code>429</code></i> in endpoint <i><code>getSites</code></i> of group <i><code>assets</code></i>
+            contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getSites</code></i> has an example specified for error code <i><code>429</code></i>
+            which contains following undeclared fields: <i><code>detail</i></code>.'
+          type: array
+          items:
+            type: string
+        messages:
+          description: ''
+          example:
+          - One or more elements in the API specification has a missing description field.
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - errors
+      - warnings
+      - messages
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
+    LineInfo:
+      title: LineInfo
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        startLineNumber:
+          type: integer
+          format: int32
+        startLinePosition:
+          type: integer
+          format: int32
+        endLineNumber:
+          type: integer
+          format: int32
+        endLinePosition:
+          type: integer
+          format: int32
+      required:
+      - startLineNumber
+      - startLinePosition
+      - endLineNumber
+      - endLinePosition
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    ValidateApiResult:
+      title: ValidateApiResult
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        validation:
+          $ref: '#/components/schemas/ValidationSummary'
+        linting:
+          $ref: '#/components/schemas/ValidationSummary'
+      required:
+      - validation
+      - linting
+    ValidationEntry:
+      title: ValidationEntry
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          type: string
+        lineInfo:
+          $ref: '#/components/schemas/LineInfo'
+        jsonReferencePath:
+          type: string
+        fileReference:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        ruleDocumentationReference:
+          type: string
+        additionalReferences:
+          description: ''
+          type: array
+          items:
+            type: string
+      required:
+      - message
+    ValidationSummary:
+      title: ValidationSummary
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        isSuccess:
+          type: boolean
+        blocking:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+        warnings:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+        information:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+      required:
+      - isSuccess
+      - blocking
+      - errors
+      - warnings
+      - information

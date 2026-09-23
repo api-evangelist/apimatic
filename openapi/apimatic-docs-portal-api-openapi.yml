@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: APIMatic Portals Docs Portal API
+  version: 1.0.0
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 4 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-generated: '2026-09-23'
+  x-generator: portal-reference-json (deterministic)
+  x-engine: none
+  x-sources:
+  - https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  - https://docs.apimatic.io/platform-api/
+servers:
+- url: https://api.apimatic.io
+  description: 'production (portal ServerConfiguration: default)'
+security:
+- Authorization: []
+tags:
+- name: Docs Portal
+paths:
+  /portal:
+    post:
+      operationId: generateOnPremPortalViaBuildInput
+      summary: Generate on-Prem Portal via Build Input
+      description: 'Generate an On-premise Documentation Portal by uploading a Portal Build Input. This endpoint generates all artifacts for the Portal and packages them together into a zip file along with the required HTML, CSS and JS files. The generated artifacts include:
+
+
+        1. SDKs
+
+        2. Docs
+
+        3. API Specification files
+
+
+        The endpoint returns a zip file that contains a static Site and can be hosted on any Web Server.'
+      tags:
+      - Docs Portal
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The input file to the Portal Generator. Must contain the build file.
+              required:
+              - file
+      responses:
+        '200':
+          description: Success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: Subscription Issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '422':
+          description: Unprocessable Entity - Contains error.zip for build issues
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Docs Portal > Generate on-Prem Portal via Build Input > Generate on-Prem Portal via Build Input
+      x-evidence:
+        kind: documentation
+components:
+  schemas:
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Auth Header. Replace {x-auth-key} with your Auth Key. Header value form: `X-Auth-Key {x-auth-key}`.'
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json

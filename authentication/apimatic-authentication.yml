@@ -37,11 +37,13 @@ schemes:
     dashboard; revoked from the same screen. No documented expiry or rotation policy.
   docs: https://docs.apimatic.io/account-management/obtaining-auth-keys/
   sources:
-  - openapi/apimatic-apis-api-openapi.yml
-  - openapi/apimatic-portals-api-openapi.yml
-  - openapi/apimatic-sdk-generation-api-openapi.yml
+  - openapi/apimatic-docs-portal-api-openapi.yml
+  - openapi/apimatic-docs-portal-async-api-openapi.yml
+  - openapi/apimatic-sdk-api-openapi.yml
+  - openapi/apimatic-sdk-async-api-openapi.yml
   - openapi/apimatic-transformation-api-openapi.yml
   - openapi/apimatic-validation-api-openapi.yml
+  - openapi/apimatic-validation-v2-api-openapi.yml
   - https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/auth/custom-header-signature.md
 - name: chatbotapi-mcp-oauth
   type: oauth2

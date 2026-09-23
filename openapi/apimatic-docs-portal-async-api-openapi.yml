@@ -1,0 +1,308 @@
+openapi: 3.2.0
+info:
+  title: APIMatic Portals Docs Portal - Async API
+  version: 1.0.0
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 4 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-generated: '2026-09-23'
+  x-generator: portal-reference-json (deterministic)
+  x-engine: none
+  x-sources:
+  - https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  - https://docs.apimatic.io/platform-api/
+servers:
+- url: https://api.apimatic.io
+  description: 'production (portal ServerConfiguration: default)'
+security:
+- Authorization: []
+tags:
+- name: Docs Portal - Async
+paths:
+  /portal/v2:
+    post:
+      operationId: generateOnPremPortalViaBuildInputAsync
+      summary: Generate on-Prem Portal via Build Input Async
+      description: Create an async On-premise Documentation Portal Generation request by providing a Portal Build Input
+      tags:
+      - Docs Portal - Async
+      parameters:
+      - name: X-APIMatic-CallbackUrl
+        in: header
+        required: false
+        description: Optional header containing callback url. This url will be called by the server once the portal generation completes
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The input file to the Portal Generator. Must contain the build file.
+              required:
+              - file
+      responses:
+        '202':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalGenerationAsyncResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Docs Portal - Async > Generate on-Prem Portal via Build Input Async > Generate on-Prem Portal via Build Input Async
+      x-evidence:
+        kind: documentation
+  /portal/v2/{id}/status:
+    get:
+      operationId: getPortalGenerationStatus
+      summary: Get Portal Generation Status
+      description: Get the status of a portal generation request
+      tags:
+      - Docs Portal - Async
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalGenerationStatusResponse'
+        '302':
+          description: Redirect
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Docs Portal - Async > Get Portal Generation Status > Get Portal Generation Status
+      x-evidence:
+        kind: documentation
+  /portal/v2/{id}/download:
+    get:
+      operationId: downloadGeneratedPortal
+      summary: Download Generated Portal
+      description: "Downloads the portal artifacts. The generated artifacts include:\n\n\n 1. SDKs\n\n 2. Docs\n\n 3. API Specification files\n\n\n The endpoint returns a zip file that contains a static Site and can be hosted on any Web Server."
+      tags:
+      - Docs Portal - Async
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '422':
+          description: Unprocessable Entity - Contains error.zip for build issues
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Docs Portal - Async > Download Generated Portal > Download Generated Portal
+      x-evidence:
+        kind: documentation
+components:
+  schemas:
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    PortalGenerationAsyncResponse:
+      title: PortalGenerationAsyncResponse
+      example:
+        links:
+          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
+          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - links
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+    PortalGenerationStatusResponse:
+      title: PortalGenerationStatusResponse
+      example:
+        status: InProgress
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        errors:
+          example:
+            buildFile:
+            - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+      required:
+      - status
+    Links:
+      title: Links
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        status:
+          type: string
+        download:
+          type: string
+      required:
+      - status
+      - download
+    Status:
+      title: Status
+      x-enum-elements:
+      - name: Completed
+        description: ''
+      - name: InProgress
+        description: ''
+      - name: ValidationError
+        description: ''
+      - name: SubscriptionError
+        description: ''
+      - name: Failed
+        description: ''
+      type: string
+      additionalProperties: false
+      enum:
+      - Completed
+      - InProgress
+      - ValidationError
+      - SubscriptionError
+      - Failed
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Auth Header. Replace {x-auth-key} with your Auth Key. Header value form: `X-Auth-Key {x-auth-key}`.'
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json

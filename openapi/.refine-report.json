@@ -1,36 +1,29 @@
 {
   "provider": "apimatic",
   "sources": [
-    "_original/apimatic-platform-api.yaml"
+    "_ae-authored/apimatic-portals-openapi-generated.yml",
+    "_ae-authored/apimatic-sdk-generation-openapi-generated.yml",
+    "_ae-authored/apimatic-transformation-openapi-generated.yml",
+    "_ae-authored/apimatic-validation-openapi-generated.yml"
   ],
   "outputs": [
-    "apimatic-apis-api-openapi.yml",
-    "apimatic-portals-api-openapi.yml",
-    "apimatic-sdk-generation-api-openapi.yml",
+    "apimatic-docs-portal-api-openapi.yml",
+    "apimatic-docs-portal-async-api-openapi.yml",
+    "apimatic-sdk-api-openapi.yml",
+    "apimatic-sdk-async-api-openapi.yml",
     "apimatic-transformation-api-openapi.yml",
-    "apimatic-validation-api-openapi.yml"
+    "apimatic-validation-api-openapi.yml",
+    "apimatic-validation-v2-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "apimatic-platform-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apimatic-platform-api.yaml: declared missing tag: APIs",
-    "apimatic-platform-api.yaml: declared missing tag: Portals",
-    "apimatic-platform-api.yaml: declared missing tag: SDK Generation",
-    "apimatic-platform-api.yaml: declared missing tag: Transformation",
-    "apimatic-platform-api.yaml: declared missing tag: Validation",
-    "superseded outputs removed: apimatic-ap-is-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 6 total)"
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apimatic-portals-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimatic-sdk-generation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimatic-transformation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apimatic-validation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
   ],
-  "skipped": [
-    "apimatic-ap-is-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apimatic-portals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apimatic-sdk-generation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apimatic-transformation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apimatic-validation-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }

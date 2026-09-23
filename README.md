@@ -92,9 +92,13 @@ The APIMatic Platform API provides programmatic access to APIMatic's capabilitie
 
 - [Documentation](https://docs.apimatic.io/platform-api/)
 - [GettingStarted](https://docs.apimatic.io/platform-api/#/http/getting-started)
-- [OpenAPI](openapi/apimatic-platform-api.yaml)
-- [JSONSchema](json-schema/apimatic-api-entity-schema.json)
-- [JSONSchema](json-schema/apimatic-sdk-generation-schema.json)
+- [OpenAPI](openapi/apimatic-docs-portal-api-openapi.yml)
+- [OpenAPI](openapi/apimatic-docs-portal-async-api-openapi.yml)
+- [OpenAPI](openapi/apimatic-sdk-api-openapi.yml)
+- [OpenAPI](openapi/apimatic-sdk-async-api-openapi.yml)
+- [OpenAPI](openapi/apimatic-transformation-api-openapi.yml)
+- [OpenAPI](openapi/apimatic-validation-api-openapi.yml)
+- [OpenAPI](openapi/apimatic-validation-v2-api-openapi.yml)
 - [JSON-LD](json-ld/apimatic-context.jsonld)
 
 ### APIMatic API Transformer API
@@ -165,17 +169,27 @@ Machine-readable API specifications organized by format.
 
 ### OpenAPI
 
-- [APIMatic Platform API](openapi/apimatic-platform-api.yaml)
+Generated from documentation by API Evangelist (2026-09-23), not published by APIMatic: 25 operations read
+from the reference data APIMatic serves for its Platform API portal, split by resource. The source documents,
+each operation citing its portal section, are in [openapi/_ae-authored/](openapi/_ae-authored/).
+
+- [apimatic-docs-portal-api-openapi.yml](openapi/apimatic-docs-portal-api-openapi.yml)
+- [apimatic-docs-portal-async-api-openapi.yml](openapi/apimatic-docs-portal-async-api-openapi.yml)
+- [apimatic-sdk-api-openapi.yml](openapi/apimatic-sdk-api-openapi.yml)
+- [apimatic-sdk-async-api-openapi.yml](openapi/apimatic-sdk-async-api-openapi.yml)
+- [apimatic-transformation-api-openapi.yml](openapi/apimatic-transformation-api-openapi.yml)
+- [apimatic-validation-api-openapi.yml](openapi/apimatic-validation-api-openapi.yml)
+- [apimatic-validation-v2-api-openapi.yml](openapi/apimatic-validation-v2-api-openapi.yml)
 
 ### JSON Schema
 
-- [apimatic-api-entity-schema.json](json-schema/apimatic-api-entity-schema.json)
-- [apimatic-sdk-generation-schema.json](json-schema/apimatic-sdk-generation-schema.json)
-
-### JSON Structure
-
-- [apimatic-api-entity-structure.json](json-structure/apimatic-api-entity-structure.json)
-- [apimatic-sdk-generation-structure.json](json-structure/apimatic-sdk-generation-structure.json)
+- [apimatic-api-validation-summary-schema.json](json-schema/apimatic-api-validation-summary-schema.json)
+- [apimatic-export-formats-schema.json](json-schema/apimatic-export-formats-schema.json)
+- [apimatic-generate-sdk-via-url-request-schema.json](json-schema/apimatic-generate-sdk-via-url-request-schema.json)
+- [apimatic-platforms-schema.json](json-schema/apimatic-platforms-schema.json)
+- [apimatic-transform-via-url-request-schema.json](json-schema/apimatic-transform-via-url-request-schema.json)
+- [apimatic-transformation-schema.json](json-schema/apimatic-transformation-schema.json)
+- [apimatic-user-code-generation-schema.json](json-schema/apimatic-user-code-generation-schema.json)
 
 ### JSON-LD
 
@@ -183,7 +197,7 @@ Machine-readable API specifications organized by format.
 
 ## Vocabulary
 
-- [APIMatic Vocabulary](vocabulary/apimatic-vocabulary.yaml) — Unified taxonomy mapping API developer experience resources, SDK generation, and personas across the APIMatic platform
+- [APIMatic Vocabulary](vocabulary/apimatic-vocabulary.yml) — the tags, objects and enumerations of the generated Platform API contracts
 
 ## Maintainers
 

@@ -1,0 +1,162 @@
+generated: '2026-09-23'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 10
+  own: 6
+  other_domain: 0
+  platform: 4
+  roles:
+  - api
+  - identity
+  - other
+  - portal
+  - source
+  - support
+  - website
+hosts:
+- host: api.apimatic.io
+  found_by:
+  - apis[]
+  - probed
+  - contract-discovery
+  - well-known
+  types: []
+  serves:
+  - api
+  registrable_domain: apimatic.io
+  role: api
+  relation: own
+- host: app.apimatic.io
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Signup
+  - Login
+  serves: []
+  registrable_domain: apimatic.io
+  role: identity
+  relation: own
+- host: chatbotapi.apimatic.io
+  found_by:
+  - probed
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: apimatic.io
+  role: other
+  relation: own
+- host: docs.apimatic.io
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - namespace-probe
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Documentation
+  - GettingStarted
+  - ChangeLog
+  - SDKs
+  - Deprecation
+  - DeveloperPortal
+  - APIReference
+  serves:
+  - docs
+  - documentation
+  - hosting
+  title: Introduction | APIMatic Documentation
+  status: 200
+  vendor: docusaurus
+  registrable_domain: apimatic.io
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  - docs-index
+  types:
+  - GitHubOrganization
+  - MCPServer
+  - AgentSkills
+  serves:
+  - docs
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: support.apimatic.io
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - well-known
+  - vendor-detect
+  types:
+  - Support
+  serves:
+  - support
+  vendor: zendesk
+  registrable_domain: apimatic.io
+  role: support
+  relation: own
+- host: www.apimatic.io
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Website
+  - Pricing
+  - Blog
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - docs
+  - cdn
+  - hosting
+  vendor: cloudflare
+  registrable_domain: apimatic.io
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.npmjs.com
+  found_by:
+  - pointer
+  types:
+  - CLI
+  - SDKs
+  serves: []
+  registrable_domain: npmjs.com
+  role: other
+  relation: platform
+- host: x.com
+  found_by:
+  - pointer
+  types:
+  - X
+  serves: []
+  registrable_domain: x.com
+  role: other
+  relation: platform

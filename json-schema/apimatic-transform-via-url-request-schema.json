@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apimatic/main/json-schema/apimatic-transform-via-url-request-schema.json",
+  "title": "TransformViaUrlRequest",
+  "description": "This structure puts together the URL of the file to be transformed, along with the desired export format.",
+  "x-generated": "2026-09-23",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/apimatic-transformation-api-openapi.yml#/components/schemas/TransformViaUrlRequest",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object"
+  },
+  "properties": {
+    "url": {
+      "description": "The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.",
+      "type": "string"
+    },
+    "export_format": {
+      "$ref": "#/$defs/ExportFormats"
+    }
+  },
+  "required": [
+    "url",
+    "export_format"
+  ],
+  "$defs": {
+    "ExportFormats": {
+      "title": "ExportFormats",
+      "description": "The structure contains API specification formats that Transformer can convert to.",
+      "x-enum-elements": [
+        {
+          "name": "APIMATIC",
+          "description": ""
+        },
+        {
+          "name": "WADL2009",
+          "description": ""
+        },
+        {
+          "name": "WSDL",
+          "description": ""
+        },
+        {
+          "name": "SWAGGER10",
+          "description": ""
+        },
+        {
+          "name": "SWAGGER20",
+          "description": ""
+        },
+        {
+          "name": "SWAGGERYAML",
+          "description": ""
+        },
+        {
+          "name": "OAS3",
+          "description": "OpenAPI v3.0 (JSON)"
+        },
+        {
+          "name": "OPENAPI3YAML",
+          "description": ""
+        },
+        {
+          "name": "APIBLUEPRINT",
+          "description": ""
+        },
+        {
+          "name": "RAML",
+          "description": ""
+        },
+        {
+          "name": "RAML10",
+          "description": ""
+        },
+        {
+          "name": "POSTMAN10",
+          "description": ""
+        },
+        {
+          "name": "POSTMAN20",
+          "description": ""
+        },
+        {
+          "name": "GRAPHQLSCHEMA",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "APIMATIC",
+        "WADL2009",
+        "WSDL",
+        "Swagger10",
+        "Swagger20",
+        "SwaggerYaml",
+        "OpenApi3Json",
+        "OpenApi3Yaml",
+        "APIBluePrint",
+        "RAML",
+        "RAML10",
+        "Postman10",
+        "Postman20",
+        "GraphQlSchema"
+      ]
+    }
+  }
+}

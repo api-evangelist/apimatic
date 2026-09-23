@@ -1,76 +1,131 @@
-generated: '2026-09-15'
+generated: '2026-09-23'
 method: derived
-source: |-
-  mcp/apimatic-mcp.yml (live tools/list, 2026-09-15) bound against the operationIds in
-  openapi/ and the first-party SDK reference at
-  https://github.com/apimatic/apimatic-sdk-for-js/tree/main/doc/controllers
-headline: >-
-  APIMatic's hosted MCP server is NOT a wrapper over its REST operations. All four published
-  tools are copilot/retrieval tools over the generated SDK's documentation; none of them calls
-  an APIMatic Platform API operation. An agent that connects to this server can ask how to
-  integrate, and can look up a model or an endpoint signature — it cannot import an API, run a
-  transformation, generate an SDK or publish a portal. Recording that divergence is the point
-  of this file.
+source: mcp/apimatic-mcp.yml (live tools/list of the integration agent, 2026-09-15; validator tool read from https://github.com/apimatic/apimatic-validator-mcp/blob/main/src/index.ts;
+  ContextMatic tools from https://github.com/apimatic/context-matic README) bound against the operationIds in openapi/,
+  which are split from the four contracts in openapi/_ae-authored/ that API Evangelist generated from the reference
+  data APIMatic serves for its Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json).
+headline: 'Of the nine tools across APIMatic''s three MCP servers, exactly one calls a Platform API operation: the
+  local validator''s validate-openapi-using-apimatic, which calls POST /transformations/transform-via-file. The
+  hosted integration agent and ContextMatic are copilot/retrieval tools over generated SDK documentation. An agent
+  connected to them can ask how to integrate; it cannot generate an SDK, run a transformation or publish a portal.'
 surfaces:
   openapi:
     files:
-      - openapi/apimatic-apis-api-openapi.yml
-      - openapi/apimatic-portals-api-openapi.yml
-      - openapi/apimatic-sdk-generation-api-openapi.yml
-      - openapi/apimatic-transformation-api-openapi.yml
-      - openapi/apimatic-validation-api-openapi.yml
-    original: openapi/_original/apimatic-platform-api.yaml
+    - openapi/apimatic-docs-portal-api-openapi.yml
+    - openapi/apimatic-docs-portal-async-api-openapi.yml
+    - openapi/apimatic-sdk-api-openapi.yml
+    - openapi/apimatic-sdk-async-api-openapi.yml
+    - openapi/apimatic-transformation-api-openapi.yml
+    - openapi/apimatic-validation-api-openapi.yml
+    - openapi/apimatic-validation-v2-api-openapi.yml
+    generated_from:
+    - openapi/_ae-authored/apimatic-portals-openapi-generated.yml
+    - openapi/_ae-authored/apimatic-sdk-generation-openapi-generated.yml
+    - openapi/_ae-authored/apimatic-transformation-openapi-generated.yml
+    - openapi/_ae-authored/apimatic-validation-openapi-generated.yml
     gated: false
-    note: >-
-      Six operations. The first-party SDK documents roughly fifty across thirteen controllers,
-      so the captured contract is a subset of what the API actually exposes; APIMatic publishes
-      no fetchable OpenAPI for its own Platform API (see x-coverage in apis.yml).
+    note: '25 operations, generated from documentation (x-generated-from: documentation), not a contract APIMatic
+      publishes: the Platform API portal has its API-spec export disabled. They replace a six-operation contract
+      (/api-entities/...) that was removed on 2026-09-23 because none of its paths exist in APIMatic''s reference.'
   graphql:
     endpoint: null
   mcp:
-    url: https://chatbotapi.apimatic.io/mcp/94e710f6-2d9c-4097-88a3-25b38df496c1/{language}
-    gated: false
-    note: tools/list answered anonymously; input schemas below are the server's own, verbatim.
-crosswalk: []
-mcp_only:
-  - tool: ask
-    reason: >-
-      Retrieval-augmented copilot over the portal's own documentation and generated SDK. No
-      REST operation backs it; it returns integration steps, not API results.
-  - tool: update_activity
-    reason: >-
-      Server-side session telemetry (integration milestone). Has no public REST equivalent.
-  - tool: model_search
-    reason: >-
-      Documentation lookup over generated SDK model definitions. The closest REST relative is
-      downloading the API specification, which is a different capability and a different shape.
-  - tool: endpoint_search
-    reason: >-
-      Documentation lookup over generated SDK endpoint signatures. Same note as model_search.
-rest_only:
-  - capability: API definition management
-    operations: [listApiEntities, importApiDefinition]
-    note: >-
-      Plus, in the first-party SDK but not in any published spec — Import API via File/URL,
-      Import New API Version, Inplace API Import, Fetch API Entity, Download API Specification.
-  - capability: Validation and linting
-    operations: [validateApiDefinition]
-  - capability: SDK generation
-    operations: [generateSdk]
-  - capability: Format transformation
-    operations: [transformApiDefinition]
-  - capability: Portal generation
-    operations: [generatePortal]
-coverage:
-  tools_named: 4
-  tools_bound_to_rest: 0
-  mcp_only: 4
-  rest_operations_total: 6
-  rest_operations_with_a_tool: 0
+    servers:
+    - name: apimatic-integration-agent
+      url: https://chatbotapi.apimatic.io/mcp/94e710f6-2d9c-4097-88a3-25b38df496c1/{language}
+      gated: false
+    - name: apimatic-validator-mcp
+      transport: stdio
+      package: https://www.npmjs.com/package/apimatic-validator-mcp
+      gated: api-key
+    - name: context-matic
+      url: https://chatbotapi.apimatic.io/mcp/plugins
+      gated: oauth (401 anonymous, 2026-09-23)
+crosswalk:
+- tool: validate-openapi-using-apimatic
+  category: validation
+  rest:
+  - transformViaFile
+  binding: direct — the server calls TransformationController.transformViaFile with ExportFormats.APIMATIC and returns
+    importSummary
   confidence: high
-  note: >-
-    Zero binding is the finding, not a gap in the mapping. Confidence is high because the live
-    tool list and its input schemas were read from the server itself.
+  note: Named "validate" but bound to the Transformation endpoint, not /validation/*. Read from the server source.
+mcp_only:
+- tool: ask
+  reason: Retrieval-augmented copilot over the portal's own documentation and generated SDK. No REST operation backs
+    it; it returns integration steps, not API results.
+- tool: update_activity
+  reason: Server-side session telemetry (integration milestone). Has no public REST equivalent.
+- tool: model_search
+  reason: Documentation lookup over generated SDK model definitions. The closest REST relative is downloading the
+    API specification, which is a different capability and a different shape.
+- tool: endpoint_search
+  reason: Documentation lookup over generated SDK endpoint signatures. Same note as model_search.
+- tool: fetch_api
+  reason: 'ContextMatic: lists or matches third-party APIs in APIMatic''s curated catalog. No Platform API operation
+    backs it.'
+- tool: ask (context-matic)
+  reason: ContextMatic API Copilot chat over third-party SDK docs. No REST operation backs it.
+- tool: endpoint_search (context-matic)
+  reason: ContextMatic SDK endpoint-signature lookup for third-party APIs.
+- tool: model_search (context-matic)
+  reason: ContextMatic SDK model-definition lookup for third-party APIs.
+rest_only:
+- capability: docs-portal
+  file: openapi/apimatic-docs-portal-api-openapi.yml
+  operations:
+  - generateOnPremPortalViaBuildInput
+- capability: docs-portal-async
+  file: openapi/apimatic-docs-portal-async-api-openapi.yml
+  operations:
+  - generateOnPremPortalViaBuildInputAsync
+  - getPortalGenerationStatus
+  - downloadGeneratedPortal
+- capability: sdk
+  file: openapi/apimatic-sdk-api-openapi.yml
+  operations:
+  - generateSdkViaFile
+  - generateSdkViaUrl
+  - downloadSdk
+  - listAllCodeGenerations
+  - downloadInputFile
+  - getACodeGeneration
+  - deleteCodeGenerationForExternalApis
+- capability: sdk-async
+  file: openapi/apimatic-sdk-async-api-openapi.yml
+  operations:
+  - generateSdkViaBuildInputAsync
+  - getSdkGenerationStatus
+  - downloadGeneratedSdk
+- capability: transformation
+  file: openapi/apimatic-transformation-api-openapi.yml
+  operations:
+  - transformViaUrl
+  - downloadTransformedFile
+  - downloadInputFile
+  - listAllTransformations
+  - getATransformation
+  - deleteTransformation
+- capability: validation
+  file: openapi/apimatic-validation-api-openapi.yml
+  operations:
+  - validateApiViaFile
+  - validateApiViaUrl
+- capability: validation-v2
+  file: openapi/apimatic-validation-v2-api-openapi.yml
+  operations:
+  - validateApiViaFileV2
+  - validateApiViaUrlV2
+coverage:
+  tools_named: 9
+  tools_bound_to_rest: 1
+  mcp_only: 8
+  rest_operations_total: 25
+  rest_operations_with_a_tool: 1
+  confidence: high
+  note: The integration agent's four tools were read from a live anonymous tools/list; the validator tool from its
+    source; ContextMatic's four from its README, because its tools/list is OAuth-gated. downloadInputFile is the
+    operationId of two distinct operations (code generations and transformations), as in APIMatic's reference.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

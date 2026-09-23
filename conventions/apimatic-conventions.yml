@@ -4,7 +4,7 @@ source: |-
   https://docs.apimatic.io/account-management/obtaining-auth-keys/ ;
   https://github.com/apimatic/apimatic-sdk-for-js (doc/auth, doc/client, doc/controllers) ;
   https://docs.apimatic.io/docs-as-code/generate-api-portal-via-apimatic-docs-as-code/ ;
-  openapi/_original/apimatic-platform-api.yaml
+  openapi/_ae-authored/ (four contracts API Evangelist generated from the reference data APIMatic serves for its Platform API portal, 2026-09-23)
 authentication:
   style: custom-header-api-key
   header: Authorization
@@ -38,11 +38,12 @@ reversibility:
   operations:
     - action: Publish Hosted Portal / Publish Embedded Portal
       reversal: Unpublish Portal
-      operation_id: unpublishPortal
+      sdk_method: unpublishPortal   # SDK controller method; not in the portal reference data the generated contract was read from
       source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/docs-portal-management.md
       window: null
     - action: Generate SDK (external APIs)
       reversal: Delete Code Generation for External APIs
+      operation_id: deleteCodeGenerationForExternalApis
       source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/code-generation-external-apis.md
       window: null
     - action: Generate SDK (imported APIs)
@@ -51,6 +52,7 @@ reversibility:
       window: null
     - action: Transform via File / Transform via URL
       reversal: Delete Transformation
+      operation_id: deleteTransformation
       source: https://github.com/apimatic/apimatic-sdk-for-js/blob/main/doc/controllers/transformation.md
       window: null
   not_reversible:
@@ -69,7 +71,7 @@ dry_run_mode:
     they are the documented step before generation. There is no dry_run / simulate /
     validate_only PARAMETER on the generating or publishing operations themselves, so an agent
     cannot rehearse a portal publish or an SDK release.
-  rehearsal_operations: [validateApiDefinition, Validate API via File, Validate API via URL, Validate API for Docs]
+  rehearsal_operations: [validateApiViaFile, validateApiViaUrl, validateApiViaFileV2, validateApiViaUrlV2, Validate API via File, Validate API via URL, Validate API for Docs]
 pagination:
   documented: false
   note: >-

@@ -1,10 +1,13 @@
 aid: apimatic
+
 name: APIMatic
-description: APIMatic is a developer experience platform for APIs that specializes in automated SDK generation, API documentation
-  portal creation, specification validation and linting, and API format transformation. It supports 15+ API specification
-  formats and generates idiomatic SDKs in 7+ programming languages with CI/CD integration for automating the developer experience
-  suite.
+
+description: APIMatic is a developer experience platform for APIs that specializes in automated SDK generation, API documentation portal creation,
+  specification validation and linting, and API format transformation. It supports 15+ API specification formats and generates idiomatic SDKs
+  in 7+ programming languages with CI/CD integration for automating the developer experience suite.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -17,6 +20,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -32,16 +36,20 @@ accessModel:
   - authentication/apimatic-authentication.yml
   generated: '2026-09-15'
   method: searched
-  note: >-
-    Corrected 2026-09-15 from a derived "freemium / trial: false" reading. The published pricing
-    page has no free tier — the cheapest plan is $10/month — and does advertise a 14-day free
-    trial. Free no-signup tools (API Transformer, Score My OpenAPI, Fix My OpenAPI) exist but are
-    not an API tier.
+  note: 'Corrected 2026-09-15 from a derived "freemium / trial: false" reading. The published pricing page has no free tier — the cheapest plan
+    is $10/month — and does advertise a 14-day free trial. Free no-signup tools (API Transformer, Score My OpenAPI, Fix My OpenAPI) exist but
+    are not an API tier.'
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apimatic.png
+
 x-docs-platform: docusaurus
+
 x-docs-platform-confidence: medium
+
 x-docs-platform-checked: 2026-09-19
+
 x-docs-hosting: cloudflare-pages
+
 tags:
 - API Transformation
 - Code Generation
@@ -49,16 +57,211 @@ tags:
 - Developer Tools
 - Documentation
 - SDK Generation
+
 url: https://raw.githubusercontent.com/api-evangelist/apimatic/refs/heads/main/apis.yml
+
 created: '2025-01-08'
-modified: '2026-09-15'
+
+modified: '2026-09-23'
+
 specificationVersion: '0.23'
+
+common:
+- type: AgenticAccess
+  url: agentic-access/apimatic-agentic-access.yml
+- type: Spectral
+  url: rules/apimatic-rules.yml
+- type: JSONLD
+  url: json-ld/apimatic-context.jsonld
+- type: Vocabulary
+  url: vocabulary/apimatic-vocabulary.yml
+- type: DataModel
+  url: data-model/apimatic-data-model.yml
+- type: LLMsTxt
+  url: llms/apimatic-www-llms.txt
+- type: Hosts
+  url: hosts/apimatic-hosts.yml
+- type: Vendors
+  url: vendors/apimatic-vendors.yml
+- type: DomainSecurity
+  url: security/apimatic-domain-security.yml
+- type: Authentication
+  url: authentication/apimatic-authentication.yml
+- type: Website
+  url: https://www.apimatic.io/
+- type: Documentation
+  url: https://docs.apimatic.io/
+- type: GettingStarted
+  url: https://docs.apimatic.io/getting-started/importing-api-spec/
+- type: Pricing
+  url: https://www.apimatic.io/pricing
+- type: Blog
+  url: https://www.apimatic.io/blog
+- type: Signup
+  url: https://app.apimatic.io/account/register
+- type: Login
+  url: https://app.apimatic.io/account/login
+- type: ChangeLog
+  url: https://docs.apimatic.io/changelog/
+- type: Support
+  url: https://support.apimatic.io/hc/en-us
+- type: GitHubOrganization
+  url: https://github.com/apimatic
+- type: LinkedIn
+  url: https://www.linkedin.com/company/apimatic-limited/
+- type: X
+  url: https://x.com/APIMatic
+- type: CLI
+  url: https://www.npmjs.com/package/@apimatic/cli
+- type: TermsOfService
+  url: https://www.apimatic.io/terms
+- type: PrivacyPolicy
+  url: https://www.apimatic.io/privacy
+- type: Features
+  data:
+  - name: Idiomatic SDK Generation
+    description: Generate production-ready SDKs in Python, Java, C# .NET, TypeScript, PHP, Ruby, and Go from any API specification.
+  - name: API Documentation Portals
+    description: Generate interactive developer documentation portals with code samples, guided walkthroughs, and code playground.
+  - name: API Specification Validation
+    description: Validate and lint API specifications with detailed error reports and best practice recommendations.
+  - name: API Format Transformation
+    description: Convert API definitions between 15+ formats including OpenAPI 3.0, Swagger 2.0, RAML, API Blueprint, and Postman Collections.
+  - name: MCP Server Generation
+    description: Generate Model Context Protocol (MCP) servers from API specifications for AI agent integration.
+  - name: DX as Code
+    description: Define and automate your entire developer experience pipeline as code with CI/CD integration.
+  - name: OpenAPI Linter GitHub App
+    description: Automatically validate OpenAPI specifications in GitHub pull requests via the APIMatic linter GitHub App.
+- type: UseCases
+  data:
+  - name: Automated SDK Publishing
+    description: Automatically generate and publish SDKs to npm, PyPI, Maven, and other package registries on every API change.
+  - name: Developer Portal Generation
+    description: Generate and host comprehensive API documentation portals with interactive examples and code playground.
+  - name: API Specification Migration
+    description: Transform legacy Swagger 2.0 or RAML specs to OpenAPI 3.0 for modern tooling compatibility.
+  - name: CI/CD API Governance
+    description: Integrate API validation and linting into CI/CD pipelines to enforce quality gates on API changes.
+- type: Integrations
+  data:
+  - name: MuleSoft
+    description: APIMatic integration for generating SDKs from MuleSoft API definitions.
+  - name: Redocly
+    description: Integration for enhanced API documentation workflows.
+  - name: GitHub Actions
+    description: CI/CD integration for automated SDK generation and API validation in GitHub workflows.
+- type: Solutions
+  data:
+  - name: Free Plan
+    description: Basic SDK generation and API validation for individual developers.
+  - name: Team Plan
+    description: Advanced SDK generation, portal publishing, and team collaboration features.
+  - name: Enterprise Plan
+    description: Full developer experience automation, custom branding, SLA, and dedicated support.
+- name: MCP Server
+  url: https://github.com/apimatic/apimatic-validator-mcp
+  type: MCPServer
+- name: Agent Skills
+  url: https://github.com/apimatic/skills
+  type: AgentSkills
+- type: Packages
+  url: packages/apimatic-packages.yml
+  name: APIMatic first-party packages
+- type: SDKs
+  url: packages/apimatic-packages.yml
+  name: APIMatic SDKs
+- type: SDKs
+  url: https://www.npmjs.com/package/@apimatic/sdk
+  name: APIMatic Platform API SDK (TypeScript)
+- type: SDKs
+  url: https://docs.apimatic.io/platform-api/#/java/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+  name: APIMatic Platform API SDK (Java)
+- type: SDKs
+  url: https://docs.apimatic.io/platform-api/#/net-standard-library/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+  name: APIMatic Platform API SDK (.NET)
+- type: SDKs
+  url: https://docs.apimatic.io/platform-api/#/php/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+  name: APIMatic Platform API SDK (PHP)
+- type: SDKs
+  url: https://docs.apimatic.io/platform-api/#/python/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+  name: APIMatic Platform API SDK (Python)
+- type: SDKs
+  url: https://docs.apimatic.io/platform-api/#/ruby/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
+  name: APIMatic Platform API SDK (Ruby)
+- type: WellKnown
+  url: well-known/apimatic-well-known.yml
+  name: APIMatic .well-known discovery probe
+- type: MCPServer
+  url: mcp/apimatic-mcp.yml
+  name: APIMatic MCP servers (hosted Integration Agent + local validator)
+- type: ToolCrosswalk
+  url: mcp/apimatic-tool-crosswalk.yml
+  name: APIMatic MCP tool crosswalk
+- type: LLMsTxt
+  url: llms/apimatic-llms.txt
+  name: APIMatic llms.txt
+- type: Conformance
+  url: conformance/apimatic-conformance.yml
+  name: APIMatic standards conformance
+- type: ErrorCatalog
+  url: errors/apimatic-problem-types.yml
+  name: APIMatic problem types (RFC 9457)
+- type: Lifecycle
+  url: lifecycle/apimatic-lifecycle.yml
+  name: APIMatic lifecycle
+- type: Deprecation
+  url: https://docs.apimatic.io/web-dashboard-retired/
+  name: Web Dashboard retirement notice
+- type: OAuthScopes
+  url: scopes/apimatic-scopes.yml
+  name: APIMatic OAuth scopes (MCP resource server)
+- type: Authentication
+  url: authentication/apimatic-authentication.yml
+  name: APIMatic authentication profile
+- type: Conventions
+  url: conventions/apimatic-conventions.yml
+  name: APIMatic API conventions
+- type: ChangeLog
+  url: changelog/apimatic-changelog.yml
+  name: APIMatic changelog (structured)
+- type: CLI
+  url: cli/apimatic-cli.yml
+  name: APIMatic CLI command surface
+- type: Components
+  url: components/apimatic-components.yml
+  name: APIMatic embeddable components
+- type: Sandbox
+  url: sandbox/apimatic-sandbox.yml
+  name: APIMatic sandbox, console and free tools
+- type: Plans
+  url: plans/apimatic-plans-pricing.yml
+  name: APIMatic plans and pricing
+- type: RateLimits
+  url: rate-limits/apimatic-rate-limits.yml
+  name: APIMatic published limits
+- type: FinOps
+  url: finops/apimatic-finops.yml
+  name: APIMatic FinOps framework
+- type: AgentSkill
+  url: skills/_index.yml
+  name: APIMatic Agent Skills (provider-authored)
+- type: DeveloperPortal
+  url: https://docs.apimatic.io/
+  name: APIMatic developer documentation
+- type: APIReference
+  url: https://docs.apimatic.io/platform-api/
+  name: APIMatic Platform API reference
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
 apis:
 - aid: apimatic:apimatic-api-transformer-api
   name: APIMatic API Transformer API
-  description: >-
-    APIMatic API Transformer converts API definition files between more than 15 supported API specification
-    formats including OpenAPI, RAML, API Blueprint, WSDL, WADL, and Postman Collections.
+  description: APIMatic API Transformer converts API definition files between more than 15 supported API specification formats including OpenAPI,
+    RAML, API Blueprint, WSDL, WADL, and Postman Collections.
   humanURL: https://www.apimatic.io/solution/transformer
   baseURL: https://api.apimatic.io
   tags:
@@ -72,7 +275,8 @@ apis:
     url: https://docs.apimatic.io/api-transformer/overview-transformer/
 - aid: apimatic:apimatic-portals-api
   name: APIMatic Portals API
-  description: The Portals API from APIMatic — 1 operation(s) for portals.
+  description: Generate an APIMatic developer portal from a build input, synchronously (POST /portal) or asynchronously (POST /portal/v2 with
+    status polling and download) — 4 operations, read from the reference data APIMatic serves for its own Platform API portal.
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
@@ -81,40 +285,41 @@ apis:
   - Portals
   properties:
   - type: OpenAPI
-    url: openapi/apimatic-portals-api-openapi.yml
+    url: openapi/apimatic-docs-portal-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/apimatic-docs-portal-async-api-openapi.yml
   - type: Documentation
     url: https://docs.apimatic.io/platform-api/
   - type: GettingStarted
     url: https://docs.apimatic.io/platform-api/#/http/getting-started
-  - type: JSONSchema
-    url: json-schema/apimatic-api-entity-schema.json
-  - type: JSONSchema
-    url: json-schema/apimatic-sdk-generation-schema.json
-  - type: JSONLD
-    url: json-ld/apimatic-context.jsonld
 - aid: apimatic:apimatic-sdk-generation-api
   name: APIMatic SDK Generation API
-  description: The SDK Generation API from APIMatic — 1 operation(s) for sdk generation.
+  description: Generate SDKs from an API definition uploaded as a file or given by URL, list, fetch, download and delete code generations, and
+    run asynchronous SDK generation from a build input — 10 operations, read from the reference data APIMatic serves for its own Platform API
+    portal.
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
   - SDK Generation
   properties:
   - type: OpenAPI
-    url: openapi/apimatic-sdk-generation-api-openapi.yml
+    url: openapi/apimatic-sdk-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/apimatic-sdk-async-api-openapi.yml
   - type: Documentation
     url: https://docs.apimatic.io/platform-api/
   - type: GettingStarted
     url: https://docs.apimatic.io/platform-api/#/http/getting-started
   - type: JSONSchema
-    url: json-schema/apimatic-api-entity-schema.json
+    url: json-schema/apimatic-user-code-generation-schema.json
   - type: JSONSchema
-    url: json-schema/apimatic-sdk-generation-schema.json
-  - type: JSONLD
-    url: json-ld/apimatic-context.jsonld
+    url: json-schema/apimatic-platforms-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-generate-sdk-via-url-request-schema.json
 - aid: apimatic:apimatic-transformation-api
   name: APIMatic Transformation API
-  description: The Transformation API from APIMatic — 1 operation(s) for transformation.
+  description: Transform an API definition from one specification format to another, by file or by URL, then list, fetch, download and delete
+    transformations — 7 operations, read from the reference data APIMatic serves for its own Platform API portal.
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
@@ -127,14 +332,15 @@ apis:
   - type: GettingStarted
     url: https://docs.apimatic.io/platform-api/#/http/getting-started
   - type: JSONSchema
-    url: json-schema/apimatic-api-entity-schema.json
+    url: json-schema/apimatic-transformation-schema.json
   - type: JSONSchema
-    url: json-schema/apimatic-sdk-generation-schema.json
-  - type: JSONLD
-    url: json-ld/apimatic-context.jsonld
+    url: json-schema/apimatic-export-formats-schema.json
+  - type: JSONSchema
+    url: json-schema/apimatic-transform-via-url-request-schema.json
 - aid: apimatic:apimatic-validation-api
   name: APIMatic Validation API
-  description: The Validation API from APIMatic — 1 operation(s) for validation.
+  description: Validate an API definition by file or by URL, in the original and V2 validation endpoints — 4 operations, read from the reference
+    data APIMatic serves for its own Platform API portal.
   humanURL: https://docs.apimatic.io/platform-api/
   baseURL: https://api.apimatic.io
   tags:
@@ -142,268 +348,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apimatic-validation-api-openapi.yml
-  - type: Documentation
-    url: https://docs.apimatic.io/platform-api/
-  - type: GettingStarted
-    url: https://docs.apimatic.io/platform-api/#/http/getting-started
-  - type: JSONSchema
-    url: json-schema/apimatic-api-entity-schema.json
-  - type: JSONSchema
-    url: json-schema/apimatic-sdk-generation-schema.json
-  - type: JSONLD
-    url: json-ld/apimatic-context.jsonld
-- aid: apimatic:apimatic-apis-api
-  name: APIMatic APIs API
-  description: The APIs API from APIMatic — 1 operation(s) for apis.
-  humanURL: https://www.apimatic.io/solution/transformer
-  baseURL: https://api.apimatic.io
-  tags: []
-  tags_raw:
-  - APIs
-  properties:
   - type: OpenAPI
-    url: openapi/apimatic-apis-api-openapi.yml
+    url: openapi/apimatic-validation-v2-api-openapi.yml
   - type: Documentation
     url: https://docs.apimatic.io/platform-api/
   - type: GettingStarted
     url: https://docs.apimatic.io/platform-api/#/http/getting-started
   - type: JSONSchema
-    url: json-schema/apimatic-api-entity-schema.json
-  - type: JSONSchema
-    url: json-schema/apimatic-sdk-generation-schema.json
-  - type: JSONLD
-    url: json-ld/apimatic-context.jsonld
-common:
-  - type: AgenticAccess
-    url: agentic-access/apimatic-agentic-access.yml
-  - type: DomainSecurity
-    url: security/apimatic-domain-security.yml
-  - type: Authentication
-    url: authentication/apimatic-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/apimatic/overview
-  - type: Arazzo
-    url: arazzo/apimatic-full-release-pipeline-workflow.yml
-    name: APIMatic Full SDK Release Pipeline
-  - type: Arazzo
-    url: arazzo/apimatic-import-generate-sdk-and-portal-workflow.yml
-    name: APIMatic Import then Generate SDK and Portal
-  - type: Arazzo
-    url: arazzo/apimatic-import-transform-workflow.yml
-    name: APIMatic Import and Transform Specification
-  - type: Arazzo
-    url: arazzo/apimatic-import-validate-generate-portal-workflow.yml
-    name: APIMatic Import, Validate and Publish Portal
-  - type: Arazzo
-    url: arazzo/apimatic-import-validate-generate-sdk-workflow.yml
-    name: APIMatic Import, Validate and Generate SDK
-  - type: Arazzo
-    url: arazzo/apimatic-list-entities-generate-sdk-workflow.yml
-    name: APIMatic Regenerate SDK for Existing Entity
-  - type: Website
-    url: https://www.apimatic.io/
-  - type: Documentation
-    url: https://docs.apimatic.io/
-  - type: GettingStarted
-    url: https://docs.apimatic.io/getting-started/importing-api-spec/
-  - type: Pricing
-    url: https://www.apimatic.io/pricing
-  - type: Blog
-    url: https://www.apimatic.io/blog
-  - type: Signup
-    url: https://app.apimatic.io/account/register
-  - type: Login
-    url: https://app.apimatic.io/account/login
-  - type: ChangeLog
-    url: https://docs.apimatic.io/changelog/
-  - type: Support
-    url: https://support.apimatic.io/hc/en-us
-  - type: GitHubOrganization
-    url: https://github.com/apimatic
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/apimatic-limited/
-  - type: X
-    url: https://x.com/APIMatic
-  - type: CLI
-    url: https://www.npmjs.com/package/@apimatic/cli
-  - type: TermsOfService
-    url: https://www.apimatic.io/terms
-  - type: PrivacyPolicy
-    url: https://www.apimatic.io/privacy
-  - type: Features
-    data:
-    - name: Idiomatic SDK Generation
-      description: Generate production-ready SDKs in Python, Java, C# .NET, TypeScript, PHP, Ruby, and Go from any API specification.
-    - name: API Documentation Portals
-      description: Generate interactive developer documentation portals with code samples, guided walkthroughs, and code playground.
-    - name: API Specification Validation
-      description: Validate and lint API specifications with detailed error reports and best practice recommendations.
-    - name: API Format Transformation
-      description: Convert API definitions between 15+ formats including OpenAPI 3.0, Swagger 2.0, RAML, API Blueprint, and
-        Postman Collections.
-    - name: MCP Server Generation
-      description: Generate Model Context Protocol (MCP) servers from API specifications for AI agent integration.
-    - name: DX as Code
-      description: Define and automate your entire developer experience pipeline as code with CI/CD integration.
-    - name: OpenAPI Linter GitHub App
-      description: Automatically validate OpenAPI specifications in GitHub pull requests via the APIMatic linter GitHub App.
-  - type: UseCases
-    data:
-    - name: Automated SDK Publishing
-      description: Automatically generate and publish SDKs to npm, PyPI, Maven, and other package registries on every API change.
-    - name: Developer Portal Generation
-      description: Generate and host comprehensive API documentation portals with interactive examples and code playground.
-    - name: API Specification Migration
-      description: Transform legacy Swagger 2.0 or RAML specs to OpenAPI 3.0 for modern tooling compatibility.
-    - name: CI/CD API Governance
-      description: Integrate API validation and linting into CI/CD pipelines to enforce quality gates on API changes.
-  - type: Integrations
-    data:
-    - name: MuleSoft
-      description: APIMatic integration for generating SDKs from MuleSoft API definitions.
-    - name: Redocly
-      description: Integration for enhanced API documentation workflows.
-    - name: GitHub Actions
-      description: CI/CD integration for automated SDK generation and API validation in GitHub workflows.
-  - type: Solutions
-    data:
-    - name: Free Plan
-      description: Basic SDK generation and API validation for individual developers.
-    - name: Team Plan
-      description: Advanced SDK generation, portal publishing, and team collaboration features.
-    - name: Enterprise Plan
-      description: Full developer experience automation, custom branding, SLA, and dedicated support.
-  - name: MCP Server
-    url: https://github.com/apimatic/apimatic-validator-mcp
-    type: MCPServer
-  - name: Agent Skills
-    url: https://github.com/apimatic/skills
-    type: AgentSkills
-  - type: Packages
-    url: packages/apimatic-packages.yml
-    name: APIMatic first-party packages
-  - type: SDKs
-    url: packages/apimatic-packages.yml
-    name: APIMatic SDKs
-  - type: SDKs
-    url: https://www.npmjs.com/package/@apimatic/sdk
-    name: APIMatic Platform API SDK (TypeScript)
-  - type: SDKs
-    url: https://docs.apimatic.io/platform-api/#/java/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
-    name: APIMatic Platform API SDK (Java)
-  - type: SDKs
-    url: https://docs.apimatic.io/platform-api/#/net-standard-library/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
-    name: APIMatic Platform API SDK (.NET)
-  - type: SDKs
-    url: https://docs.apimatic.io/platform-api/#/php/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
-    name: APIMatic Platform API SDK (PHP)
-  - type: SDKs
-    url: https://docs.apimatic.io/platform-api/#/python/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
-    name: APIMatic Platform API SDK (Python)
-  - type: SDKs
-    url: https://docs.apimatic.io/platform-api/#/ruby/x-redirect/JTI0aCUyRl9fZ2V0dGluZ19zdGFydGVk
-    name: APIMatic Platform API SDK (Ruby)
-  - type: WellKnown
-    url: well-known/apimatic-well-known.yml
-    name: APIMatic .well-known discovery probe
-  - type: MCPServer
-    url: mcp/apimatic-mcp.yml
-    name: APIMatic MCP servers (hosted Integration Agent + local validator)
-  - type: ToolCrosswalk
-    url: mcp/apimatic-tool-crosswalk.yml
-    name: APIMatic MCP tool crosswalk
-  - type: LLMsTxt
-    url: llms/apimatic-llms.txt
-    name: APIMatic llms.txt
-  - type: Overlay
-    url: overlays/apimatic-apis-api-overlay.yaml
-    name: APIs API overlay
-  - type: Overlay
-    url: overlays/apimatic-portals-api-overlay.yaml
-    name: Portals API overlay
-  - type: Overlay
-    url: overlays/apimatic-sdk-generation-api-overlay.yaml
-    name: SDK Generation API overlay
-  - type: Overlay
-    url: overlays/apimatic-transformation-api-overlay.yaml
-    name: Transformation API overlay
-  - type: Overlay
-    url: overlays/apimatic-validation-api-overlay.yaml
-    name: Validation API overlay
-  - type: Conformance
-    url: conformance/apimatic-conformance.yml
-    name: APIMatic standards conformance
-  - type: ErrorCatalog
-    url: errors/apimatic-problem-types.yml
-    name: APIMatic problem types (RFC 9457)
-  - type: Lifecycle
-    url: lifecycle/apimatic-lifecycle.yml
-    name: APIMatic lifecycle
-  - type: Deprecation
-    url: https://docs.apimatic.io/web-dashboard-retired/
-    name: Web Dashboard retirement notice
-  - type: OAuthScopes
-    url: scopes/apimatic-scopes.yml
-    name: APIMatic OAuth scopes (MCP resource server)
-  - type: Authentication
-    url: authentication/apimatic-authentication.yml
-    name: APIMatic authentication profile
-  - type: Conventions
-    url: conventions/apimatic-conventions.yml
-    name: APIMatic API conventions
-  - type: ChangeLog
-    url: changelog/apimatic-changelog.yml
-    name: APIMatic changelog (structured)
-  - type: CLI
-    url: cli/apimatic-cli.yml
-    name: APIMatic CLI command surface
-  - type: Components
-    url: components/apimatic-components.yml
-    name: APIMatic embeddable components
-  - type: DataModel
-    url: data-model/apimatic-data-model.yml
-    name: APIMatic data model
-  - type: Sandbox
-    url: sandbox/apimatic-sandbox.yml
-    name: APIMatic sandbox, console and free tools
-  - type: Plans
-    url: plans/apimatic-plans-pricing.yml
-    name: APIMatic plans and pricing
-  - type: RateLimits
-    url: rate-limits/apimatic-rate-limits.yml
-    name: APIMatic published limits
-  - type: FinOps
-    url: finops/apimatic-finops.yml
-    name: APIMatic FinOps framework
-  - type: Vocabulary
-    url: vocabulary/apimatic-vocabulary.yaml
-    name: APIMatic vocabulary
-  - type: SpectralRules
-    url: rules/apimatic-jsonschema-spectral-rules.yml
-    name: APIMatic Spectral ruleset
-  - type: Examples
-    url: examples/apimatic-api-entity-example.json
-    name: API entity example
-  - type: Examples
-    url: examples/apimatic-sdk-generation-example.json
-    name: SDK generation example
-  - type: AgentSkill
-    url: skills/_index.yml
-    name: APIMatic Agent Skills (provider-authored)
-  - type: PostmanCollection
-    url: postman/apimatic-platform-api.postman_collection.json
-    name: APIMatic Platform API Postman collection
-  - type: DeveloperPortal
-    url: https://docs.apimatic.io/
-    name: APIMatic developer documentation
-  - type: APIReference
-    url: https://docs.apimatic.io/platform-api/
-    name: APIMatic Platform API reference
+    url: json-schema/apimatic-api-validation-summary-schema.json
 x-enrichment:
-  date: '2026-09-15'
+  date: '2026-09-23'
   status: enriched
-  artifacts_added: 25
-  pass: push-v3
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  artifacts_added: 23
+  pass: local-v5

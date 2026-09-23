@@ -1,22 +1,56 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/apimatic-platform-api.yaml
+source: openapi/apimatic-docs-portal-api-openapi.yml, openapi/apimatic-docs-portal-async-api-openapi.yml,
+  openapi/apimatic-sdk-api-openapi.yml, openapi/apimatic-sdk-async-api-openapi.yml, openapi/apimatic-transformation-api-openapi.yml,
+  openapi/apimatic-validation-api-openapi.yml, openapi/apimatic-validation-v2-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 6
+  operations: 25
   by_action_class:
-    connected: 1
-    acting: 5
+    acting: 11
+    connected: 14
   by_consequence:
-    read: 1
-    write: 5
+    write: 11
+    read: 14
   human_in_the_loop_required: 0
 operations:
-- path: /api-entities
+- path: /portal
+  method: post
+  operationId: generateOnPremPortalViaBuildInput
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /portal/v2
+  method: post
+  operationId: generateOnPremPortalViaBuildInputAsync
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /portal/v2/{id}/status
   method: get
-  operationId: listApiEntities
+  operationId: getPortalGenerationStatus
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -24,9 +58,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api-entities
+- path: /portal/v2/{id}/download
+  method: get
+  operationId: downloadGeneratedPortal
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /code-generations/generate-via-file
   method: post
-  operationId: importApiDefinition
+  operationId: generateSdkViaFile
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -40,9 +84,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api-entities/{apiEntityId}/generate-sdk
+- path: /code-generations/generate-via-url
   method: post
-  operationId: generateSdk
+  operationId: generateSdkViaUrl
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -56,9 +100,49 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api-entities/{apiEntityId}/validate
-  method: post
-  operationId: validateApiDefinition
+- path: /code-generations/{codegen_id}/generated-sdk
+  method: get
+  operationId: downloadSdk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /code-generations
+  method: get
+  operationId: listAllCodeGenerations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /code-generations/{codegen_id}/input-file
+  method: get
+  operationId: downloadInputFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /code-generations/{codegen_id}
+  method: get
+  operationId: getACodeGeneration
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /code-generations/{codegen_id}
+  method: delete
+  operationId: deleteCodeGenerationForExternalApis
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -72,9 +156,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api-entities/{apiEntityId}/transform
+- path: /sdk
   method: post
-  operationId: transformApiDefinition
+  operationId: generateSdkViaBuildInputAsync
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -88,9 +172,29 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api-entities/{apiEntityId}/portal
+- path: /sdk/{id}/status
+  method: get
+  operationId: getSdkGenerationStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sdk/{id}/download
+  method: get
+  operationId: downloadGeneratedSdk
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /transformations/transform-via-file
   method: post
-  operationId: generatePortal
+  operationId: transformViaFile
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -104,3 +208,127 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /transformations/transform-via-url
+  method: post
+  operationId: transformViaUrl
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /transformations/{transformation_id}/converted-file
+  method: get
+  operationId: downloadTransformedFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /transformations/{transformation_id}/input-file
+  method: get
+  operationId: downloadInputFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /transformations
+  method: get
+  operationId: listAllTransformations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /transformations/{transformation_id}
+  method: get
+  operationId: getATransformation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /transformations/{transformation_id}
+  method: delete
+  operationId: deleteTransformation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /validation/validate-via-file
+  method: post
+  operationId: validateApiViaFile
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /validation/validate-via-url
+  method: get
+  operationId: validateApiViaUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /validation/v2/validate-via-file
+  method: post
+  operationId: validateApiViaFileV2
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /validation/v2/validate-via-url
+  method: get
+  operationId: validateApiViaUrlV2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

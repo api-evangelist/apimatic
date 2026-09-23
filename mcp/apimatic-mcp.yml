@@ -58,6 +58,32 @@ servers:
       Validates OpenAPI 2.0 / 3.0 documents (JSON and YAML) through APIMatic's validation API.
       Install is clone + npm install + npm run build; the published npm package exposes the
       bin `apimatic-validator-mcp` -> build/index.js.
+  - name: context-matic
+    kind: remote
+    transport: streamable-http
+    url: https://chatbotapi.apimatic.io/mcp/plugins
+    auth: oauth
+    product: https://www.apimatic.io/product/context-plugins
+    repo: https://github.com/apimatic/context-matic
+    install:
+      claude_code: "/plugin marketplace add apimatic/context-matic  then  /plugin install context-matic@apimatic-context-matic"
+      cursor_config: '{"type":"http","url":"https://chatbotapi.apimatic.io/mcp/plugins","headers":{"X-Apimatic-Mcp-Client":"Cursor"}}'
+      vs_code: "@agentPlugins context-matic (Awesome Copilot Marketplace)"
+    tools_documented: [fetch_api, ask, endpoint_search, model_search]
+    probe:
+      fetched: '2026-09-23'
+      method: 'POST initialize (Accept: application/json, text/event-stream), with and without X-Apimatic-Mcp-Client'
+      http_status: 401
+      anonymous: false
+      www_authenticate: 'Bearer resource_metadata="https://chatbotapi.apimatic.io/.well-known/oauth-protected-resource/mcp/plugins"'
+      protected_resource_metadata: https://chatbotapi.apimatic.io/.well-known/oauth-protected-resource/mcp/plugins (200; saved verbatim to well-known/apimatic-oauth-protected-resource-mcp-plugins.json)
+    note: >-
+      ContextMatic (APIMatic Context Plugins): an OAuth-gated remote MCP server that serves
+      curated, versioned SDK documentation for a catalog of THIRD-PARTY APIs (PayPal, Spotify,
+      Twilio, Slack, Google Maps ...) to coding agents. The four tools are named and described
+      in the repository README; their input schemas were not read because tools/list requires
+      an OAuth token (scope mcp:tools, dynamic client registration at
+      https://chatbotapi.apimatic.io/register). It does not call APIMatic's Platform API.
 tools:
   - name: ask
     server: apimatic-integration-agent
@@ -96,6 +122,14 @@ tools:
       required: [query]
       properties:
         query: {type: string}
+  - name: validate-openapi-using-apimatic
+    server: apimatic-validator-mcp
+    description: Get validation summary for your OpenAPI spec using APIMatic
+    source: https://github.com/apimatic/apimatic-validator-mcp/blob/main/src/index.ts
+    note: >-
+      Zips the document and calls the Transformation controller's transformViaFile with export
+      format APIMATIC, returning the importSummary — i.e. it is backed by POST
+      /transformations/transform-via-file, not by the Validation endpoints.
 oauth:
   authorization_server: https://chatbotapi.apimatic.io/.well-known/oauth-authorization-server
   protected_resource: https://chatbotapi.apimatic.io/.well-known/oauth-protected-resource
@@ -107,7 +141,7 @@ product:
   note: >-
     APIMatic also SELLS MCP server generation — a customer's OpenAPI becomes a TypeScript SDK
     and an MCP server supporting both stdio and HTTP, distributable as an npm package. That is
-    a product, not an APIMatic agent surface; the servers above are the two APIMatic itself runs.
+    a product, not an APIMatic agent surface; the servers above are the three APIMatic itself runs.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

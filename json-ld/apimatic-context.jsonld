@@ -1,34 +1,220 @@
 {
   "@context": {
-    "@version": 1.1,
+    "@vocab": "https://apimatic.io/schema#",
     "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dcterms": "http://purl.org/dc/terms/",
-    "apimatic": "https://www.apimatic.io/vocab/",
-    "id": "@id",
-    "type": "@type",
-    "name": "schema:name",
-    "description": "schema:description",
-    "version": "schema:version",
-    "createdAt": {
-      "@id": "dcterms:created",
-      "@type": "xsd:dateTime"
+    "apimatic": "https://apimatic.io/schema#",
+    "UnauthorizedResponse": "apimatic:UnauthorizedResponse",
+    "message": {
+      "@id": "apimatic:message",
+      "@type": "xsd:string"
     },
-    "updatedAt": {
-      "@id": "dcterms:modified",
-      "@type": "xsd:dateTime"
+    "InternalServerErrorResponse": "apimatic:InternalServerErrorResponse",
+    "ProblemDetails": "apimatic:ProblemDetails",
+    "type": {
+      "@id": "apimatic:type",
+      "@type": "xsd:string"
     },
-    "platform": "apimatic:platform",
-    "downloadUrl": {
-      "@id": "schema:downloadUrl",
+    "title": {
+      "@id": "apimatic:title",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "apimatic:status",
+      "@type": "xsd:integer"
+    },
+    "detail": {
+      "@id": "apimatic:detail",
+      "@type": "xsd:string"
+    },
+    "instance": {
+      "@id": "apimatic:instance",
+      "@type": "xsd:string"
+    },
+    "errors": {
+      "@id": "apimatic:errors"
+    },
+    "PortalGenerationAsyncResponse": "apimatic:PortalGenerationAsyncResponse",
+    "id": {
+      "@id": "apimatic:id",
+      "@type": "xsd:string"
+    },
+    "links": {
+      "@id": "apimatic:links",
       "@type": "@id"
     },
-    "expiresAt": {
-      "@id": "schema:expires",
+    "PortalGenerationStatusResponse": "apimatic:PortalGenerationStatusResponse",
+    "Links": "apimatic:Links",
+    "download": {
+      "@id": "apimatic:download",
+      "@type": "xsd:string"
+    },
+    "Status": "apimatic:Status",
+    "GenerateSdkViaUrlRequest": "apimatic:GenerateSdkViaUrlRequest",
+    "url": {
+      "@id": "apimatic:url",
+      "@type": "xsd:string"
+    },
+    "template": {
+      "@id": "apimatic:template",
+      "@type": "@id"
+    },
+    "UserCodeGeneration": "apimatic:UserCodeGeneration",
+    "generatedFile": {
+      "@id": "apimatic:generatedFile",
+      "@type": "xsd:string"
+    },
+    "generatedOn": {
+      "@id": "apimatic:generatedOn",
       "@type": "xsd:dateTime"
     },
-    "errors": "apimatic:errors",
-    "warnings": "apimatic:warnings",
-    "valid": "apimatic:valid"
-  }
+    "hashCode": {
+      "@id": "apimatic:hashCode",
+      "@type": "xsd:string"
+    },
+    "codeGenerationSource": {
+      "@id": "apimatic:codeGenerationSource",
+      "@type": "xsd:string"
+    },
+    "codeGenVersion": {
+      "@id": "apimatic:codeGenVersion",
+      "@type": "xsd:string"
+    },
+    "success": {
+      "@id": "apimatic:success",
+      "@type": "xsd:boolean"
+    },
+    "userId": {
+      "@id": "apimatic:userId",
+      "@type": "xsd:string"
+    },
+    "inputFile": {
+      "@id": "apimatic:inputFile",
+      "@type": "xsd:string"
+    },
+    "BadRequestResponseSDK": "apimatic:BadRequestResponseSDK",
+    "Platforms": "apimatic:Platforms",
+    "SDKLanguages": "apimatic:SDKLanguages",
+    "SdkGenerationStatusResponse": "apimatic:SdkGenerationStatusResponse",
+    "SdkGenerationAsyncResponse": "apimatic:SdkGenerationAsyncResponse",
+    "Transformation": "apimatic:Transformation",
+    "transformedOn": {
+      "@id": "apimatic:transformedOn",
+      "@type": "xsd:string"
+    },
+    "inputtedFile": {
+      "@id": "apimatic:inputtedFile",
+      "@type": "xsd:string"
+    },
+    "exportFormat": {
+      "@id": "apimatic:exportFormat",
+      "@type": "xsd:string"
+    },
+    "transformationSource": {
+      "@id": "apimatic:transformationSource",
+      "@type": "xsd:string"
+    },
+    "transformationInput": {
+      "@id": "apimatic:transformationInput",
+      "@type": "xsd:string"
+    },
+    "importSummary": {
+      "@id": "apimatic:importSummary",
+      "@type": "@id"
+    },
+    "apiValidationSummary": {
+      "@id": "apimatic:apiValidationSummary",
+      "@type": "@id"
+    },
+    "TransformViaUrlRequest": "apimatic:TransformViaUrlRequest",
+    "export_format": {
+      "@id": "apimatic:export_format",
+      "@type": "@id"
+    },
+    "ExportFormats": "apimatic:ExportFormats",
+    "ApiValidationSummary": "apimatic:ApiValidationSummary",
+    "warnings": {
+      "@id": "apimatic:warnings",
+      "@container": "@list"
+    },
+    "messages": {
+      "@id": "apimatic:messages",
+      "@container": "@list"
+    },
+    "ValidateApiResult": "apimatic:ValidateApiResult",
+    "validation": {
+      "@id": "apimatic:validation",
+      "@type": "@id"
+    },
+    "linting": {
+      "@id": "apimatic:linting",
+      "@type": "@id"
+    },
+    "ValidationEntry": "apimatic:ValidationEntry",
+    "lineInfo": {
+      "@id": "apimatic:lineInfo",
+      "@type": "@id"
+    },
+    "jsonReferencePath": {
+      "@id": "apimatic:jsonReferencePath",
+      "@type": "xsd:string"
+    },
+    "fileReference": {
+      "@id": "apimatic:fileReference",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "apimatic:metadata"
+    },
+    "ruleDocumentationReference": {
+      "@id": "apimatic:ruleDocumentationReference",
+      "@type": "xsd:string"
+    },
+    "additionalReferences": {
+      "@id": "apimatic:additionalReferences",
+      "@container": "@list"
+    },
+    "LineInfo": "apimatic:LineInfo",
+    "startLineNumber": {
+      "@id": "apimatic:startLineNumber",
+      "@type": "xsd:integer"
+    },
+    "startLinePosition": {
+      "@id": "apimatic:startLinePosition",
+      "@type": "xsd:integer"
+    },
+    "endLineNumber": {
+      "@id": "apimatic:endLineNumber",
+      "@type": "xsd:integer"
+    },
+    "endLinePosition": {
+      "@id": "apimatic:endLinePosition",
+      "@type": "xsd:integer"
+    },
+    "ValidationSummary": "apimatic:ValidationSummary",
+    "isSuccess": {
+      "@id": "apimatic:isSuccess",
+      "@type": "xsd:boolean"
+    },
+    "blocking": {
+      "@id": "apimatic:blocking",
+      "@container": "@list"
+    },
+    "information": {
+      "@id": "apimatic:information",
+      "@container": "@list"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "APIMatic API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects APIMatic's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-09-23) from openapi/apimatic-docs-portal-api-openapi.yml, openapi/apimatic-docs-portal-async-api-openapi.yml, openapi/apimatic-sdk-api-openapi.yml.",
+  "dcterms:created": "2026-09-23",
+  "dcterms:source": [
+    "openapi/apimatic-docs-portal-api-openapi.yml",
+    "openapi/apimatic-docs-portal-async-api-openapi.yml",
+    "openapi/apimatic-sdk-api-openapi.yml",
+    "openapi/apimatic-sdk-async-api-openapi.yml",
+    "openapi/apimatic-transformation-api-openapi.yml"
+  ]
 }

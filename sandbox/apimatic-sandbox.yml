@@ -10,6 +10,11 @@ note: >-
   its own Platform API — there is one live environment and one kind of Auth Key. What it does
   publish is a live API console on its own reference portal, free no-signup tools, a 14-day
   trial, and a customer-side testing environment. Recorded as found; nothing invented.
+description: >-
+  No separate sandbox or test mode for the Platform API: one production environment and one kind
+  of Auth Key. What APIMatic does publish is a live API console on its own reference portal, free
+  no-signup tools (API Transformer and others), a 14-day trial, and an on-prem Kubernetes Operator.
+docs: https://docs.apimatic.io/platform-api/
 test_vs_live:
   separation: none
   note: >-

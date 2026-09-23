@@ -1,0 +1,295 @@
+openapi: 3.2.0
+info:
+  title: APIMatic Validation Validation V2 API
+  version: 1.0.0
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 4 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-generated: '2026-09-23'
+  x-generator: portal-reference-json (deterministic)
+  x-engine: none
+  x-sources:
+  - https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  - https://docs.apimatic.io/platform-api/
+servers:
+- url: https://api.apimatic.io
+  description: 'production (portal ServerConfiguration: default)'
+security:
+- Authorization: []
+tags:
+- name: Validation V2
+paths:
+  /validation/v2/validate-via-file:
+    post:
+      operationId: validateApiViaFileV2
+      summary: Validate API via File - V2
+      description: 'Validate an API by uploading the API specification file.
+
+
+        You can also specify [API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata) while validating the API using this endpoint. When specifying Metadata, the uploaded file will be a zip file containing the API specification file and the `APIMATIC-META` json file.'
+      tags:
+      - Validation V2
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The API specification file.<br>The type of the specification file should be any of the [supported formats](https://docs.apimatic.io/api-transformer/overview-transformer#supported-input-formats).
+              required:
+              - file
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateApiResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: Subscription Issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Validation V2 > Validate API via File - V2 > Validate API via File - V2
+      x-evidence:
+        kind: documentation
+  /validation/v2/validate-via-url:
+    get:
+      operationId: validateApiViaUrlV2
+      summary: Validate API via URL - V2
+      description: 'Validate an API by providing the URL of the API specification file.
+
+
+        You can also specify [API Metadata](https://docs.apimatic.io/manage-apis/apimatic-metadata) while validating the API using this endpoint. When specifying Metadata, the URL provided will be that of a zip file containing the API specification file and the `APIMATIC-META` json file.'
+      tags:
+      - Validation V2
+      parameters:
+      - name: url
+        in: query
+        required: true
+        description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateApiResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: Subscription Issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Validation V2 > Validate API via URL - V2 > Validate API via URL - V2
+      x-evidence:
+        kind: documentation
+      x-live-probe:
+        date: '2026-09-23'
+        result: 404 with and without descriptionUrl; documented in APIMatic's portal reference data but not answering on api.apimatic.io. Every other operation in these four contracts answered 401/405.
+components:
+  schemas:
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
+    ValidateApiResult:
+      title: ValidateApiResult
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        validation:
+          $ref: '#/components/schemas/ValidationSummary'
+        linting:
+          $ref: '#/components/schemas/ValidationSummary'
+      required:
+      - validation
+      - linting
+    ValidationEntry:
+      title: ValidationEntry
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          type: string
+        lineInfo:
+          $ref: '#/components/schemas/LineInfo'
+        jsonReferencePath:
+          type: string
+        fileReference:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        ruleDocumentationReference:
+          type: string
+        additionalReferences:
+          description: ''
+          type: array
+          items:
+            type: string
+      required:
+      - message
+    LineInfo:
+      title: LineInfo
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        startLineNumber:
+          type: integer
+          format: int32
+        startLinePosition:
+          type: integer
+          format: int32
+        endLineNumber:
+          type: integer
+          format: int32
+        endLinePosition:
+          type: integer
+          format: int32
+      required:
+      - startLineNumber
+      - startLinePosition
+      - endLineNumber
+      - endLinePosition
+    ValidationSummary:
+      title: ValidationSummary
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        isSuccess:
+          type: boolean
+        blocking:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+        warnings:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+        information:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationEntry'
+      required:
+      - isSuccess
+      - blocking
+      - errors
+      - warnings
+      - information
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Auth Header. Replace {x-auth-key} with your Auth Key. Header value form: `X-Auth-Key {x-auth-key}`.'
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json

@@ -1,0 +1,469 @@
+openapi: 3.1.0
+info:
+  title: APIMatic Transformation API
+  version: 1.0.0
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 7 operation(s) converted deterministically (no model) from the structured
+    reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json,
+    loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation
+    names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport:
+    false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  contact:
+    url: https://www.apimatic.io/contact
+  termsOfService: https://www.apimatic.io/terms
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-generated: '2026-09-23'
+  x-generator: portal-reference-json (deterministic)
+  x-engine: none
+  x-sources:
+  - https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  - https://docs.apimatic.io/platform-api/
+servers:
+- url: https://api.apimatic.io
+  description: 'production (portal ServerConfiguration: default)'
+tags:
+- name: Transformation
+security:
+- Authorization: []
+paths:
+  /transformations/transform-via-file:
+    post:
+      operationId: transformViaFile
+      summary: Transform via File
+      description: 'Transform an API into any of the supported API specification formats by uploading the API specification file.
+
+
+        This endpoint transforms and then uploads the transformed API specification to APIMatic''s cloud storage. An ID for the transformation
+        performed is returned as part of the response.'
+      tags:
+      - Transformation
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The API specification file.<br>The type of the specification file should be any of the [supported formats](https://docs.apimatic.io/api-transformer/overview-transformer#supported-input-formats).
+                export_format:
+                  $ref: '#/components/schemas/ExportFormats'
+                  description: The structure contains API specification formats that Transformer can convert to.
+              required:
+              - file
+              - export_format
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transformation'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > Transform via File > Transform via File
+      x-evidence:
+        kind: documentation
+  /transformations/transform-via-url:
+    post:
+      operationId: transformViaUrl
+      summary: Transform via URL
+      description: 'Transform an API into any of the supported API specification formats by providing the URL of the API specification file.
+
+
+        This endpoint transforms and then uploads the transformed API specification to APIMatic''s cloud storage. An ID for the transformation
+        performed is returned as part of the response.'
+      tags:
+      - Transformation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransformViaUrlRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transformation'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > Transform via URL > Transform via URL
+      x-evidence:
+        kind: documentation
+  /transformations/{transformation_id}/converted-file:
+    get:
+      operationId: downloadTransformedFile
+      summary: Download Transformed File
+      description: Download the transformed API specification file transformed via the Transformation endpoints.
+      tags:
+      - Transformation
+      parameters:
+      - name: transformation_id
+        in: path
+        required: true
+        description: The ID of transformation received in the response of the [Transform Via File ]($e/Transformation/Transform%20via%20File)
+          or [Transform Via URL  ]($e/Transformation/Transform%20via%20URL) calls.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > Download Transformed File > Download Transformed File
+      x-evidence:
+        kind: documentation
+  /transformations/{transformation_id}/input-file:
+    get:
+      operationId: downloadInputFile
+      summary: Download Input File
+      description: Download the API Specification file used as input for a particular Transformation performed via the Transformation endpoints.
+      tags:
+      - Transformation
+      parameters:
+      - name: transformation_id
+        in: path
+        required: true
+        description: The ID of the transformation to download the API specification for. The transformation ID is received in the response of
+          the [Transform Via File ]($e/Transformation/Transform%20via%20File) or [Transform Via URL]($e/Transformation/Transform%20via%20URL)
+          calls.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > Download Input File > Download Input File
+      x-evidence:
+        kind: documentation
+  /transformations:
+    get:
+      operationId: listAllTransformations
+      summary: List All Transformations
+      description: Get a list of all API transformations performed.
+      tags:
+      - Transformation
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transformation'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > List All Transformations > List All Transformations
+      x-evidence:
+        kind: documentation
+  /transformations/{transformation_id}:
+    get:
+      operationId: getATransformation
+      summary: Get a Transformation
+      description: Get details on a particular Transformation performed via the Transformation endpoints.
+      tags:
+      - Transformation
+      parameters:
+      - name: transformation_id
+        in: path
+        required: true
+        description: The ID of the transformation to fetch. The transformation ID is received in the response of the [Transform Via File ]($e/Transformation/Transform%20via%20File)
+          or [Transform Via URL  ]($e/Transformation/Transform%20via%20URL) calls.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transformation'
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > Get a Transformation > Get a Transformation
+      x-evidence:
+        kind: documentation
+    delete:
+      operationId: deleteTransformation
+      summary: Delete Transformation
+      description: Delete a particular Transformation performed for an API via the Transformation endpoints.
+      tags:
+      - Transformation
+      parameters:
+      - name: transformation_id
+        in: path
+        required: true
+        description: The ID of the transformation to delete. The transformation ID is received in the response of the [Transform Via File ]($e/Transformation/Transform%20via%20File)
+          or [Transform Via URL]($e/Transformation/Transform%20via%20URL) calls.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      security:
+      - Authorization: []
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+      x-docs-title: API Endpoints > Transformation > Delete Transformation > Delete Transformation
+      x-evidence:
+        kind: documentation
+components:
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Auth Header. Replace {x-auth-key} with your Auth Key. Header value form: `X-Auth-Key {x-auth-key}`.'
+      x-source: https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json
+  schemas:
+    ApiValidationSummary:
+      title: ApiValidationSummary
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        success:
+          example: true
+          type: boolean
+        errors:
+          description: ''
+          example: []
+          type: array
+          items:
+            type: string
+        warnings:
+          description: ''
+          example:
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getRealTimeData</code></i> of group <i><code>data</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getRealTimeData</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getDataPerCategory</code></i> of group <i><code>data</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getDataPerCategory</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getData</code></i> of group <i><code>data</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getData</code></i> has an example specified for error code <i><code>429</code></i> which contains following undeclared
+            fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getActiveStatuses</code></i> of group <i><code>statuses</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getActiveStatuses</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>200</code></i> in endpoint
+            <i><code>getDevices</code></i> of group <i><code>assets</code></i> contains an example value with following undeclared fields: <i><code>deviceModelId</code></i>,
+            <i><code>manufacturer</code></i>, <i><code>model</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getDevices</code></i> of group <i><code>assets</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getDevices</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getAlarms</code></i> of group <i><code>alerts</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getAlarms</code></i> has an example specified for error code <i><code>429</code></i> which contains following undeclared
+            fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getActiveAlerts</code></i> of group <i><code>alerts</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getActiveAlerts</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getAlerts</code></i> of group <i><code>alerts</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getAlerts</code></i> has an example specified for error code <i><code>429</code></i> which contains following undeclared
+            fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getConfiguration</code></i> of group <i><code>configuration data</code></i> contains an example value with following undeclared
+            fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getConfiguration</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getActiveAlarms</code></i> of group <i><code>alerts</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getActiveAlarms</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getPowerCurves</code></i> of group <i><code>assets</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getPowerCurves</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getDataSignals</code></i> of group <i><code>data</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getDataSignals</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getStatuses</code></i> of group <i><code>statuses</code></i> contains an example value with following undeclared fields:
+            <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getStatuses</code></i> has an example specified for error code <i><code>429</code></i> which contains following
+            undeclared fields: <i><code>detail</i></code>.'
+          - 'Media type <i><code>application/json; charset=utf-8</code></i> content definition of response code <i><code>429</code></i> in endpoint
+            <i><code>getSites</code></i> of group <i><code>assets</code></i> contains an example value with following undeclared fields: <i><code>detail</i></code>.'
+          - 'Endpoint <i><code>getSites</code></i> has an example specified for error code <i><code>429</code></i> which contains following undeclared
+            fields: <i><code>detail</i></code>.'
+          type: array
+          items:
+            type: string
+        messages:
+          description: ''
+          example:
+          - One or more elements in the API specification has a missing description field.
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - errors
+      - warnings
+      - messages
+    ExportFormats:
+      title: ExportFormats
+      description: The structure contains API specification formats that Transformer can convert to.
+      example: APIMATIC
+      x-enum-elements:
+      - name: APIMATIC
+        description: ''
+      - name: WADL2009
+        description: ''
+      - name: WSDL
+        description: ''
+      - name: SWAGGER10
+        description: ''
+      - name: SWAGGER20
+        description: ''
+      - name: SWAGGERYAML
+        description: ''
+      - name: OAS3
+        description: OpenAPI v3.0 (JSON)
+      - name: OPENAPI3YAML
+        description: ''
+      - name: APIBLUEPRINT
+        description: ''
+      - name: RAML
+        description: ''
+      - name: RAML10
+        description: ''
+      - name: POSTMAN10
+        description: ''
+      - name: POSTMAN20
+        description: ''
+      - name: GRAPHQLSCHEMA
+        description: ''
+      type: string
+      additionalProperties: false
+      enum:
+      - APIMATIC
+      - WADL2009
+      - WSDL
+      - Swagger10
+      - Swagger20
+      - SwaggerYaml
+      - OpenApi3Json
+      - OpenApi3Yaml
+      - APIBluePrint
+      - RAML
+      - RAML10
+      - Postman10
+      - Postman20
+      - GraphQlSchema
+    TransformViaUrlRequest:
+      title: TransformViaUrlRequest
+      description: This structure puts together the URL of the file to be transformed, along with the desired export format.
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        url:
+          description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
+          example: https://petstore.swagger.io/v2/swagger.json
+          type: string
+        export_format:
+          $ref: '#/components/schemas/ExportFormats'
+      required:
+      - url
+      - export_format
+    Transformation:
+      title: Transformation
+      description: Transformation structure encapsulates all the details of a Transformation.
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        id:
+          description: Unique Transformation Identifier
+          example: 5be0999183b41d0d8cdb9f26
+          type: string
+        transformedOn:
+          description: Transformation Date and Time
+          example: 11/5/2018 7:27:13 PM
+          type: string
+        userId:
+          description: Unique User Identifier
+          example: 5afc60380b9949253c6b7776
+          type: string
+        inputtedFile:
+          description: API Specification file to be transformed
+          example: https://api.apimatic.io/transformations/5be0999183b41d0d8cdb9f26/input-file
+          type: string
+        generatedFile:
+          description: API Specification file transformed to desired format
+          example: https://api.apimatic.io/transformations/5be0999183b41d0d8cdb9f26/converted-file
+          type: string
+        exportFormat:
+          description: Desired Specification format
+          example: APIMATIC
+          type: string
+        transformationSource:
+          description: Source of Transformation
+          example: Api
+          type: string
+        transformationInput:
+          description: Via File or URL
+          example: File
+          type: string
+        codeGenVersion:
+          description: CodeGen Engine Version
+          example: '1'
+          type: string
+        success:
+          description: Successful Transformation Flag
+          example: true
+          type: boolean
+        importSummary:
+          $ref: '#/components/schemas/ApiValidationSummary'
+        apiValidationSummary:
+          $ref: '#/components/schemas/ApiValidationSummary'
+      required:
+      - id
+      - transformedOn
+      - userId
+      - inputtedFile
+      - generatedFile
+      - exportFormat
+      - transformationSource
+      - transformationInput
+      - codeGenVersion
+      - success
+      - importSummary
+      - apiValidationSummary

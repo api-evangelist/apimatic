@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apimatic/main/json-schema/apimatic-generate-sdk-via-url-request-schema.json",
+  "title": "GenerateSdkViaUrlRequest",
+  "x-generated": "2026-09-23",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/apimatic-sdk-api-openapi.yml#/components/schemas/GenerateSdkViaUrlRequest",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object"
+  },
+  "properties": {
+    "url": {
+      "description": "The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.",
+      "type": "string"
+    },
+    "template": {
+      "$ref": "#/$defs/Platforms"
+    }
+  },
+  "required": [
+    "url",
+    "template"
+  ],
+  "$defs": {
+    "Platforms": {
+      "title": "Platforms",
+      "description": "The structure contains platforms that APIMatic CodeGen can generate SDKs and Docs in.",
+      "x-enum-elements": [
+        {
+          "name": "CS_NET_STANDARD_LIB",
+          "description": ".NET Standard Library"
+        },
+        {
+          "name": "JAVA_ECLIPSE_JRE_LIB",
+          "description": "JAVA"
+        },
+        {
+          "name": "PHP_GENERIC_LIB_V2",
+          "description": "PHP"
+        },
+        {
+          "name": "PYTHON_GENERIC_LIB",
+          "description": "Python"
+        },
+        {
+          "name": "RUBY_GENERIC_LIB",
+          "description": "Ruby"
+        },
+        {
+          "name": "TS_GENERIC_LIB",
+          "description": "Typescript"
+        },
+        {
+          "name": "GO_GENERIC_LIB",
+          "description": "Go"
+        }
+      ],
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "CS_NET_STANDARD_LIB",
+        "JAVA_ECLIPSE_JRE_LIB",
+        "PHP_GENERIC_LIB_V2",
+        "PYTHON_GENERIC_LIB",
+        "RUBY_GENERIC_LIB",
+        "TS_GENERIC_LIB",
+        "GO_GENERIC_LIB"
+      ]
+    }
+  }
+}

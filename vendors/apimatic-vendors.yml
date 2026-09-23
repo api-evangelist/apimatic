@@ -1,0 +1,97 @@
+generated: '2026-09-23'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: www.apimatic.io
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: apimatic
+  name: APIMatic
+  area: developer-portal
+  host: null
+  evidence: '{"base_url": "./", "config": "https://docs.apimatic.io/platform-api/static/js/portal.js", "export_enabled": false, "export_formats":
+    [], "note": "An APIMatic portal. Its full endpoint data is the JSON'
+  signal: portal-url
+  confidence: high
+  kin_score:
+  - openapi_published
+  - sdk_count_1
+  - sdk_count_3
+  - api_explorer
+- vendor: docusaurus
+  name: Docusaurus
+  area: documentation
+  host: docs.apimatic.io
+  evidence: markup:docusaurus
+  signal: docs-platform
+  confidence: medium
+  kin_score: []
+- vendor: cloudflare-pages
+  name: Cloudflare Pages
+  area: hosting
+  host: docs.apimatic.io
+  evidence: cname:apimatic-docs.pages.dev
+  signal: docs-platform
+  confidence: medium
+  kin_score: []
+- vendor: hubspot
+  name: HubSpot
+  area: hosting
+  host: www.apimatic.io
+  evidence: cname:hubspot.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: zendesk
+  name: Zendesk
+  area: support
+  host: support.apimatic.io
+  evidence: cname:zendesk.com
+  signal: cname
+  confidence: high
+  kin_score:
+  - support_channel
+reliance:
+  areas_vendor_served:
+  - cdn
+  - developer-portal
+  - documentation
+  - hosting
+  - support
+  vendor_count: 6
+  areas_observed: 12
+  share_of_observable_areas: 0.417
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: docusaurus'
+- www.apimatic.io (Website)
+- docs.apimatic.io (Documentation)
+- docs.apimatic.io (GettingStarted)
+- app.apimatic.io (Login)
+- support.apimatic.io (Support)
+- docs.apimatic.io (DeveloperPortal)
+- docs.apimatic.io (APIReference)
+- api.apimatic.io (baseURL)
+- chatbotapi.apimatic.io (mcp)

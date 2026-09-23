@@ -1,198 +1,202 @@
 generated: '2026-09-15'
 method: probed
 source: live GET of the named /.well-known/ path list on every host in apis.yml plus the MCP host
-note: >-
-  The discovery surface APIMatic serves is NOT on apimatic.io. It is on
-  chatbotapi.apimatic.io, the host behind the hosted MCP / API Copilot server its generated
-  developer portals point agents at. That host serves a real RFC 8414 authorization-server
-  document and a real RFC 9728 protected-resource document; the marketing, docs, app and API
-  hosts serve nothing at any probed path. Probing only apimatic.io would have recorded this
-  provider as publishing no discovery documents at all (roadmap#244).
+note: The discovery surface APIMatic serves is NOT on apimatic.io. It is on chatbotapi.apimatic.io, the host behind
+  the hosted MCP / API Copilot server its generated developer portals point agents at. That host serves a real RFC
+  8414 authorization-server document and a real RFC 9728 protected-resource document; the marketing, docs, app and
+  API hosts serve nothing at any probed path. Probing only apimatic.io would have recorded this provider as publishing
+  no discovery documents at all (roadmap#244).
 path_echo_control: passed
 hosts:
-  - host: https://chatbotapi.apimatic.io
-    documents:
-      - path: /.well-known/oauth-authorization-server
-        status: 200
-        content_type: application/json
-        file: apimatic-oauth-authorization-server.json
-        real_document: true
-        note: >-
-          RFC 8414. issuer https://chatbotapi.apimatic.io, registration_endpoint present
-          (RFC 7591 dynamic client registration), grant_types authorization_code +
-          client_credentials, PKCE S256, scopes_supported [mcp:tools].
-      - path: /.well-known/oauth-protected-resource
-        status: 200
-        content_type: application/json
-        file: apimatic-oauth-protected-resource.json
-        real_document: true
-        note: >-
-          RFC 9728. resource https://chatbotapi.apimatic.io, authorization_servers names
-          its own issuer, bearer_methods_supported [header], scopes_supported [mcp:tools].
-      - path: /.well-known/security.txt
-        status: 404
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /.well-known/api-catalog
-        status: 404
-      - path: /.well-known/ai-plugin.json
-        status: 404
-      - path: /.well-known/ucp.json
-        status: 404
-      - path: /.well-known/acp.json
-        status: 404
-      - path: /.well-known/aauth-resource.json
-        status: 404
-      - path: /.well-known/apis.json
-        status: 404
-      - path: /apis.json
-        status: 404
-      - path: /apis.yml
-        status: 404
-      - path: /.well-known/apimatic-negative-control-7f3ab91c.json
-        status: 404
-        note: negative control — this path cannot exist; a 404 confirms the host is not path-echoing
-  - host: https://www.apimatic.io
-    soft_404_control: 404 HTML marketing error page, 56887 bytes, identical body at every probed path
-    hit_count: 0
-    documents:
-      - path: /.well-known/security.txt
-        status: 404
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /.well-known/oauth-authorization-server
-        status: 404
-      - path: /.well-known/oauth-protected-resource
-        status: 404
-      - path: /.well-known/api-catalog
-        status: 404
-      - path: /.well-known/ai-plugin.json
-        status: 404
-      - path: /.well-known/ucp.json
-        status: 404
-      - path: /.well-known/acp.json
-        status: 404
-      - path: /.well-known/aauth-resource.json
-        status: 404
-      - path: /.well-known/apis.json
-        status: 404
-      - path: /apis.json
-        status: 404
-      - path: /apis.yml
-        status: 404
-      - path: /.well-known/apimatic-negative-control-7f3ab91c.json
-        status: 404
-  - host: https://apimatic.io
-    note: apex 303-redirects every path to http://www.apimatic.io/<path>, which then 404s
-    hit_count: 0
-    documents:
-      - path: /.well-known/security.txt
-        status: 303
-      - path: /.well-known/openid-configuration
-        status: 303
-      - path: /.well-known/oauth-authorization-server
-        status: 303
-      - path: /.well-known/oauth-protected-resource
-        status: 303
-      - path: /.well-known/api-catalog
-        status: 303
-      - path: /.well-known/ai-plugin.json
-        status: 303
-      - path: /apis.json
-        status: 303
-      - path: /apis.yml
-        status: 303
-  - host: https://api.apimatic.io
-    soft_404_control: 404 HTML shell, 6312 bytes, identical body at every probed path
-    hit_count: 0
-    documents:
-      - path: /.well-known/security.txt
-        status: 404
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /.well-known/oauth-authorization-server
-        status: 404
-      - path: /.well-known/oauth-protected-resource
-        status: 404
-      - path: /.well-known/api-catalog
-        status: 404
-      - path: /.well-known/ai-plugin.json
-        status: 404
-      - path: /.well-known/ucp.json
-        status: 404
-      - path: /.well-known/acp.json
-        status: 404
-      - path: /.well-known/aauth-resource.json
-        status: 404
-      - path: /.well-known/apis.json
-        status: 404
-      - path: /apis.json
-        status: 404
-      - path: /apis.yml
-        status: 404
-      - path: /.well-known/apimatic-negative-control-7f3ab91c.json
-        status: 404
-  - host: https://docs.apimatic.io
-    soft_404_control: 404 Docusaurus "Page Not Found" shell, 11743 bytes, identical body at every probed path
-    hit_count: 0
-    documents:
-      - path: /.well-known/security.txt
-        status: 404
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /.well-known/oauth-authorization-server
-        status: 404
-      - path: /.well-known/oauth-protected-resource
-        status: 404
-      - path: /.well-known/api-catalog
-        status: 404
-      - path: /.well-known/ai-plugin.json
-        status: 404
-      - path: /.well-known/ucp.json
-        status: 404
-      - path: /.well-known/acp.json
-        status: 404
-      - path: /.well-known/aauth-resource.json
-        status: 404
-      - path: /.well-known/apis.json
-        status: 404
-      - path: /apis.json
-        status: 404
-      - path: /apis.yml
-        status: 404
-      - path: /.well-known/apimatic-negative-control-7f3ab91c.json
-        status: 404
-  - host: https://app.apimatic.io
-    soft_404_control: 404 HTML shell, 6312 bytes, identical body at every probed path
-    hit_count: 0
-    documents:
-      - path: /.well-known/security.txt
-        status: 404
-      - path: /.well-known/openid-configuration
-        status: 404
-      - path: /.well-known/oauth-authorization-server
-        status: 404
-      - path: /.well-known/oauth-protected-resource
-        status: 404
-      - path: /.well-known/api-catalog
-        status: 404
-      - path: /.well-known/ai-plugin.json
-        status: 404
-      - path: /.well-known/apis.json
-        status: 404
-      - path: /apis.json
-        status: 404
-      - path: /apis.yml
-        status: 404
-      - path: /.well-known/apimatic-negative-control-7f3ab91c.json
-        status: 404
+- host: https://chatbotapi.apimatic.io
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: apimatic-oauth-authorization-server.json
+    real_document: true
+    note: RFC 8414. issuer https://chatbotapi.apimatic.io, registration_endpoint present (RFC 7591 dynamic client
+      registration), grant_types authorization_code + client_credentials, PKCE S256, scopes_supported [mcp:tools].
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: apimatic-oauth-protected-resource.json
+    real_document: true
+    note: RFC 9728. resource https://chatbotapi.apimatic.io, authorization_servers names its own issuer, bearer_methods_supported
+      [header], scopes_supported [mcp:tools].
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/apimatic-negative-control-7f3ab91c.json
+    status: 404
+    note: negative control — this path cannot exist; a 404 confirms the host is not path-echoing
+  - path: /.well-known/oauth-protected-resource/mcp/plugins
+    status: 200
+    content_type: application/json
+    file: apimatic-oauth-protected-resource-mcp-plugins.json
+    note: Path-specific RFC 9728 document named in the WWW-Authenticate challenge of the ContextMatic MCP server
+      (https://chatbotapi.apimatic.io/mcp/plugins); fetched 2026-09-23.
+    real_document: true
+- host: https://www.apimatic.io
+  soft_404_control: 404 HTML marketing error page, 56887 bytes, identical body at every probed path
+  hit_count: 0
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/apimatic-negative-control-7f3ab91c.json
+    status: 404
+- host: https://apimatic.io
+  note: apex 303-redirects every path to http://www.apimatic.io/<path>, which then 404s
+  hit_count: 0
+  documents:
+  - path: /.well-known/security.txt
+    status: 303
+  - path: /.well-known/openid-configuration
+    status: 303
+  - path: /.well-known/oauth-authorization-server
+    status: 303
+  - path: /.well-known/oauth-protected-resource
+    status: 303
+  - path: /.well-known/api-catalog
+    status: 303
+  - path: /.well-known/ai-plugin.json
+    status: 303
+  - path: /apis.json
+    status: 303
+  - path: /apis.yml
+    status: 303
+- host: https://api.apimatic.io
+  soft_404_control: 404 HTML shell, 6312 bytes, identical body at every probed path
+  hit_count: 0
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/apimatic-negative-control-7f3ab91c.json
+    status: 404
+- host: https://docs.apimatic.io
+  soft_404_control: 404 Docusaurus "Page Not Found" shell, 11743 bytes, identical body at every probed path
+  hit_count: 0
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/apimatic-negative-control-7f3ab91c.json
+    status: 404
+- host: https://app.apimatic.io
+  soft_404_control: 404 HTML shell, 6312 bytes, identical body at every probed path
+  hit_count: 0
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/apimatic-negative-control-7f3ab91c.json
+    status: 404
 x-evidence:
   fetched: '2026-09-15'
   hit_count: 2
   hosts_probed: 6
   llms_txt:
-    - {url: 'https://www.apimatic.io/llms.txt', status: 200}
-    - {url: 'https://docs.apimatic.io/llms.txt', status: 200}
+  - url: https://www.apimatic.io/llms.txt
+    status: 200
+  - url: https://docs.apimatic.io/llms.txt
+    status: 200
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
