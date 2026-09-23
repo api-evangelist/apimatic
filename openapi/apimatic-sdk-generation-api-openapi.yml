@@ -51,7 +51,26 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  examples:
+    SdkGenerationResultExample:
+      value:
+        downloadUrl: https://api.apimatic.io/downloads/sdk_xyz789
+        expiresAt: '2026-04-20T10:00:00Z'
+    SdkGenerationRequestExample:
+      value:
+        platform: PYTHON_GENERIC_LIB
   schemas:
+    SdkGenerationResult:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the generated SDK
+        expiresAt:
+          type: string
+          format: date-time
+          description: Expiration time of the download URL
     SdkGenerationRequest:
       type: object
       properties:
@@ -68,25 +87,6 @@ components:
           description: Target SDK platform
       required:
       - platform
-    SdkGenerationResult:
-      type: object
-      properties:
-        downloadUrl:
-          type: string
-          format: uri
-          description: URL to download the generated SDK
-        expiresAt:
-          type: string
-          format: date-time
-          description: Expiration time of the download URL
-  examples:
-    SdkGenerationRequestExample:
-      value:
-        platform: PYTHON_GENERIC_LIB
-    SdkGenerationResultExample:
-      value:
-        downloadUrl: https://api.apimatic.io/downloads/sdk_xyz789
-        expiresAt: '2026-04-20T10:00:00Z'
   securitySchemes:
     apiKey:
       type: apiKey

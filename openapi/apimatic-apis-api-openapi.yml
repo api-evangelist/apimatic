@@ -67,6 +67,23 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  examples:
+    ApiEntityExample:
+      value:
+        id: ent_abc123
+        name: My API
+        description: A sample API managed in APIMatic
+        version: 1.0.0
+        createdAt: '2026-01-15T10:00:00Z'
+        updatedAt: '2026-04-01T12:00:00Z'
+    ApiEntityListExample:
+      value:
+      - id: ent_abc123
+        name: My API
+        description: A sample API managed in APIMatic
+        version: 1.0.0
+        createdAt: '2026-01-15T10:00:00Z'
+        updatedAt: '2026-04-01T12:00:00Z'
   schemas:
     ApiEntity:
       type: object
@@ -92,23 +109,6 @@ components:
       required:
       - id
       - name
-  examples:
-    ApiEntityExample:
-      value:
-        id: ent_abc123
-        name: My API
-        description: A sample API managed in APIMatic
-        version: 1.0.0
-        createdAt: '2026-01-15T10:00:00Z'
-        updatedAt: '2026-04-01T12:00:00Z'
-    ApiEntityListExample:
-      value:
-      - id: ent_abc123
-        name: My API
-        description: A sample API managed in APIMatic
-        version: 1.0.0
-        createdAt: '2026-01-15T10:00:00Z'
-        updatedAt: '2026-04-01T12:00:00Z'
   securitySchemes:
     apiKey:
       type: apiKey

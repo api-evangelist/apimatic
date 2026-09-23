@@ -1,0 +1,35 @@
+# Front Door AI Index — apimatic — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: apimatic
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.apimatic.io
+  final_host: www.apimatic.io
+  ownership: own
+  owner: apimatic
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 77
+  host_score: 77
+  density: 7.57
+  words: 10170
+  tiers:
+    agentic: 36
+    core: 34
+    model: 7
+  ambiguous: 30
+  top_terms:
+    AI: 34
+    agent: 28
+    MCP: 15
+    AI agent: 8
+    copilot: 6
+    Claude: 5
+    AI assistant: 3
+    prompts: 3
+    automation: 2
+    transformer: 2
+    agentic: 1
