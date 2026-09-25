@@ -63,13 +63,7 @@ artifacts:
   json-schema/apimatic-user-code-generation-schema.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-23T000603.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -267,6 +261,15 @@ artifacts:
   kin/score-2026-09-23T000603.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/apimatic-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -333,6 +336,9 @@ artifacts:
   skills/_index.yml:
     method: searched
     evidence: declared in the artifact
+  vendor-facets/apimatic-vendor-facets.yml:
+    method: unknown
+    evidence: no authorship recorded
   vendors/apimatic-vendors.yml:
     method: unknown
     evidence: no authorship recorded
