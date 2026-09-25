@@ -1,0 +1,509 @@
+# Vendor facets — APIMatic. An SDK generator, API Transformer, linter and developer portal driven
+# from one OpenAPI. The headline: it is the rare vendor that can reach Contract Quality, but only by
+# converting a non-OpenAPI description or by the provider acting on lint findings. Linting reports,
+# it does not write descriptions, so most contract rows are conditional. Its embedded portal widget
+# ships a client-side-rendered shell, and its output leaves almost no fingerprint on the customer.
+vendor: apimatic
+name: APIMatic
+website: https://www.apimatic.io
+areas:
+- developer-portal
+- sdk-generation
+registry_keys:
+- apimatic
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  APIMatic's surest lift is Developer Ergonomics: SDKs in seven languages and a portal with an API reference,
+  guides, a playground and a changelog. Each of those counts only once the provider declares it in its
+  apis.yml. It can also reach Contract Quality, which a docs-only vendor cannot, but only where the API
+  Transformer converts a WSDL, RAML or Postman description into the first published OpenAPI, or where
+  the provider acts on what the linter flags. The linter reports gaps and does not fill them. The embedded
+  portal widget serves a client-side shell with no content in its HTML (re-checked on a Verizon ThingSpace
+  page on 2026-09-25). APIMatic output rarely carries an APIMatic fingerprint on the customer's own surface,
+  so its customer base cannot be measured.
+features:
+- id: sdk-generation
+  name: SDK generation in seven languages
+  description: >-
+    Idiomatic client SDKs for Java, Python, TypeScript, Ruby, C#, PHP and Go generated from one OpenAPI,
+    published to package registries.
+  source: https://www.apimatic.io/
+  tier: paid
+- id: developer-portal
+  name: API developer portal
+  description: >-
+    A generated portal with language-specific API reference, custom Markdown guides, SDK guides, auth
+    setup and analytics, hosted as its own project or embedded in an existing docs site.
+  source: https://docs.apimatic.io/publish-apis/api-portal-overview/
+  tier: paid
+- id: api-playground
+  name: Live API playground
+  description: An in-portal console that calls an endpoint with live input validation.
+  source: https://docs.apimatic.io/publish-apis/api-portal-overview/
+  tier: paid
+- id: api-recipes
+  name: API Recipes
+  description: Step-by-step onboarding flows rendered in the portal.
+  source: https://www.apimatic.io/
+  tier: paid
+- id: portal-changelog
+  name: Portal changelog integration
+  description: Changelog pages as part of the documentation portal.
+  source: https://docs.apimatic.io/
+  tier: paid
+- id: portal-llms-txt
+  name: Portal llms.txt, llms-full.txt and per-page Markdown
+  description: >-
+    The portal generates llms.txt and llms-full.txt that point to page-level Markdown documents served
+    under /llms-pages/, revamped in May 2026.
+  source: https://docs.apimatic.io/changelog/revamped-llm-context-files-and-added-per-page-markdown-exports/
+  tier: paid
+- id: api-transformer
+  name: API Transformer
+  description: >-
+    Converts 10+ description formats (WSDL, WADL, RAML, API Blueprint, Postman, Insomnia, HAR, Google
+    Discovery) to OpenAPI 3.1, 3.0 or 2.0, or to a Postman 2.0 collection.
+  source: https://docs.apimatic.io/api-transformer/overview-transformer/
+  tier: all
+- id: validation-linting
+  name: Validation and linting (1000+ rules)
+  description: >-
+    Syntax and semantic validation plus lint suggestions (for example a missing endpoint description or
+    parameter example), reported in the VS Code extension, with one-click auto-fix for some rule violations.
+  source: https://docs.apimatic.io/validate-lint-apis/overview/
+  tier: all
+- id: lint-auto-fix
+  name: VS Code auto-fix for rule violations
+  description: Applies a fix to one instance or all instances of a flagged rule violation.
+  source: https://www.apimatic.io/blog/product-highlights-july-2025
+  tier: all
+- id: mcp-generation
+  name: MCP server generation (alpha)
+  description: >-
+    Generates a per-operation MCP server from the OpenAPI on top of the TypeScript SDK, distributed as
+    an npm package for stdio or self-hosted HTTP use.
+  source: https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/
+  tier: unknown
+- id: context-plugins
+  name: Context Plugins
+  description: >-
+    Version-aware API context for coding agents (the API reference, auth requirements, versioned SDK code
+    and samples), published to a public GitHub repository by `apimatic plugin publish`.
+  source: https://docs.apimatic.io/context-plugins/overview/
+  tier: paid
+- id: apimatic-skills
+  name: APIMatic Agent Skills
+  description: >-
+    SKILL.md files that teach a coding agent how to use APIMatic (build a portal, generate SDKs). They
+    are not generated for the customer's API.
+  source: https://docs.apimatic.io/skills/overview/
+  tier: open-source
+- id: sdk-pagination-retries
+  name: SDK pagination and retry helpers
+  description: >-
+    Unified pagination driven by an x-pagination extension, plus retry with exponential backoff in the
+    new C# generator.
+  source: https://www.apimatic.io/blog/may-2026-product-highlights
+  tier: paid
+maps:
+- feature: sdk-generation
+  check: sdk_count_1
+  layer: composite
+  provider_must: >-
+    Publish at least one generated SDK to a public registry or repository and declare it as a common[]
+    entry of type SDK in apis.yml.
+  catalog_pass_rate: 0.148
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.413
+- feature: sdk-generation
+  check: sdk_count_3
+  layer: composite
+  provider_must: Publish three or more language SDKs and declare each one as its own SDK entry.
+  catalog_pass_rate: 0.018
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.043
+- feature: developer-portal
+  check: portal_present
+  layer: composite
+  provider_must: Declare the portal as a DeveloperPortal entry in apis.yml.
+  note: >-
+    The embedded widget mode serves a client-side-rendered shell. On 2026-09-25 a ThingSpace page returned
+    HTTP 200 and 85 KB of HTML with an APIMaticDevPortal widget and only site navigation as text. The
+    pointer still scores, but any probe or agent that reads the page without running JavaScript sees nothing
+    behind it.
+  catalog_pass_rate: 0.228
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.633
+- feature: developer-portal
+  check: documentation_present
+  layer: composite
+  provider_must: Declare the guides as a Documentation entry.
+  catalog_pass_rate: 0.453
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.95
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: developer-portal
+  check: api_reference_present
+  layer: composite
+  provider_must: Declare the generated reference as an APIReference entry.
+  catalog_pass_rate: 0.222
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.942
+  saturated: true
+  saturated_note: >-
+    94% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: developer-portal
+  check: authentication_documented
+  layer: composite
+  provider_must: Declare the portal's auth setup page as an Authentication entry.
+  catalog_pass_rate: 0.368
+  facet: developer_ergonomics
+  points: 5
+  baseline_pass_rate: 0.94
+  saturated: true
+  saturated_note: >-
+    94% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: api-recipes
+  check: getting_started_present
+  layer: composite
+  provider_must: Author a recipe or quickstart and declare it as a GettingStarted entry.
+  catalog_pass_rate: 0.206
+  facet: developer_ergonomics
+  points: 5
+  baseline_pass_rate: 0.636
+- feature: api-playground
+  check: console_or_sandbox
+  layer: composite
+  provider_must: Declare the playground as a Console or Playground entry.
+  catalog_pass_rate: 0.089
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.332
+- feature: portal-changelog
+  check: change_log_present
+  layer: composite
+  provider_must: Maintain the changelog and declare it as a ChangeLog entry.
+  catalog_pass_rate: 0.157
+  facet: operational_transparency
+  points: 6
+  baseline_pass_rate: 0.438
+- feature: portal-llms-txt
+  check: llms_txt_published
+  layer: composite
+  credit: 1.0
+  provider_must: Serve the portal on the provider's own domain so /llms.txt sits on the provider's surface.
+  note: >-
+    Generated from the provider's own portal content and served on the provider's domain, which format
+    rule 2 credits in full. On a vendor host it would be derived (0.25).
+  catalog_pass_rate: 0.351
+  facet: discoverability
+  points: 4
+  baseline_pass_rate: 0.65
+- feature: api-transformer
+  check: postman_present
+  layer: composite
+  credit: 0.25
+  provider_must: Publish the exported collection and declare it as a Postman entry.
+  note: >-
+    A Postman collection converted from the OpenAPI is generated, not authored, so it is the derived class.
+  catalog_pass_rate: 0.018
+  facet: developer_ergonomics
+  points: 2
+  baseline_pass_rate: 0.121
+- feature: api-transformer
+  check: contract_present
+  layer: composite
+  conditional: true
+  condition: >-
+    Only for a provider holding a non-OpenAPI description (WSDL, RAML, API Blueprint, Postman) and no
+    published OpenAPI. The Transformer converts a description; it cannot describe an API that has none.
+    The provider has to publish the output.
+  creates_artifact: true
+  note: >-
+    The one case where APIMatic creates the artifact class that makes Contract Quality applicable at all.
+  catalog_pass_rate: 0.31
+  facet: contract_quality
+  points: 20
+  baseline_pass_rate: 0.949
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: api-transformer
+  check: spec_presence
+  layer: agent_readiness
+  conditional: true
+  condition: Same as contract_present. The converted OpenAPI has to be published by the provider.
+  points: 18
+  baseline_pass_rate: 1.0
+  saturated: true
+  saturated_note: >-
+    100% of providers with a contract, docs and a reference already earn this; the vendor cannot move
+    it for most of its buyers.
+- feature: api-transformer
+  check: openapi_3_1
+  layer: composite
+  conditional: true
+  condition: >-
+    Only when the provider publishes the Transformer's 3.1 output as its contract. The Transformer lists
+    no 3.2 output, so openapi_3_2 is out of reach.
+  catalog_pass_rate: 0.414
+  facet: contract_quality
+  points: 5
+  baseline_pass_rate: 0.411
+- feature: validation-linting
+  check: operations_summary_coverage
+  layer: composite
+  conditional: true
+  condition: The linter flags missing summaries. The provider has to write them and republish the contract.
+  catalog_pass_rate: 0.879
+  facet: contract_quality
+  points: 6
+  baseline_pass_rate: 0.933
+  saturated: true
+  saturated_note: >-
+    93% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: validation-linting
+  check: operations_description_coverage
+  layer: composite
+  conditional: true
+  condition: The linter flags missing descriptions and does not write them. The provider has to author
+    them.
+  catalog_pass_rate: 0.473
+  facet: contract_quality
+  points: 6
+  baseline_pass_rate: 0.643
+- feature: lint-auto-fix
+  check: operations_operation_ids
+  layer: composite
+  conditional: true
+  condition: >-
+    Only if the auto-fix covers operationId rules. The source does not list which rules it fixes, and
+    the fixed contract still has to be republished.
+  catalog_pass_rate: 0.827
+  facet: contract_quality
+  points: 4
+  baseline_pass_rate: 0.918
+  saturated: true
+  saturated_note: >-
+    92% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: validation-linting
+  check: info_complete
+  layer: composite
+  conditional: true
+  condition: The provider has to supply the contact and description the linter asks for.
+  catalog_pass_rate: 0.518
+  facet: contract_quality
+  points: 4
+  baseline_pass_rate: 0.515
+- feature: validation-linting
+  check: servers_defined
+  layer: composite
+  conditional: true
+  condition: Only if the API has a real, non-localhost host to declare.
+  catalog_pass_rate: 0.782
+  facet: contract_quality
+  points: 3
+  baseline_pass_rate: 0.835
+- feature: validation-linting
+  check: error_responses_documented
+  layer: composite
+  conditional: true
+  condition: Only if the API really returns documented 4xx bodies. Linting cannot invent an error schema.
+  catalog_pass_rate: 0.367
+  facet: contract_quality
+  points: 4
+  baseline_pass_rate: 0.621
+- feature: validation-linting
+  check: security_schemes_defined
+  layer: composite
+  conditional: true
+  condition: Only if the API has an auth scheme that the contract fails to declare.
+  catalog_pass_rate: 0.677
+  facet: contract_quality
+  points: 4
+  baseline_pass_rate: 0.768
+- feature: validation-linting
+  check: webhooks_or_callbacks
+  layer: composite
+  conditional: true
+  condition: Only if the API already has webhooks. Linting cannot invent one.
+  catalog_pass_rate: 0.0
+  facet: contract_quality
+  points: 2
+  baseline_pass_rate: 0.006
+- feature: mcp-generation
+  check: mcp_server
+  layer: agent_readiness
+  grade: documented
+  provider_must: >-
+    Publish the generated server and declare it. Reaching `verified` means deploying it over HTTP on a
+    host the provider operates, where a probe can enumerate its tools.
+  note: >-
+    The default output is an npm package run over stdio, which no probe can reach, so it is graded as
+    documented (0.4). The tools are generated per operation from the provider's own OpenAPI, so the tool
+    shape is not shared across customers and should not cluster as `platform`. The feature is alpha and
+    access is by request.
+  points: 12
+  baseline_pass_rate: 0.22
+- feature: sdk-generation
+  check: openapi_examples
+  layer: agent_readiness
+  grade: documented
+  partial: true
+  partial_note: >-
+    The check reads request and response examples in the OpenAPI first. SDK code samples in the portal
+    reach only the Examples / Code Samples link fallback (0.25), and only once that link is declared.
+  points: 7
+  baseline_pass_rate: 0.36
+earns_nothing:
+- feature: validation-linting
+  check: examples_present
+  why: >-
+    The linter flags a missing parameter example as information and does not write one. SDK code samples
+    are not request or response examples in the contract.
+- feature: validation-linting
+  check: rules_present
+  why: >-
+    The 1000+ rules are APIMatic's own ruleset inside its tooling. The check reads a ruleset the provider
+    publishes.
+- feature: apimatic-skills
+  check: agent_skill_present
+  why: >-
+    These skills teach an agent to operate APIMatic. They say nothing about the customer's API and do
+    not belong on its surface.
+- feature: sdk-pagination-retries
+  check: idempotency
+  layer: agent_readiness
+  why: >-
+    SDK retry and pagination helpers do not add an idempotency key to the contract. The dimension reads
+    the OpenAPI.
+- feature: sdk-generation
+  check: error_semantics
+  layer: agent_readiness
+  why: >-
+    Typed SDK errors are built from whatever error schemas the contract already has. Generation does not
+    add a shared error schema.
+out_of_reach:
+  checks:
+  - openapi_3_2
+  - cli_present
+  - status_page_present
+  - rate_limits_documented
+  - plans_present
+  - well_known_published
+  - agent_card
+  - auth_clarity
+  - agent_skills
+  note: >-
+    APIMatic does not generate a CLI for the customer's API, runs no status or plans surface, serves no
+    .well-known documents, and ships no Agent Skill for the customer's API. The skills it publishes are
+    about APIMatic itself.
+unscored_practice:
+- feature: context-plugins
+  why: >-
+    A plugin repository that a coding agent loads (API reference, auth, SDK code). No check reads a coding-agent
+    plugin, and it lives in a GitHub repository, not on the provider's API surface.
+- feature: portal-llms-txt
+  why: Per-page Markdown twins under /llms-pages/. The rubric has no markdown-twin check.
+surface:
+  discoverability:
+    reachable: 4.0
+    total: 54
+  contract_quality:
+    reachable: 58.0
+    total: 211
+  operational_transparency:
+    reachable: 6.0
+    total: 38
+  developer_ergonomics:
+    reachable: 31.5
+    total: 42
+  agent_readiness:
+    reachable: 24.6
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://docs.apimatic.io/
+- https://docs.apimatic.io/api-transformer/overview-transformer/
+- https://docs.apimatic.io/changelog/revamped-llm-context-files-and-added-per-page-markdown-exports/
+- https://docs.apimatic.io/context-plugins/overview/
+- https://docs.apimatic.io/generate-mcp-servers/mcp-server-overview/
+- https://docs.apimatic.io/publish-apis/api-portal-overview/
+- https://docs.apimatic.io/skills/overview/
+- https://docs.apimatic.io/validate-lint-apis/overview/
+- https://www.apimatic.io/
+- https://www.apimatic.io/blog/may-2026-product-highlights
+- https://www.apimatic.io/blog/product-highlights-july-2025
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 1
+    in_baseline: 1
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5215
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 1 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 8960
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 9.4
+    p75: 12.1
+    p90: 14.0
+    max: 17.8
+    mean_among_movers: 9.1
+  agent_readiness_lift:
+    median: 3.5
+    p75: 4.7
+    p90: 4.7
+    max: 5.5
+    mean_among_movers: 3.9
+  facet_lift_median_among_movers:
+    discoverability: 7.4
+    operational_transparency: 15.8
+    developer_ergonomics: 36.9
+  composite_band_moves:
+    thin -> developing: 2897
+    developing -> strong: 1847
+    strong -> exemplar: 394
+    emerging -> thin: 321
+    emerging -> developing: 104
+    developing -> exemplar: 5
+    thin -> strong: 5
+    minimal -> emerging: 3
+  agent_readiness_band_moves:
+    agent-aware -> agent-ready: 1535
+    agent-ready -> agent-native: 132
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
