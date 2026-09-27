@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: APIMatic Portals Docs Portal - Async API
   version: 1.0.0
-  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 4 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 4 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/).'
   contact:
     url: https://www.apimatic.io/contact
   termsOfService: https://www.apimatic.io/terms
@@ -132,7 +132,19 @@ paths:
     get:
       operationId: downloadGeneratedPortal
       summary: Download Generated Portal
-      description: "Downloads the portal artifacts. The generated artifacts include:\n\n\n 1. SDKs\n\n 2. Docs\n\n 3. API Specification files\n\n\n The endpoint returns a zip file that contains a static Site and can be hosted on any Web Server."
+      description: 'Downloads the portal artifacts. The generated artifacts include:
+
+
+        1. SDKs
+
+
+        2. Docs
+
+
+        3. API Specification files
+
+
+        The endpoint returns a zip file that contains a static Site and can be hosted on any Web Server.'
       tags:
       - Docs Portal - Async
       parameters:
@@ -192,23 +204,6 @@ components:
         message:
           example: Authorization has been denied for this request.
           type: string
-    PortalGenerationAsyncResponse:
-      title: PortalGenerationAsyncResponse
-      example:
-        links:
-          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
-          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: uuid
-        links:
-          $ref: '#/components/schemas/Links'
-      required:
-      - id
-      - links
     InternalServerErrorResponse:
       title: InternalServerErrorResponse
       type: object
@@ -218,6 +213,24 @@ components:
         message:
           example: An error has occurred.
           type: string
+    PortalGenerationStatusResponse:
+      title: PortalGenerationStatusResponse
+      example:
+        status: InProgress
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        errors:
+          example:
+            buildFile:
+            - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+      required:
+      - status
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -247,24 +260,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    PortalGenerationStatusResponse:
-      title: PortalGenerationStatusResponse
-      example:
-        status: InProgress
-      type: object
-      additionalProperties: false
-      properties:
-        status:
-          $ref: '#/components/schemas/Status'
-        errors:
-          example:
-            buildFile:
-            - Build file not found
-          type: object
-          additionalProperties:
-            type: object
-      required:
-      - status
     Links:
       title: Links
       type: object
@@ -299,6 +294,23 @@ components:
       - ValidationError
       - SubscriptionError
       - Failed
+    PortalGenerationAsyncResponse:
+      title: PortalGenerationAsyncResponse
+      example:
+        links:
+          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
+          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - links
   securitySchemes:
     Authorization:
       type: apiKey

@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: APIMatic Generation SDK API
   version: 1.0.0
-  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 10 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 10 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/).'
   contact:
     url: https://www.apimatic.io/contact
   termsOfService: https://www.apimatic.io/terms
@@ -27,7 +27,13 @@ paths:
     post:
       operationId: generateSdkViaFile
       summary: Generate SDK via File
-      description: "Generate an SDK for an API by by uploading the API specification file. \n\nThis endpoint generates and then uploads the generated SDK to APIMatic's cloud storage. An ID for the generation performed is returned as part of the response.\n\nThis endpoint does not import an API into APIMatic."
+      description: 'Generate an SDK for an API by by uploading the API specification file.
+
+
+        This endpoint generates and then uploads the generated SDK to APIMatic''s cloud storage. An ID for the generation performed is returned as part of the response.
+
+
+        This endpoint does not import an API into APIMatic.'
       tags:
       - SDK
       parameters:
@@ -89,7 +95,13 @@ paths:
     post:
       operationId: generateSdkViaUrl
       summary: Generate SDK via URL
-      description: "Generate an SDK for an API by providing the URL of the API specification file. \n\nThis endpoint generates and then uploads the generated SDK to APIMatic's cloud storage. An ID for the generation performed is returned as part of the response.\n\nThis endpoint does not import an API into APIMatic."
+      description: 'Generate an SDK for an API by providing the URL of the API specification file.
+
+
+        This endpoint generates and then uploads the generated SDK to APIMatic''s cloud storage. An ID for the generation performed is returned as part of the response.
+
+
+        This endpoint does not import an API into APIMatic.'
       tags:
       - SDK
       requestBody:
@@ -238,6 +250,28 @@ paths:
         kind: documentation
 components:
   schemas:
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    BadRequestResponseSDK:
+      title: BadRequestResponseSDK
+      description: Standard JSON error response for bad requests
+      example:
+        message: Bad Request
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          description: Error message describing the bad request
+          example: Bad Request
+          type: string
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -267,30 +301,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
-    GenerateSdkViaUrlRequest:
-      title: GenerateSdkViaUrlRequest
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        url:
-          description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
-          example: http://petstore.swagger.io/v2/swagger.json
-          type: string
-        template:
-          $ref: '#/components/schemas/Platforms'
-      required:
-      - url
-      - template
     UserCodeGeneration:
       title: UserCodeGeneration
       description: The Code Generation structure encapsulates all the  the details of an SDK generation performed by a user.
@@ -348,19 +358,6 @@ components:
       - success
       - userId
       - inputFile
-    BadRequestResponseSDK:
-      title: BadRequestResponseSDK
-      description: Standard JSON error response for bad requests
-      example:
-        message: Bad Request
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          description: Error message describing the bad request
-          example: Bad Request
-          type: string
     Platforms:
       title: Platforms
       description: The structure contains platforms that APIMatic CodeGen can generate SDKs and Docs in.
@@ -390,6 +387,21 @@ components:
       - RUBY_GENERIC_LIB
       - TS_GENERIC_LIB
       - GO_GENERIC_LIB
+    GenerateSdkViaUrlRequest:
+      title: GenerateSdkViaUrlRequest
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        url:
+          description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
+          example: http://petstore.swagger.io/v2/swagger.json
+          type: string
+        template:
+          $ref: '#/components/schemas/Platforms'
+      required:
+      - url
+      - template
   securitySchemes:
     Authorization:
       type: apiKey

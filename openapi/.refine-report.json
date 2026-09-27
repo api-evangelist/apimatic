@@ -23,7 +23,16 @@
     "apimatic-portals-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apimatic-sdk-generation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apimatic-transformation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apimatic-validation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "apimatic-validation-openapi-generated.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "apimatic-docs-portal-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apimatic-docs-portal-async-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apimatic-sdk-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apimatic-sdk-async-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apimatic-transformation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apimatic-validation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apimatic-validation-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

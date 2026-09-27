@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: APIMatic SDK Generation SDK - Async API
   version: 1.0.0
-  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 10 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/). Paths, methods, parameters, responses and schemas are copied from that JSON; each operation names its portal section in x-docs-title. This is not a contract APIMatic publishes: the portal''s API-spec export is disabled (enableExport: false) and no OpenAPI for the Platform API was found on its hosts or in its GitHub organization.'
+  description: 'GENERATED FROM DOCUMENTATION by API Evangelist on 2026-09-23: 10 operation(s) converted deterministically (no model) from the structured reference data APIMatic serves for its own Platform API portal (https://docs.apimatic.io/platform-api/static/docs/apimatic-api-HTTP_CURL_V1.json, loaded by https://docs.apimatic.io/platform-api/).'
   contact:
     url: https://www.apimatic.io/contact
   termsOfService: https://www.apimatic.io/terms
@@ -192,57 +192,6 @@ components:
         message:
           example: Authorization has been denied for this request.
           type: string
-    ProblemDetails:
-      title: ProblemDetails
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        type:
-          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
-          type: string
-        title:
-          example: One or more validation errors occurred.
-          type: string
-        status:
-          example: 400
-          type: integer
-          format: int32
-        detail:
-          example: One or more validation failures have occurred
-          type: string
-        instance:
-          example: /api/portal
-          type: string
-        errors:
-          example:
-            ? ''
-            : - Build file not found
-          type: object
-          additionalProperties:
-            type: object
-    InternalServerErrorResponse:
-      title: InternalServerErrorResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: An error has occurred.
-          type: string
-    Links:
-      title: Links
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        status:
-          type: string
-        download:
-          type: string
-      required:
-      - status
-      - download
     SDKLanguages:
       title: SDK Languages
       description: Languages for which SDKs can be generated.
@@ -272,24 +221,15 @@ components:
       - ruby
       - typescript
       - go
-    SdkGenerationStatusResponse:
-      title: SdkGenerationStatusResponse
-      example:
-        status: InProgress
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
       type: object
-      additionalProperties: false
+      additionalProperties:
+        type: object
       properties:
-        status:
-          $ref: '#/components/schemas/Status'
-        errors:
-          example:
-            file:
-            - File is required
-          type: object
-          additionalProperties:
-            type: object
-      required:
-      - status
+        message:
+          example: An error has occurred.
+          type: string
     SdkGenerationAsyncResponse:
       title: SdkGenerationAsyncResponse
       example:
@@ -307,6 +247,48 @@ components:
       required:
       - id
       - links
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+    Links:
+      title: Links
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        status:
+          type: string
+        download:
+          type: string
+      required:
+      - status
+      - download
     Status:
       title: Status
       x-enum-elements:
@@ -328,6 +310,24 @@ components:
       - ValidationError
       - SubscriptionError
       - Failed
+    SdkGenerationStatusResponse:
+      title: SdkGenerationStatusResponse
+      example:
+        status: InProgress
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        errors:
+          example:
+            file:
+            - File is required
+          type: object
+          additionalProperties:
+            type: object
+      required:
+      - status
   securitySchemes:
     Authorization:
       type: apiKey
