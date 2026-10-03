@@ -250,57 +250,6 @@ paths:
         kind: documentation
 components:
   schemas:
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
-    BadRequestResponseSDK:
-      title: BadRequestResponseSDK
-      description: Standard JSON error response for bad requests
-      example:
-        message: Bad Request
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          description: Error message describing the bad request
-          example: Bad Request
-          type: string
-    ProblemDetails:
-      title: ProblemDetails
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        type:
-          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
-          type: string
-        title:
-          example: One or more validation errors occurred.
-          type: string
-        status:
-          example: 400
-          type: integer
-          format: int32
-        detail:
-          example: One or more validation failures have occurred
-          type: string
-        instance:
-          example: /api/portal
-          type: string
-        errors:
-          example:
-            ? ''
-            : - Build file not found
-          type: object
-          additionalProperties:
-            type: object
     UserCodeGeneration:
       title: UserCodeGeneration
       description: The Code Generation structure encapsulates all the  the details of an SDK generation performed by a user.
@@ -387,6 +336,28 @@ components:
       - RUBY_GENERIC_LIB
       - TS_GENERIC_LIB
       - GO_GENERIC_LIB
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    BadRequestResponseSDK:
+      title: BadRequestResponseSDK
+      description: Standard JSON error response for bad requests
+      example:
+        message: Bad Request
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          description: Error message describing the bad request
+          example: Bad Request
+          type: string
     GenerateSdkViaUrlRequest:
       title: GenerateSdkViaUrlRequest
       type: object
@@ -402,6 +373,35 @@ components:
       required:
       - url
       - template
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
   securitySchemes:
     Authorization:
       type: apiKey

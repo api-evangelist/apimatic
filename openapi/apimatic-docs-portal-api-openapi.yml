@@ -109,6 +109,15 @@ components:
         message:
           example: Authorization has been denied for this request.
           type: string
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -138,15 +147,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    InternalServerErrorResponse:
-      title: InternalServerErrorResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: An error has occurred.
-          type: string
   securitySchemes:
     Authorization:
       type: apiKey

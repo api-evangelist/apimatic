@@ -142,37 +142,6 @@ paths:
         result: 404 with and without descriptionUrl; documented in APIMatic's portal reference data but not answering on api.apimatic.io. Every other operation in these four contracts answered 401/405.
 components:
   schemas:
-    ValidateApiResult:
-      title: ValidateApiResult
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        validation:
-          $ref: '#/components/schemas/ValidationSummary'
-        linting:
-          $ref: '#/components/schemas/ValidationSummary'
-      required:
-      - validation
-      - linting
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
-    InternalServerErrorResponse:
-      title: InternalServerErrorResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: An error has occurred.
-          type: string
     ValidationEntry:
       title: ValidationEntry
       type: object
@@ -252,6 +221,15 @@ components:
           type: object
           additionalProperties:
             type: object
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
     ValidationSummary:
       title: ValidationSummary
       type: object
@@ -286,6 +264,28 @@ components:
       - errors
       - warnings
       - information
+    ValidateApiResult:
+      title: ValidateApiResult
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        validation:
+          $ref: '#/components/schemas/ValidationSummary'
+        linting:
+          $ref: '#/components/schemas/ValidationSummary'
+      required:
+      - validation
+      - linting
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: An error has occurred.
+          type: string
   securitySchemes:
     Authorization:
       type: apiKey
