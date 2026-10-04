@@ -204,84 +204,6 @@ components:
         message:
           example: An error has occurred.
           type: string
-    PortalGenerationAsyncResponse:
-      title: PortalGenerationAsyncResponse
-      example:
-        links:
-          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
-          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: uuid
-        links:
-          $ref: '#/components/schemas/Links'
-      required:
-      - id
-      - links
-    Status:
-      title: Status
-      x-enum-elements:
-      - name: Completed
-        description: ''
-      - name: InProgress
-        description: ''
-      - name: ValidationError
-        description: ''
-      - name: SubscriptionError
-        description: ''
-      - name: Failed
-        description: ''
-      type: string
-      additionalProperties: false
-      enum:
-      - Completed
-      - InProgress
-      - ValidationError
-      - SubscriptionError
-      - Failed
-    PortalGenerationStatusResponse:
-      title: PortalGenerationStatusResponse
-      example:
-        status: InProgress
-      type: object
-      additionalProperties: false
-      properties:
-        status:
-          $ref: '#/components/schemas/Status'
-        errors:
-          example:
-            buildFile:
-            - Build file not found
-          type: object
-          additionalProperties:
-            type: object
-      required:
-      - status
-    Links:
-      title: Links
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        status:
-          type: string
-        download:
-          type: string
-      required:
-      - status
-      - download
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -311,6 +233,84 @@ components:
           type: object
           additionalProperties:
             type: object
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    PortalGenerationAsyncResponse:
+      title: PortalGenerationAsyncResponse
+      example:
+        links:
+          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
+          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - links
+    PortalGenerationStatusResponse:
+      title: PortalGenerationStatusResponse
+      example:
+        status: InProgress
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        errors:
+          example:
+            buildFile:
+            - Build file not found
+          type: object
+          additionalProperties:
+            type: object
+      required:
+      - status
+    Status:
+      title: Status
+      x-enum-elements:
+      - name: Completed
+        description: ''
+      - name: InProgress
+        description: ''
+      - name: ValidationError
+        description: ''
+      - name: SubscriptionError
+        description: ''
+      - name: Failed
+        description: ''
+      type: string
+      additionalProperties: false
+      enum:
+      - Completed
+      - InProgress
+      - ValidationError
+      - SubscriptionError
+      - Failed
+    Links:
+      title: Links
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        status:
+          type: string
+        download:
+          type: string
+      required:
+      - status
+      - download
   securitySchemes:
     Authorization:
       type: apiKey

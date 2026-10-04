@@ -250,6 +250,21 @@ paths:
         kind: documentation
 components:
   schemas:
+    GenerateSdkViaUrlRequest:
+      title: GenerateSdkViaUrlRequest
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        url:
+          description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
+          example: http://petstore.swagger.io/v2/swagger.json
+          type: string
+        template:
+          $ref: '#/components/schemas/Platforms'
+      required:
+      - url
+      - template
     UserCodeGeneration:
       title: UserCodeGeneration
       description: The Code Generation structure encapsulates all the  the details of an SDK generation performed by a user.
@@ -307,72 +322,6 @@ components:
       - success
       - userId
       - inputFile
-    Platforms:
-      title: Platforms
-      description: The structure contains platforms that APIMatic CodeGen can generate SDKs and Docs in.
-      example: CS_NET_STANDARD_LIB
-      x-enum-elements:
-      - name: CS_NET_STANDARD_LIB
-        description: .NET Standard Library
-      - name: JAVA_ECLIPSE_JRE_LIB
-        description: JAVA
-      - name: PHP_GENERIC_LIB_V2
-        description: PHP
-      - name: PYTHON_GENERIC_LIB
-        description: Python
-      - name: RUBY_GENERIC_LIB
-        description: Ruby
-      - name: TS_GENERIC_LIB
-        description: Typescript
-      - name: GO_GENERIC_LIB
-        description: Go
-      type: string
-      additionalProperties: false
-      enum:
-      - CS_NET_STANDARD_LIB
-      - JAVA_ECLIPSE_JRE_LIB
-      - PHP_GENERIC_LIB_V2
-      - PYTHON_GENERIC_LIB
-      - RUBY_GENERIC_LIB
-      - TS_GENERIC_LIB
-      - GO_GENERIC_LIB
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
-    BadRequestResponseSDK:
-      title: BadRequestResponseSDK
-      description: Standard JSON error response for bad requests
-      example:
-        message: Bad Request
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          description: Error message describing the bad request
-          example: Bad Request
-          type: string
-    GenerateSdkViaUrlRequest:
-      title: GenerateSdkViaUrlRequest
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        url:
-          description: The URL for the API specification file.<br><br>**Note:** This URL should be publicly accessible.
-          example: http://petstore.swagger.io/v2/swagger.json
-          type: string
-        template:
-          $ref: '#/components/schemas/Platforms'
-      required:
-      - url
-      - template
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -402,6 +351,57 @@ components:
           type: object
           additionalProperties:
             type: object
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
+    Platforms:
+      title: Platforms
+      description: The structure contains platforms that APIMatic CodeGen can generate SDKs and Docs in.
+      example: CS_NET_STANDARD_LIB
+      x-enum-elements:
+      - name: CS_NET_STANDARD_LIB
+        description: .NET Standard Library
+      - name: JAVA_ECLIPSE_JRE_LIB
+        description: JAVA
+      - name: PHP_GENERIC_LIB_V2
+        description: PHP
+      - name: PYTHON_GENERIC_LIB
+        description: Python
+      - name: RUBY_GENERIC_LIB
+        description: Ruby
+      - name: TS_GENERIC_LIB
+        description: Typescript
+      - name: GO_GENERIC_LIB
+        description: Go
+      type: string
+      additionalProperties: false
+      enum:
+      - CS_NET_STANDARD_LIB
+      - JAVA_ECLIPSE_JRE_LIB
+      - PHP_GENERIC_LIB_V2
+      - PYTHON_GENERIC_LIB
+      - RUBY_GENERIC_LIB
+      - TS_GENERIC_LIB
+      - GO_GENERIC_LIB
+    BadRequestResponseSDK:
+      title: BadRequestResponseSDK
+      description: Standard JSON error response for bad requests
+      example:
+        message: Bad Request
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          description: Error message describing the bad request
+          example: Bad Request
+          type: string
   securitySchemes:
     Authorization:
       type: apiKey

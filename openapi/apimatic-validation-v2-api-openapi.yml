@@ -142,56 +142,15 @@ paths:
         result: 404 with and without descriptionUrl; documented in APIMatic's portal reference data but not answering on api.apimatic.io. Every other operation in these four contracts answered 401/405.
 components:
   schemas:
-    ValidationEntry:
-      title: ValidationEntry
+    InternalServerErrorResponse:
+      title: InternalServerErrorResponse
       type: object
       additionalProperties:
         type: object
       properties:
         message:
+          example: An error has occurred.
           type: string
-        lineInfo:
-          $ref: '#/components/schemas/LineInfo'
-        jsonReferencePath:
-          type: string
-        fileReference:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        ruleDocumentationReference:
-          type: string
-        additionalReferences:
-          description: ''
-          type: array
-          items:
-            type: string
-      required:
-      - message
-    LineInfo:
-      title: LineInfo
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        startLineNumber:
-          type: integer
-          format: int32
-        startLinePosition:
-          type: integer
-          format: int32
-        endLineNumber:
-          type: integer
-          format: int32
-        endLinePosition:
-          type: integer
-          format: int32
-      required:
-      - startLineNumber
-      - startLinePosition
-      - endLineNumber
-      - endLinePosition
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -221,6 +180,33 @@ components:
           type: object
           additionalProperties:
             type: object
+    ValidationEntry:
+      title: ValidationEntry
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          type: string
+        lineInfo:
+          $ref: '#/components/schemas/LineInfo'
+        jsonReferencePath:
+          type: string
+        fileReference:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        ruleDocumentationReference:
+          type: string
+        additionalReferences:
+          description: ''
+          type: array
+          items:
+            type: string
+      required:
+      - message
     UnauthorizedResponse:
       title: UnauthorizedResponse
       type: object
@@ -277,15 +263,29 @@ components:
       required:
       - validation
       - linting
-    InternalServerErrorResponse:
-      title: InternalServerErrorResponse
+    LineInfo:
+      title: LineInfo
       type: object
       additionalProperties:
         type: object
       properties:
-        message:
-          example: An error has occurred.
-          type: string
+        startLineNumber:
+          type: integer
+          format: int32
+        startLinePosition:
+          type: integer
+          format: int32
+        endLineNumber:
+          type: integer
+          format: int32
+        endLinePosition:
+          type: integer
+          format: int32
+      required:
+      - startLineNumber
+      - startLinePosition
+      - endLineNumber
+      - endLinePosition
   securitySchemes:
     Authorization:
       type: apiKey
