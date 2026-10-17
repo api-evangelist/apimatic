@@ -100,15 +100,6 @@ paths:
         kind: documentation
 components:
   schemas:
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
     InternalServerErrorResponse:
       title: InternalServerErrorResponse
       type: object
@@ -117,6 +108,15 @@ components:
       properties:
         message:
           example: An error has occurred.
+          type: string
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
           type: string
     ProblemDetails:
       title: ProblemDetails

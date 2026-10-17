@@ -151,71 +151,6 @@ components:
         message:
           example: An error has occurred.
           type: string
-    ProblemDetails:
-      title: ProblemDetails
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        type:
-          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
-          type: string
-        title:
-          example: One or more validation errors occurred.
-          type: string
-        status:
-          example: 400
-          type: integer
-          format: int32
-        detail:
-          example: One or more validation failures have occurred
-          type: string
-        instance:
-          example: /api/portal
-          type: string
-        errors:
-          example:
-            ? ''
-            : - Build file not found
-          type: object
-          additionalProperties:
-            type: object
-    ValidationEntry:
-      title: ValidationEntry
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          type: string
-        lineInfo:
-          $ref: '#/components/schemas/LineInfo'
-        jsonReferencePath:
-          type: string
-        fileReference:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        ruleDocumentationReference:
-          type: string
-        additionalReferences:
-          description: ''
-          type: array
-          items:
-            type: string
-      required:
-      - message
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
     ValidationSummary:
       title: ValidationSummary
       type: object
@@ -250,6 +185,62 @@ components:
       - errors
       - warnings
       - information
+    ValidationEntry:
+      title: ValidationEntry
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          type: string
+        lineInfo:
+          $ref: '#/components/schemas/LineInfo'
+        jsonReferencePath:
+          type: string
+        fileReference:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        ruleDocumentationReference:
+          type: string
+        additionalReferences:
+          description: ''
+          type: array
+          items:
+            type: string
+      required:
+      - message
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        type:
+          example: https://tools.ietf.org/html/rfc7231#section-6.5.1
+          type: string
+        title:
+          example: One or more validation errors occurred.
+          type: string
+        status:
+          example: 400
+          type: integer
+          format: int32
+        detail:
+          example: One or more validation failures have occurred
+          type: string
+        instance:
+          example: /api/portal
+          type: string
+        errors:
+          example:
+            ? ''
+            : - Build file not found
+          type: object
+          additionalProperties:
+            type: object
     ValidateApiResult:
       title: ValidateApiResult
       type: object
@@ -263,6 +254,15 @@ components:
       required:
       - validation
       - linting
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
     LineInfo:
       title: LineInfo
       type: object

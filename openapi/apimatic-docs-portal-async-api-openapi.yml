@@ -204,6 +204,36 @@ components:
         message:
           example: An error has occurred.
           type: string
+    Links:
+      title: Links
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        status:
+          type: string
+        download:
+          type: string
+      required:
+      - status
+      - download
+    PortalGenerationAsyncResponse:
+      title: PortalGenerationAsyncResponse
+      example:
+        links:
+          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
+          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - links
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -233,32 +263,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    UnauthorizedResponse:
-      title: UnauthorizedResponse
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          example: Authorization has been denied for this request.
-          type: string
-    PortalGenerationAsyncResponse:
-      title: PortalGenerationAsyncResponse
-      example:
-        links:
-          status: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/status
-          download: https://api.apimatic.io/portal/v2/0194d0da-8d75-7c04-b517-6a9342b114e8/download
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: uuid
-        links:
-          $ref: '#/components/schemas/Links'
-      required:
-      - id
-      - links
     PortalGenerationStatusResponse:
       title: PortalGenerationStatusResponse
       example:
@@ -277,6 +281,15 @@ components:
             type: object
       required:
       - status
+    UnauthorizedResponse:
+      title: UnauthorizedResponse
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          example: Authorization has been denied for this request.
+          type: string
     Status:
       title: Status
       x-enum-elements:
@@ -298,19 +311,6 @@ components:
       - ValidationError
       - SubscriptionError
       - Failed
-    Links:
-      title: Links
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        status:
-          type: string
-        download:
-          type: string
-      required:
-      - status
-      - download
   securitySchemes:
     Authorization:
       type: apiKey

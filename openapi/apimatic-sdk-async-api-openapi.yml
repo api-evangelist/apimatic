@@ -192,6 +192,41 @@ components:
         message:
           example: An error has occurred.
           type: string
+    SdkGenerationStatusResponse:
+      title: SdkGenerationStatusResponse
+      example:
+        status: InProgress
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        errors:
+          example:
+            file:
+            - File is required
+          type: object
+          additionalProperties:
+            type: object
+      required:
+      - status
+    SdkGenerationAsyncResponse:
+      title: SdkGenerationAsyncResponse
+      example:
+        links:
+          status: https://api.apimatic.io/sdk/0194d0da-8d75-7c04-b517-6a9342b114e8/status
+          download: https://api.apimatic.io/sdk/0194d0da-8d75-7c04-b517-6a9342b114e8/download
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - links
     SDKLanguages:
       title: SDK Languages
       description: Languages for which SDKs can be generated.
@@ -221,6 +256,19 @@ components:
       - ruby
       - typescript
       - go
+    Links:
+      title: Links
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        status:
+          type: string
+        download:
+          type: string
+      required:
+      - status
+      - download
     ProblemDetails:
       title: ProblemDetails
       type: object
@@ -250,24 +298,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    SdkGenerationStatusResponse:
-      title: SdkGenerationStatusResponse
-      example:
-        status: InProgress
-      type: object
-      additionalProperties: false
-      properties:
-        status:
-          $ref: '#/components/schemas/Status'
-        errors:
-          example:
-            file:
-            - File is required
-          type: object
-          additionalProperties:
-            type: object
-      required:
-      - status
     UnauthorizedResponse:
       title: UnauthorizedResponse
       type: object
@@ -298,36 +328,6 @@ components:
       - ValidationError
       - SubscriptionError
       - Failed
-    SdkGenerationAsyncResponse:
-      title: SdkGenerationAsyncResponse
-      example:
-        links:
-          status: https://api.apimatic.io/sdk/0194d0da-8d75-7c04-b517-6a9342b114e8/status
-          download: https://api.apimatic.io/sdk/0194d0da-8d75-7c04-b517-6a9342b114e8/download
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          format: uuid
-        links:
-          $ref: '#/components/schemas/Links'
-      required:
-      - id
-      - links
-    Links:
-      title: Links
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        status:
-          type: string
-        download:
-          type: string
-      required:
-      - status
-      - download
   securitySchemes:
     Authorization:
       type: apiKey

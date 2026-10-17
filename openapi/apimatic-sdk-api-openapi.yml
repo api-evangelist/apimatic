@@ -250,6 +250,48 @@ paths:
         kind: documentation
 components:
   schemas:
+    BadRequestResponseSDK:
+      title: BadRequestResponseSDK
+      description: Standard JSON error response for bad requests
+      example:
+        message: Bad Request
+      type: object
+      additionalProperties:
+        type: object
+      properties:
+        message:
+          description: Error message describing the bad request
+          example: Bad Request
+          type: string
+    Platforms:
+      title: Platforms
+      description: The structure contains platforms that APIMatic CodeGen can generate SDKs and Docs in.
+      example: CS_NET_STANDARD_LIB
+      x-enum-elements:
+      - name: CS_NET_STANDARD_LIB
+        description: .NET Standard Library
+      - name: JAVA_ECLIPSE_JRE_LIB
+        description: JAVA
+      - name: PHP_GENERIC_LIB_V2
+        description: PHP
+      - name: PYTHON_GENERIC_LIB
+        description: Python
+      - name: RUBY_GENERIC_LIB
+        description: Ruby
+      - name: TS_GENERIC_LIB
+        description: Typescript
+      - name: GO_GENERIC_LIB
+        description: Go
+      type: string
+      additionalProperties: false
+      enum:
+      - CS_NET_STANDARD_LIB
+      - JAVA_ECLIPSE_JRE_LIB
+      - PHP_GENERIC_LIB_V2
+      - PYTHON_GENERIC_LIB
+      - RUBY_GENERIC_LIB
+      - TS_GENERIC_LIB
+      - GO_GENERIC_LIB
     GenerateSdkViaUrlRequest:
       title: GenerateSdkViaUrlRequest
       type: object
@@ -359,48 +401,6 @@ components:
       properties:
         message:
           example: Authorization has been denied for this request.
-          type: string
-    Platforms:
-      title: Platforms
-      description: The structure contains platforms that APIMatic CodeGen can generate SDKs and Docs in.
-      example: CS_NET_STANDARD_LIB
-      x-enum-elements:
-      - name: CS_NET_STANDARD_LIB
-        description: .NET Standard Library
-      - name: JAVA_ECLIPSE_JRE_LIB
-        description: JAVA
-      - name: PHP_GENERIC_LIB_V2
-        description: PHP
-      - name: PYTHON_GENERIC_LIB
-        description: Python
-      - name: RUBY_GENERIC_LIB
-        description: Ruby
-      - name: TS_GENERIC_LIB
-        description: Typescript
-      - name: GO_GENERIC_LIB
-        description: Go
-      type: string
-      additionalProperties: false
-      enum:
-      - CS_NET_STANDARD_LIB
-      - JAVA_ECLIPSE_JRE_LIB
-      - PHP_GENERIC_LIB_V2
-      - PYTHON_GENERIC_LIB
-      - RUBY_GENERIC_LIB
-      - TS_GENERIC_LIB
-      - GO_GENERIC_LIB
-    BadRequestResponseSDK:
-      title: BadRequestResponseSDK
-      description: Standard JSON error response for bad requests
-      example:
-        message: Bad Request
-      type: object
-      additionalProperties:
-        type: object
-      properties:
-        message:
-          description: Error message describing the bad request
-          example: Bad Request
           type: string
   securitySchemes:
     Authorization:
