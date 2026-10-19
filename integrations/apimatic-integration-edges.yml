@@ -1,7 +1,14 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
 - https://github.com/marketplace?type=apps
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (apps)
@@ -22,5 +29,257 @@ edges:
   - Verified domain
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/apimatic/go-core-runtime
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/apimatic/go-core-runtime
+      version: v0.0.29
+      released: '2025-10-24'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/apimatic/go-core-runtime
+      repo_leg: github-org:apimatic
+      publisher_leg: org:apimatic
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/io.apimatic/core
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: io.apimatic:core
+      version: 0.6.17
+      released: '2026-06-08'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/io.apimatic/core
+      repo_leg: github-org:apimatic
+      publisher_leg: groupId:apimatic.io
+      matched_by: domain
+    - name: io.apimatic:core-interfaces
+      version: 0.3.5
+      released: '2025-12-19'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/io.apimatic/core-interfaces
+      repo_leg: github-org:apimatic
+      publisher_leg: groupId:apimatic.io
+      matched_by: domain
+    - name: io.apimatic:okhttp-client-adapter
+      version: 0.3.6
+      released: '2025-12-19'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/io.apimatic/okhttp-client-adapter
+      repo_leg: github-org:apimatic
+      publisher_leg: groupId:apimatic.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@apimatic/cli
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@apimatic/cli'
+      version: 1.5.0
+      released: '2026-10-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@apimatic/cli
+      repo_leg: domain:apimatic.io
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    - name: '@apimatic/core'
+      version: 0.10.30
+      released: '2026-07-09'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@apimatic/core
+      repo_leg: github-org:apimatic
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    - name: '@apimatic/core-interfaces'
+      version: 0.2.14
+      released: '2026-07-09'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@apimatic/core-interfaces
+      repo_leg: github-org:apimatic
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    - name: '@apimatic/schema'
+      version: 0.7.21
+      released: '2026-07-09'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@apimatic/schema
+      repo_leg: github-org:apimatic
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: NuGet Gallery
+  partner: nuget
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (.NET)
+  evidence: https://www.nuget.org/packages/APIMatic.Core
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: NuGet Gallery (public registry JSON)
+    spec_file: null
+    language: .NET
+    packages:
+    - name: APIMatic.Core
+      version: 0.4.13
+      released: '2025-10-03'
+      released_field: published
+      lapsed: false
+      page: https://www.nuget.org/packages/APIMatic.Core
+      repo_leg: domain:apimatic.io
+      publisher_leg: org:apimatic
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/apimatic-core/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: apimatic-core
+      version: 0.2.25
+      released: '2026-06-08'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/apimatic-core/
+      repo_leg: github-org:apimatic
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    - name: apimatic-core-interfaces
+      version: 0.1.8
+      released: '2025-10-29'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/apimatic-core-interfaces/
+      repo_leg: github-org:apimatic
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    - name: apimatic-requests-client-adapter
+      version: 0.1.10
+      released: '2025-11-27'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/apimatic-requests-client-adapter/
+      repo_leg: github-org:apimatic
+      publisher_leg: email:apimatic.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/apimatic_core
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: apimatic_core
+      version: 0.3.21
+      released: '2025-11-20'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/apimatic_core
+      repo_leg: domain:apimatic.io
+      publisher_leg: org:apimatic
+      matched_by: domain
+    - name: apimatic_core_interfaces
+      version: 0.2.3
+      released: '2025-10-02'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/apimatic_core_interfaces
+      repo_leg: domain:apimatic.io
+      publisher_leg: org:apimatic
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 source:
 - https://github.com/marketplace?type=apps
