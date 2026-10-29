@@ -1,4 +1,4 @@
-# APIMatic (apimatic)
+# APIMatic
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,141 +66,211 @@
 
 APIMatic is a developer experience platform for APIs that specializes in automated SDK generation, API documentation portal creation, specification validation and linting, and API format transformation. It supports 15+ API specification formats and generates idiomatic SDKs in 7+ programming languages with CI/CD integration for automating the developer experience suite.
 
-**URL:** [https://www.apimatic.io/](https://www.apimatic.io/)
+**Areas:** API Transformation · Code Generation · Developer Experience · Developer Tools · Documentation · SDK Generation · OpenAPI
 
-## Tags:
+## APIMatic on APIs.io
 
- - API Transformation, Code Generation, Developer Experience, Documentation, SDK Generation
+Everything profiled for APIMatic is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apimatic/](https://apis.io/providers/apimatic/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-04-19
+- [APIMatic API Transformer API](https://apis.io/apis/apimatic/apimatic-api-transformer-api/) — APIMatic API Transformer converts API definition files between more than 15 supported API specification formats including OpenAPI, RAML, API Blueprint,…
+- [APIMatic Portals API](https://apis.io/apis/apimatic/apimatic-portals-api/) — Generate an APIMatic developer portal from a build input, synchronously (POST /portal) or asynchronously (POST /portal/v2 with status polling and download)…
+- [APIMatic SDK Generation API](https://apis.io/apis/apimatic/apimatic-sdk-generation-api/) — Generate SDKs from an API definition uploaded as a file or given by URL, list, fetch, download and delete code generations, and run asynchronous SDK…
+- [APIMatic Transformation API](https://apis.io/apis/apimatic/apimatic-transformation-api/) — Transform an API definition from one specification format to another, by file or by URL, then list, fetch, download and delete transformations — 7…
+- [APIMatic Validation API](https://apis.io/apis/apimatic/apimatic-validation-api/) — Validate an API definition by file or by URL, in the original and V2 validation endpoints — 4 operations, read from the reference data APIMatic serves for…
 
-## APIs
+### Published properties
 
-### APIMatic Platform API
-The APIMatic Platform API provides programmatic access to APIMatic's capabilities including SDK generation, API documentation portal generation, API specification validation and linting, and API specification transformation.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**Human URL:** [https://docs.apimatic.io/platform-api/](https://docs.apimatic.io/platform-api/)
+#### Arazzo workflows (6)
 
-#### Tags:
+Multi-step workflows that chain operations into a business task.
 
- - Code Generation, Documentation, SDK Generation, Transformation, Validation
+- [Moved to /providers/apimatic/](https://apis.io/arazzos/apimatic/apimatic-full-release-pipeline-workflow/)
+- [Moved to /providers/apimatic/](https://apis.io/arazzos/apimatic/apimatic-import-generate-sdk-and-portal-workflow/)
+- [Moved to /providers/apimatic/](https://apis.io/arazzos/apimatic/apimatic-import-transform-workflow/)
+- [Moved to /providers/apimatic/](https://apis.io/arazzos/apimatic/apimatic-import-validate-generate-portal-workflow/)
+- [Moved to /providers/apimatic/](https://apis.io/arazzos/apimatic/apimatic-import-validate-generate-sdk-workflow/)
+- [Moved to /providers/apimatic/](https://apis.io/arazzos/apimatic/apimatic-list-entities-generate-sdk-workflow/)
 
-#### Properties
+#### MCP servers (2)
 
-- [Documentation](https://docs.apimatic.io/platform-api/)
-- [GettingStarted](https://docs.apimatic.io/platform-api/#/http/getting-started)
-- [OpenAPI](openapi/apimatic-docs-portal-api-openapi.yml)
-- [OpenAPI](openapi/apimatic-docs-portal-async-api-openapi.yml)
-- [OpenAPI](openapi/apimatic-sdk-api-openapi.yml)
-- [OpenAPI](openapi/apimatic-sdk-async-api-openapi.yml)
-- [OpenAPI](openapi/apimatic-transformation-api-openapi.yml)
-- [OpenAPI](openapi/apimatic-validation-api-openapi.yml)
-- [OpenAPI](openapi/apimatic-validation-v2-api-openapi.yml)
-- [JSON-LD](json-ld/apimatic-context.jsonld)
+Model Context Protocol servers that expose the API to agents.
 
-### APIMatic API Transformer API
-APIMatic API Transformer converts API definition files between more than 15 supported API specification formats including OpenAPI, RAML, API Blueprint, WSDL, WADL, and Postman Collections.
+- [APIMatic MCP servers (hosted Integration Agent + local validator)](https://apis.io/servers/apimatic/apimatic-mcp-servers-hosted-integration-agent-local-validator/)
+- [MCP Server](https://apis.io/servers/apimatic/mcp-server/)
 
-**Human URL:** [https://www.apimatic.io/solution/transformer](https://www.apimatic.io/solution/transformer)
+#### Agent skills (2)
 
-#### Tags:
+Agent skills built on the API.
 
- - API Conversion, Format Transformation, OpenAPI, Postman, RAML
+- [apimatic-portal](https://apis.io/agent-skills/apimatic/apimatic-portal/)
+- [apimatic-sdk](https://apis.io/agent-skills/apimatic/apimatic-sdk/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://docs.apimatic.io/api-transformer/overview-transformer/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Common Properties
+- [Apimatic Agentic Access](https://apis.io/agentic-access/apimatic/apimatic-agentic-access/)
+
+#### JSON Schema (9)
+
+The data models the API reads and writes.
+
+- [Moved to /providers/apimatic/](https://apis.io/schemas/apimatic/apimatic-api-entity/)
+- [ApiValidationSummary](https://apis.io/schemas/apimatic/apimatic-api-validation-summary/)
+- [ExportFormats](https://apis.io/schemas/apimatic/apimatic-export-formats/)
+- [GenerateSdkViaUrlRequest](https://apis.io/schemas/apimatic/apimatic-generate-sdk-via-url-request/)
+- [Platforms](https://apis.io/schemas/apimatic/apimatic-platforms/)
+- [Moved to /providers/apimatic/](https://apis.io/schemas/apimatic/apimatic-sdk-generation/)
+- [TransformViaUrlRequest](https://apis.io/schemas/apimatic/apimatic-transform-via-url-request/)
+- [Transformation](https://apis.io/schemas/apimatic/apimatic-transformation/)
+- [UserCodeGeneration](https://apis.io/schemas/apimatic/apimatic-user-code-generation/)
+
+#### JSON Structure (2)
+
+Data models expressed in JSON Structure.
+
+- [Moved to /providers/apimatic/](https://apis.io/json-structure/apimatic/apimatic-api-entity-structure/)
+- [Moved to /providers/apimatic/](https://apis.io/json-structure/apimatic/apimatic-sdk-generation-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apimatic Context](https://apis.io/jsonld/apimatic/apimatic-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [APIMatic Vocabulary](https://apis.io/vocabularies/apimatic/apimatic-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Moved to /providers/apimatic/](https://apis.io/examples/apimatic/apimatic-api-entity-example/)
+- [Moved to /providers/apimatic/](https://apis.io/examples/apimatic/apimatic-sdk-generation-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/apimatic/](https://apis.io/collections/apimatic/open-apimatic-apis-api/)
+- [Moved to /providers/apimatic/](https://apis.io/collections/apimatic/open-apimatic-portals-api/)
+- [Moved to /providers/apimatic/](https://apis.io/collections/apimatic/open-apimatic-sdk-generation-api/)
+- [Moved to /providers/apimatic/](https://apis.io/collections/apimatic/open-apimatic-transformation-api/)
+- [Moved to /providers/apimatic/](https://apis.io/collections/apimatic/open-apimatic-validation-api/)
+- [Moved to /providers/apimatic/](https://apis.io/collections/apimatic/postman-apimatic-platform-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Moved to /providers/apimatic/](https://apis.io/rules/apimatic/apimatic-jsonschema-spectral-rules/)
+- [APIMatic API Rules](https://apis.io/rules/apimatic/apimatic-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apimatic Authentication](https://apis.io/security/apimatic/apimatic-authentication/)
+- [Apimatic Domain Security](https://apis.io/security/apimatic/apimatic-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Apimatic Scopes](https://apis.io/scopes/apimatic/apimatic-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apimatic Plans Pricing](https://apis.io/plans/apimatic/apimatic-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apimatic Rate Limits](https://apis.io/rate-limits/apimatic/apimatic-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apimatic Finops](https://apis.io/finops/apimatic/apimatic-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.apimatic.io/)
 - [Documentation](https://docs.apimatic.io/)
-- [GettingStarted](https://docs.apimatic.io/getting-started/importing-api-spec/)
+- [Getting started](https://docs.apimatic.io/getting-started/importing-api-spec/)
+- [API reference](https://docs.apimatic.io/platform-api/)
 - [Pricing](https://www.apimatic.io/pricing)
-- [Blog](https://www.apimatic.io/blog)
-- [SignUp](https://app.apimatic.io/account/register)
-- [Login](https://app.apimatic.io/account/login)
 - [Support](https://support.apimatic.io/hc/en-us)
-- [GitHubOrganization](https://github.com/apimatic)
+- [Changelog](https://docs.apimatic.io/changelog/)
+- [Blog](https://www.apimatic.io/blog)
+- [Terms of service](https://www.apimatic.io/terms)
+- [Privacy policy](https://www.apimatic.io/privacy)
+- [GitHub](https://github.com/apimatic)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Idiomatic SDK Generation | Generate production-ready SDKs in Python, Java, C# .NET, TypeScript, PHP, Ruby, and Go from any API specification. |
-| API Documentation Portals | Generate interactive developer documentation portals with code samples, guided walkthroughs, and code playground. |
-| API Specification Validation | Validate and lint API specifications with detailed error reports and best practice recommendations. |
-| API Format Transformation | Convert API definitions between 15+ formats including OpenAPI 3.0, Swagger 2.0, RAML, API Blueprint, and Postman Collections. |
-| MCP Server Generation | Generate Model Context Protocol (MCP) servers from API specifications for AI agent integration. |
-| DX as Code | Define and automate your entire developer experience pipeline as code with CI/CD integration. |
-| OpenAPI Linter GitHub App | Automatically validate OpenAPI specifications in GitHub pull requests via the APIMatic linter GitHub App. |
+**Kin Score 61.6** — strong · rubric 0.25.0 · scored 2026-10-23
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 27.7 |
+| Contract governance | 33.3 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 95.2 |
+| Access clarity | 69.7 |
 
-| Name | Description |
-|------|-------------|
-| Automated SDK Publishing | Automatically generate and publish SDKs to npm, PyPI, Maven, and other package registries on every API change. |
-| Developer Portal Generation | Generate and host comprehensive API documentation portals with interactive examples and code playground. |
-| API Specification Migration | Transform legacy Swagger 2.0 or RAML specs to OpenAPI 3.0 for modern tooling compatibility. |
-| CI/CD API Governance | Integrate API validation and linting into CI/CD pipelines to enforce quality gates on API changes. |
+**Agent readiness 49.9** — agent-ready (gated down from agent-native)
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
-| Name | Description |
-|------|-------------|
-| MuleSoft | APIMatic integration for generating SDKs from MuleSoft API definitions. |
-| Redocly | Integration for enhanced API documentation workflows. |
-| GitHub Actions | CI/CD integration for automated SDK generation and API validation in GitHub workflows. |
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
 
-## Solutions
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apimatic/](https://apis.io/providers/apimatic/).
 
-| Name | Description |
-|------|-------------|
-| Free Plan | Basic SDK generation and API validation for individual developers. |
-| Team Plan | Advanced SDK generation, portal publishing, and team collaboration features. |
-| Enterprise Plan | Full developer experience automation, custom branding, SLA, and dedicated support. |
+## How this profile is made
 
-## Artifacts
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-Machine-readable API specifications organized by format.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for APIMatic: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### OpenAPI
+## Open an issue
 
-Generated from documentation by API Evangelist (2026-09-23), not published by APIMatic: 25 operations read
-from the reference data APIMatic serves for its Platform API portal, split by resource. The source documents,
-each operation citing its portal section, are in [openapi/_ae-authored/](openapi/_ae-authored/).
-
-- [apimatic-docs-portal-api-openapi.yml](openapi/apimatic-docs-portal-api-openapi.yml)
-- [apimatic-docs-portal-async-api-openapi.yml](openapi/apimatic-docs-portal-async-api-openapi.yml)
-- [apimatic-sdk-api-openapi.yml](openapi/apimatic-sdk-api-openapi.yml)
-- [apimatic-sdk-async-api-openapi.yml](openapi/apimatic-sdk-async-api-openapi.yml)
-- [apimatic-transformation-api-openapi.yml](openapi/apimatic-transformation-api-openapi.yml)
-- [apimatic-validation-api-openapi.yml](openapi/apimatic-validation-api-openapi.yml)
-- [apimatic-validation-v2-api-openapi.yml](openapi/apimatic-validation-v2-api-openapi.yml)
-
-### JSON Schema
-
-- [apimatic-api-validation-summary-schema.json](json-schema/apimatic-api-validation-summary-schema.json)
-- [apimatic-export-formats-schema.json](json-schema/apimatic-export-formats-schema.json)
-- [apimatic-generate-sdk-via-url-request-schema.json](json-schema/apimatic-generate-sdk-via-url-request-schema.json)
-- [apimatic-platforms-schema.json](json-schema/apimatic-platforms-schema.json)
-- [apimatic-transform-via-url-request-schema.json](json-schema/apimatic-transform-via-url-request-schema.json)
-- [apimatic-transformation-schema.json](json-schema/apimatic-transformation-schema.json)
-- [apimatic-user-code-generation-schema.json](json-schema/apimatic-user-code-generation-schema.json)
-
-### JSON-LD
-
-- [apimatic-context.jsonld](json-ld/apimatic-context.jsonld)
-
-## Vocabulary
-
-- [APIMatic Vocabulary](vocabulary/apimatic-vocabulary.yml) — the tags, objects and enumerations of the generated Platform API contracts
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apimatic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
