@@ -1,0 +1,68 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://www.apimatic.io/pricing
+sources:
+- https://www.apimatic.io/pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T141238
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: true
+note: Three tiers; only Basic shows a numeric price. 14-day free trial mentioned.
+plan_count: 3
+currency: USD
+plans:
+- name: Basic
+  price_text: $300 /mo /language
+  price: 300
+  currency: USD
+  period: month
+  unit: language
+  included_quota: Up to 5 SDK languages, API Recipes & DX Analytics, Code Sample API, OAuth 2.0 support
+  overage: Scales with each added language
+- name: Business
+  price_text: Get a Quote
+  period: none
+  included_quota: Up to 100 endpoints per API, all 7 languages; API merging & white labeling, premium
+    SDK features, API Copilot & Context Plugins, dedicated Slack channel
+- name: Enterprise
+  price_text: Get a Quote
+  period: none
+  included_quota: Custom endpoints, custom API portals; SSO & support SLAs, migration & professional services,
+    triage support, OpenAPI spec maintenance
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units: []
+  plans:
+  - name: Basic
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Business
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
